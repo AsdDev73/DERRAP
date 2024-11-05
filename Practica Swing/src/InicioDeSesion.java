@@ -110,6 +110,7 @@ public class InicioDeSesion extends JFrame {
 		
 		txtContra = new JPasswordField();
 		txtContra.setForeground(new Color(192, 192, 192));
+		txtContra.setText("********");
 		txtContra.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
