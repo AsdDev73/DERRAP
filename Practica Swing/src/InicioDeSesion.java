@@ -4,6 +4,9 @@ import java.awt.Image;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Admin.HomeAdmin;
+
 import java.awt.Color;
 
 import javax.swing.ImageIcon;
@@ -33,6 +36,7 @@ public class InicioDeSesion extends JFrame {
 	private Statement stm = null;
 	private Image image;
 	public JLabel LogoDerrap;
+	public String contra;
 
 	/**
 	 * Launch the application.
@@ -80,18 +84,20 @@ public class InicioDeSesion extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				//recojemos las variables 
 				String usuario = txtUser.getText();
-				String contra =txtContra.getPassword().toString();
-				
+				String contra = new String(txtContra.getPassword());
 				try {
 					//cpnectamos con la basede datos 
 					con.conectar();
 					//Controlamos que rol tiene y ejecutamos diferentes pestañas
-				int ControlVentana=	con.LogIn(usuario, contra);
+				int ControlVentana=	con.logIn(usuario, contra);
 				
 				switch(ControlVentana) {
 				
 				case 1: //Ventana Admin
 					
+					HomeAdmin homeAdmin = new HomeAdmin(txtUser.getText());
+					homeAdmin.setVisible(true);
+					dispose();
 					break;
 					
 				case 2: //Ventana mecanico 
