@@ -1,18 +1,27 @@
 import java.awt.EventQueue;
+import java.awt.Image;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.Icon;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import javax.swing.JSeparator;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class InicioDeSesion extends JFrame {
 
@@ -20,6 +29,10 @@ public class InicioDeSesion extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtUser;
 	private JPasswordField txtContra;
+	private ConexionMySQL con = new ConexionMySQL();
+	private Statement stm = null;
+	private Image image;
+	public JLabel LogoDerrap;
 
 	/**
 	 * Launch the application.
@@ -30,10 +43,13 @@ public class InicioDeSesion extends JFrame {
 				try {
 					InicioDeSesion frame = new InicioDeSesion();
 					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
+					
 					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				
 			}
 		});
 	}
@@ -43,7 +59,7 @@ public class InicioDeSesion extends JFrame {
 	 */
 	public InicioDeSesion() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 720, 546);
+		setBounds(100, 100, 297, 447);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -52,11 +68,62 @@ public class InicioDeSesion extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(185, 32, 288, 414);
+		panel.setBounds(0, 0, 288, 414);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JButton btnLogIn = new JButton("Iniciar Sesion");
+		btnLogIn.addActionListener(new ActionListener() {
+			//boton login
+			public void actionPerformed(ActionEvent e) {
+				//recojemos las variables 
+				String usuario = txtUser.getText();
+				String contra =txtContra.getPassword().toString();
+				
+				try {
+					//cpnectamos con la basede datos 
+					con.conectar();
+					//Controlamos que rol tiene y ejecutamos diferentes pestañas
+				int ControlVentana=	con.LogIn(usuario, contra);
+				
+				switch(ControlVentana) {
+				
+				case 1: //Ventana Admin
+					
+					break;
+					
+				case 2: //Ventana mecanico 
+					
+					break;
+				
+				case 3: //Error en el Usuario
+					 JOptionPane.showMessageDialog(null, "No se ha encotrado ese usario en la base de datos");
+					limpiarLogIn();
+					break;
+				case 4: //Error de contraseña
+					 JOptionPane.showMessageDialog(null, "Contraseña Incorrecta");
+					 limpiarLogIn();
+					break;
+				default: //error fatal
+					 JOptionPane.showMessageDialog(null, "Problemas con la conexion al servidor");
+					 limpiarLogIn();
+				}
+				} catch (ClassNotFoundException e1) {
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			
+			
+				
+			}
+
+			//metodo para limpiar los campos si el login falla
+			private void limpiarLogIn() {
+				 txtUser.setText("Escriba su Usuario");
+				 txtContra.setText("********");
+			}
+		});
 		btnLogIn.setBounds(157, 380, 121, 23);
 		panel.add(btnLogIn);
 		
@@ -99,11 +166,6 @@ public class InicioDeSesion extends JFrame {
 		lblNewLabel_1.setBounds(70, 261, 89, 14);
 		panel.add(lblNewLabel_1);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(0, 0, 0));
-		panel_1.setBounds(85, 37, 120, 115);
-		panel.add(panel_1);
-		
 		
 	
 		
@@ -128,5 +190,33 @@ public class InicioDeSesion extends JFrame {
 		txtContra.setToolTipText("");
 		txtContra.setBounds(70, 278, 139, 21);
 		panel.add(txtContra);
+		
+		 LogoDerrap = new JLabel("");
+		
+		LogoDerrap.setBounds(56, 23, 167, 164);
+		panel.add(LogoDerrap);
+		setLogo();
+		
+		
 	}
+	private void setLogo() {
+	    try {
+	        // Cargar la imagen desde el paquete img
+	        ImageIcon iconoOriginal = new ImageIcon(getClass().getResource("/img/logo_Derrap.png"));
+
+	        // Escalar la imagen
+	        Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(LogoDerrap.getWidth(), LogoDerrap.getHeight(), Image.SCALE_SMOOTH);
+
+	        // Crear un nuevo ImageIcon con la imagen escalada
+	        ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
+
+	        // Establecer el icono en el JLabel
+	        LogoDerrap.setIcon(iconoEscalado);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        System.out.println("Error: La imagen no se pudo cargar o asignar al JLabel.");
+	    }
+	}
+
+	
 }
