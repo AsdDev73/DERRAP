@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
@@ -17,7 +19,12 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+
+import Inicio.InicioDeSesion;
+
 import javax.swing.JTextPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class HomeAdmin extends JFrame {
 
@@ -50,7 +57,7 @@ public class HomeAdmin extends JFrame {
 
 	public HomeAdmin(String admin) {
 		
-		pantallaCompleta(this);
+		//pantallaCompleta(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1920, 1080);
 		contentPane = new JPanel();
@@ -63,12 +70,12 @@ public class HomeAdmin extends JFrame {
 		JPanel panelTextoPricipal = new JPanel();
 		panelTextoPricipal.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panelTextoPricipal.setBackground(new Color(133, 133, 133));
-		panelTextoPricipal.setBounds(0, 0, 1904, 288);
+		panelTextoPricipal.setBounds(0, 0, 1920, 288);
 		contentPane.add(panelTextoPricipal);
 		panelTextoPricipal.setLayout(null);
 		
 		labelLogoPanel = new JLabel("New label");
-		labelLogoPanel.setBounds(76, 43, 199, 189);
+		labelLogoPanel.setBounds(77, 43, 199, 189);
 		panelTextoPricipal.add(labelLogoPanel);
 		
 		JLabel lblPrincipal = new JLabel("DASHBOARD");
@@ -87,7 +94,7 @@ public class HomeAdmin extends JFrame {
 		JPanel PanelOpciones = new JPanel();
 		PanelOpciones.setBorder(new LineBorder(new Color(0, 0, 0)));
 		PanelOpciones.setBackground(new Color(133, 133, 133));
-		PanelOpciones.setBounds(0, 288, 323, 753);
+		PanelOpciones.setBounds(0, 288, 323, 781);
 		contentPane.add(PanelOpciones);
 		PanelOpciones.setLayout(null);
 		
@@ -147,6 +154,39 @@ public class HomeAdmin extends JFrame {
 		PanelOpciones.add(lblGestionInformes);
 		setLogo(labelLogoPanel);
 		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(133, 133, 133));
+		panel.setBounds(0, 0, 82, 79);
+		panelTextoPricipal.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("<--");
+		lblNewLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+                // Mostrar el JOptionPane con las opciones "Sí" y "No"
+                int option = JOptionPane.showConfirmDialog(null, 
+                        "¿Quieres salir?", "Confirmar Salida", 
+                        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+                // Verificar la opción seleccionada
+                if (option == JOptionPane.YES_OPTION) {
+                    // Si el usuario elige "Sí", cerrar la ventana principal
+                    dispose();
+                    
+                    // Abrir la ventana de login
+                	InicioDeSesion frame = new InicioDeSesion();
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
+                  
+                }
+			}
+		});
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		lblNewLabel.setBounds(0, 0, 72, 68);
+		panel.add(lblNewLabel);
+		
 		JLabel lblBuquedaVehiculo = new JLabel("Busqueda de vehiculo");
 		lblBuquedaVehiculo.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblBuquedaVehiculo.setBounds(454, 347, 227, 77);
@@ -178,6 +218,7 @@ public class HomeAdmin extends JFrame {
 		contentPane.add(btnBuscarClinte);
 		
 		JPanel panelContadorClientes = new JPanel();
+		panelContadorClientes.setBackground(new Color(133, 133, 133));
 		panelContadorClientes.setBounds(534, 782, 227, 191);
 		contentPane.add(panelContadorClientes);
 		panelContadorClientes.setLayout(null);
@@ -188,6 +229,7 @@ public class HomeAdmin extends JFrame {
 		panelContadorClientes.add(lblContadorClientes);
 		
 		JPanel panelContadorVehiculos = new JPanel();
+		panelContadorVehiculos.setBackground(new Color(133, 133, 133));
 		panelContadorVehiculos.setBounds(1036, 782, 227, 191);
 		contentPane.add(panelContadorVehiculos);
 		panelContadorVehiculos.setLayout(null);
@@ -198,6 +240,7 @@ public class HomeAdmin extends JFrame {
 		panelContadorVehiculos.add(lblContadorVehiculos);
 		
 		JPanel panelContadorMecanicos = new JPanel();
+		panelContadorMecanicos.setBackground(new Color(133, 133, 133));
 		panelContadorMecanicos.setBounds(1563, 782, 227, 191);
 		contentPane.add(panelContadorMecanicos);
 		panelContadorMecanicos.setLayout(null);
