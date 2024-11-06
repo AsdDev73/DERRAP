@@ -73,6 +73,8 @@ public class InicioDeSesion extends JFrame {
 		panel.setLayout(null);
 		
 		JButton btnLogIn = new JButton("Iniciar Sesion");
+		btnLogIn.setForeground(new Color(255, 255, 255));
+		btnLogIn.setBackground(new Color(0, 0, 0));
 		btnLogIn.addActionListener(new ActionListener() {
 			//boton login
 			public void actionPerformed(ActionEvent e) {
@@ -124,17 +126,19 @@ public class InicioDeSesion extends JFrame {
 				 txtContra.setText("********");
 			}
 		});
-		btnLogIn.setBounds(157, 380, 121, 23);
+		btnLogIn.setBounds(143, 341, 121, 23);
 		panel.add(btnLogIn);
 		
 		JButton btnSalir = new JButton("Cancelar");
+		btnSalir.setForeground(new Color(255, 255, 255));
+		btnSalir.setBackground(new Color(0, 0, 0));
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			System.exit(0);
 				
 			}
 		});
-		btnSalir.setBounds(10, 380, 89, 23);
+		btnSalir.setBounds(27, 341, 89, 23);
 		panel.add(btnSalir);
 		
 		txtUser = new JTextField();
