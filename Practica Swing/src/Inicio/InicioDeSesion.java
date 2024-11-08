@@ -27,6 +27,8 @@ import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class InicioDeSesion extends JFrame {
 
@@ -133,7 +135,8 @@ public class InicioDeSesion extends JFrame {
 			//metodo para limpiar los campos si el login falla
 			private void limpiarLogIn() {
 				 txtUser.setText("Escriba su Usuario");
-				 txtContra.setText("********");
+				 txtContra.setText("");
+				 txtUser.setForeground(Color.gray);
 			}
 		});
 		btnLogIn.setBounds(143, 341, 121, 23);
@@ -152,6 +155,16 @@ public class InicioDeSesion extends JFrame {
 		panel.add(btnSalir);
 		
 		txtUser = new JTextField();
+		txtUser.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (txtUser.getText().equals("Escriba su Usuario")) {
+					 txtUser.setText("");
+					 txtUser.setForeground(Color.black);
+			        }
+				
+			}
+		});
 		txtUser.setForeground(new Color(192, 192, 192));
 		txtUser.addMouseListener(new MouseAdapter() {
 			@Override
