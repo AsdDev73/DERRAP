@@ -62,7 +62,7 @@ public class HomeAdmin extends JFrame {
 
 	public HomeAdmin(String admin) {
 		
-		//cardLayout.show(PanelCardPrinci, "PanelDashBoard");
+		
 		//pantallaCompleta(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1920, 1080);
@@ -84,7 +84,7 @@ public class HomeAdmin extends JFrame {
 		labelLogoPanel.setBounds(77, 43, 199, 189);
 		panelTextoPricipal.add(labelLogoPanel);
 		
-		JLabel lblPrincipal = new JLabel("DASHBOARD");
+		JLabel lblPrincipal = new JLabel("DERRAP");
 		lblPrincipal.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -444,8 +444,15 @@ public class HomeAdmin extends JFrame {
 		panel_1_2.setBackground(new Color(133, 133, 133));
 		panel_1_2.setBounds(1046, 461, 195, 174);
 		PanelDashBoard.add(panel_1_2);
+		
+		dashBoard();
 	}
 	
+
+	private void dashBoard() {
+		cardLayout.show(PanelCardPrinci, "PanelDashBoard");
+		
+	}
 
 	private void setLogo(JLabel labelLogoPanel2) {
 	    try {
