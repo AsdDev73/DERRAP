@@ -36,6 +36,8 @@ public class HomeAdmin extends JFrame {
 	public JLabel labelLogoPanel;
 	JPanel PanelCardPrinci;
 	static CardLayout cardLayout;
+	private JTextField txtBusquedaVehiculo;
+	private JTextField txtBusquedaCliente;
 
 	/**
 	 * Launch the application.
@@ -208,9 +210,60 @@ public class HomeAdmin extends JFrame {
 		PanelCardPrinci.setLayout(new CardLayout(0, 0));
 		
 		JPanel PanelGestionCliente = new JPanel();
-		PanelGestionCliente.setBackground(new Color(0, 255, 0));
+		PanelGestionCliente.setBackground(new Color(255, 255, 255));
 		PanelCardPrinci.add(PanelGestionCliente, "GestionClientes");
 		PanelGestionCliente.setLayout(null);
+		
+		JPanel PanelCliente = new JPanel();
+		PanelCliente.setBounds(179, 105, 292, 518);
+		PanelGestionCliente.add(PanelCliente);
+		PanelCliente.setLayout(null);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(133, 133, 133));
+		panel_2.setBounds(0, 0, 292, 59);
+		PanelCliente.add(panel_2);
+		panel_2.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("Cliente");
+		lblNewLabel_1.setBounds(108, 11, 75, 31);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		panel_2.add(lblNewLabel_1);
+		
+		JPanel PanelTrabajadores = new JPanel();
+		PanelTrabajadores.setLayout(null);
+		PanelTrabajadores.setBounds(676, 105, 292, 518);
+		PanelGestionCliente.add(PanelTrabajadores);
+		
+		JPanel panel_2_1 = new JPanel();
+		panel_2_1.setLayout(null);
+		panel_2_1.setBackground(new Color(133, 133, 133));
+		panel_2_1.setBounds(0, 0, 292, 59);
+		PanelTrabajadores.add(panel_2_1);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Trabajadores");
+		lblNewLabel_1_1.setForeground(Color.WHITE);
+		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblNewLabel_1_1.setBounds(65, 11, 162, 31);
+		panel_2_1.add(lblNewLabel_1_1);
+		
+		JPanel PanelProveedores = new JPanel();
+		PanelProveedores.setLayout(null);
+		PanelProveedores.setBounds(1150, 105, 292, 518);
+		PanelGestionCliente.add(PanelProveedores);
+		
+		JPanel panel_2_2 = new JPanel();
+		panel_2_2.setLayout(null);
+		panel_2_2.setBackground(new Color(133, 133, 133));
+		panel_2_2.setBounds(0, 0, 292, 59);
+		PanelProveedores.add(panel_2_2);
+		
+		JLabel lblNewLabel_1_2 = new JLabel("Proveedores\r\n");
+		lblNewLabel_1_2.setForeground(Color.WHITE);
+		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblNewLabel_1_2.setBounds(80, 11, 174, 31);
+		panel_2_2.add(lblNewLabel_1_2);
 		
 		JPanel PanelGestionMateriales = new JPanel();
 		PanelGestionMateriales.setBackground(new Color(255, 255, 128));
@@ -233,7 +286,54 @@ public class HomeAdmin extends JFrame {
 		cardLayout= (CardLayout) PanelCardPrinci.getLayout();
 		
 		JPanel PanelDashBoard = new JPanel();
+		PanelDashBoard.setBackground(new Color(255, 255, 255));
 		PanelCardPrinci.add(PanelDashBoard, "PanelDashBoard");
+		PanelDashBoard.setLayout(null);
+		
+		JLabel lblBusquedVehiculo = new JLabel("Busqueda de Vehiculo\r\n");
+		lblBusquedVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblBusquedVehiculo.setBounds(103, 142, 258, 64);
+		PanelDashBoard.add(lblBusquedVehiculo);
+		
+		txtBusquedaVehiculo = new JTextField();
+		txtBusquedaVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		txtBusquedaVehiculo.setBounds(373, 142, 258, 64);
+		PanelDashBoard.add(txtBusquedaVehiculo);
+		txtBusquedaVehiculo.setColumns(10);
+		
+		txtBusquedaCliente = new JTextField();
+		txtBusquedaCliente.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		txtBusquedaCliente.setColumns(10);
+		txtBusquedaCliente.setBounds(1031, 142, 258, 64);
+		PanelDashBoard.add(txtBusquedaCliente);
+		
+		JLabel lblBusquedCliente = new JLabel("Busqueda de Cliente\r\n");
+		lblBusquedCliente.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblBusquedCliente.setBounds(761, 142, 258, 64);
+		PanelDashBoard.add(lblBusquedCliente);
+		
+		JButton btnBuscarCliente = new JButton("Buscar Cliente\r\n");
+		btnBuscarCliente.setBounds(949, 217, 121, 43);
+		PanelDashBoard.add(btnBuscarCliente);
+		
+		JButton btnBusquedaVehiculo = new JButton("Buscar Vehiculo");
+		btnBusquedaVehiculo.setBounds(284, 217, 121, 43);
+		PanelDashBoard.add(btnBusquedaVehiculo);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(133, 133, 133));
+		panel_1.setBounds(184, 461, 195, 174);
+		PanelDashBoard.add(panel_1);
+		
+		JPanel panel_1_1 = new JPanel();
+		panel_1_1.setBackground(new Color(133, 133, 133));
+		panel_1_1.setBounds(624, 461, 195, 174);
+		PanelDashBoard.add(panel_1_1);
+		
+		JPanel panel_1_2 = new JPanel();
+		panel_1_2.setBackground(new Color(133, 133, 133));
+		panel_1_2.setBounds(1046, 461, 195, 174);
+		PanelDashBoard.add(panel_1_2);
 	}
 	
 
