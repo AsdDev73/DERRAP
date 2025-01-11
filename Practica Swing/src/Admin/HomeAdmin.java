@@ -25,14 +25,17 @@ import Inicio.InicioDeSesion;
 import javax.swing.JTextPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.CardLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class HomeAdmin extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	public JLabel labelLogoPanel;
-	private JTextField txtBusquedaMatricula;
-	private JTextField txtBusquedaCliente;
+	JPanel PanelCardPrinci;
+	static CardLayout cardLayout;
 
 	/**
 	 * Launch the application.
@@ -94,64 +97,52 @@ public class HomeAdmin extends JFrame {
 		JPanel PanelOpciones = new JPanel();
 		PanelOpciones.setBorder(new LineBorder(new Color(0, 0, 0)));
 		PanelOpciones.setBackground(new Color(133, 133, 133));
-		PanelOpciones.setBounds(0, 288, 323, 781);
+		PanelOpciones.setBounds(0, 288, 323, 753);
 		contentPane.add(PanelOpciones);
 		PanelOpciones.setLayout(null);
 		
-		JTextPane lblGestionClientes = new JTextPane();
-		lblGestionClientes.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblGestionClientes.setForeground(new Color(255, 255, 255));
-		lblGestionClientes.setEditable(false);
-		lblGestionClientes.setBackground(new Color(133, 133, 133));
-		lblGestionClientes.setText("Modelo de gestion \r\nde clientes");
-		lblGestionClientes.setBounds(81, 11, 127, 42);
-		PanelOpciones.add(lblGestionClientes);
+		JButton btnGestionClientes = new JButton("Modelo de gestion \r\nde clientes");
+		btnGestionClientes.setBackground(new Color(133, 133, 133));
+		btnGestionClientes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				cardLayout.show(PanelCardPrinci, "GestionClientes");
+			}
+		});
+		btnGestionClientes.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnGestionClientes.setBounds(0, 11, 323, 105);
+		PanelOpciones.add(btnGestionClientes);
 		
-		JTextPane lblGestionMaterial = new JTextPane();
-		lblGestionMaterial.setText("Modelo de gestion \r\nde material");
-		lblGestionMaterial.setForeground(Color.WHITE);
-		lblGestionMaterial.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblGestionMaterial.setEditable(false);
-		lblGestionMaterial.setBackground(new Color(133, 133, 133));
-		lblGestionMaterial.setBounds(81, 129, 127, 42);
-		PanelOpciones.add(lblGestionMaterial);
+		JButton btnGestioMateriales = new JButton("Modelo de gestion \r\nde material");
+		btnGestioMateriales.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				cardLayout.show(PanelCardPrinci, "GestionMateriales");
+			}
+		});
+		btnGestioMateriales.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnGestioMateriales.setBounds(0, 143, 323, 105);
+		PanelOpciones.add(btnGestioMateriales);
 		
-		JTextPane lblGestionEconomiaTaller = new JTextPane();
-		lblGestionEconomiaTaller.setText("Modelo de gestion \r\neconomia del taller");
-		lblGestionEconomiaTaller.setForeground(Color.WHITE);
-		lblGestionEconomiaTaller.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblGestionEconomiaTaller.setEditable(false);
-		lblGestionEconomiaTaller.setBackground(new Color(133, 133, 133));
-		lblGestionEconomiaTaller.setBounds(81, 359, 127, 42);
-		PanelOpciones.add(lblGestionEconomiaTaller);
+		JButton btnGEstionServicios = new JButton("Modelo de gestion \r\nde servicios");
+		btnGEstionServicios.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnGEstionServicios.setBounds(0, 264, 323, 105);
+		PanelOpciones.add(btnGEstionServicios);
 		
-		JTextPane lblGestionServicios = new JTextPane();
-		lblGestionServicios.setText("Modelo de gestion \r\nde servicios");
-		lblGestionServicios.setForeground(Color.WHITE);
-		lblGestionServicios.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblGestionServicios.setEditable(false);
-		lblGestionServicios.setBackground(new Color(133, 133, 133));
-		lblGestionServicios.setBounds(81, 245, 127, 42);
-		PanelOpciones.add(lblGestionServicios);
+		JButton btnGestionDeTaller = new JButton("Modelo de gestion \r\neconomia del taller\r\n");
+		btnGestionDeTaller.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnGestionDeTaller.setBounds(1, 389, 323, 105);
+		PanelOpciones.add(btnGestionDeTaller);
 		
-		JTextPane lblGestionarFacturas = new JTextPane();
-		lblGestionarFacturas.setBackground(new Color(133, 133, 133));
-		lblGestionarFacturas.setText("Gestionar Facturas");
-		lblGestionarFacturas.setForeground(Color.WHITE);
-		lblGestionarFacturas.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblGestionarFacturas.setEditable(false);
-		lblGestionarFacturas.setBackground(new Color(133, 133, 133));
-		lblGestionarFacturas.setBounds(81, 482, 127, 23);
-		PanelOpciones.add(lblGestionarFacturas);
+		JButton btnGestionarFacturas = new JButton("Gestionar Facturas");
+		btnGestionarFacturas.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnGestionarFacturas.setBounds(0, 515, 323, 105);
+		PanelOpciones.add(btnGestionarFacturas);
 		
-		JTextPane lblGestionInformes = new JTextPane();
-		lblGestionInformes.setText("Modelo de gestion \r\nde informes");
-		lblGestionInformes.setForeground(Color.WHITE);
-		lblGestionInformes.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblGestionInformes.setEditable(false);
-		lblGestionInformes.setBackground(new Color(133, 133, 133));
-		lblGestionInformes.setBounds(81, 612, 127, 42);
-		PanelOpciones.add(lblGestionInformes);
+		JButton btnGestionInformes = new JButton("Modelo de gestion \r\nde informes");
+		btnGestionInformes.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnGestionInformes.setBounds(0, 637, 323, 105);
+		PanelOpciones.add(btnGestionInformes);
 		setLogo(labelLogoPanel);
 		
 		JPanel panel = new JPanel();
@@ -187,69 +178,35 @@ public class HomeAdmin extends JFrame {
 		lblNewLabel.setBounds(0, 0, 72, 68);
 		panel.add(lblNewLabel);
 		
-		JLabel lblBuquedaVehiculo = new JLabel("Busqueda de vehiculo");
-		lblBuquedaVehiculo.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblBuquedaVehiculo.setBounds(454, 347, 227, 77);
-		contentPane.add(lblBuquedaVehiculo);
+		PanelCardPrinci = new JPanel(cardLayout);
+		PanelCardPrinci.setBounds(324, 288, 1580, 753);
+		contentPane.add(PanelCardPrinci);
+		PanelCardPrinci.setLayout(new CardLayout(0, 0));
 		
-		txtBusquedaMatricula = new JTextField();
-		txtBusquedaMatricula.setBounds(680, 354, 274, 66);
-		contentPane.add(txtBusquedaMatricula);
-		txtBusquedaMatricula.setColumns(10);
+		JPanel PanelGestionCliente = new JPanel();
+		PanelGestionCliente.setBackground(new Color(0, 255, 0));
+		PanelCardPrinci.add(PanelGestionCliente, "GestionCliente");
+		PanelGestionCliente.setLayout(null);
 		
-		JButton btnBuscarMatricula = new JButton("Buscar Matricula\r\n");
-		btnBuscarMatricula.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnBuscarMatricula.setBounds(680, 445, 274, 88);
-		contentPane.add(btnBuscarMatricula);
+		JPanel PanelGestionMateriales = new JPanel();
+		PanelGestionMateriales.setBackground(new Color(255, 255, 128));
+		PanelGestionMateriales.setBounds(785, 5, 10, 10);
+		PanelCardPrinci.add(PanelGestionMateriales, "GestionMateriales");
+		PanelGestionMateriales.setLayout(null);
 		
-		JLabel lblBusquedaDeCliente = new JLabel("Busqueda de Cliente\r\n");
-		lblBusquedaDeCliente.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblBusquedaDeCliente.setBounds(1217, 347, 227, 77);
-		contentPane.add(lblBusquedaDeCliente);
+		JPanel PanelGestionServicios = new JPanel();
+		PanelCardPrinci.add(PanelGestionServicios, "GestionServicios");
 		
-		txtBusquedaCliente = new JTextField();
-		txtBusquedaCliente.setColumns(10);
-		txtBusquedaCliente.setBounds(1443, 354, 274, 66);
-		contentPane.add(txtBusquedaCliente);
+		JPanel PanelGestionEconomia = new JPanel();
+		PanelCardPrinci.add(PanelGestionEconomia, "GestionEconomia");
 		
-		JButton btnBuscarClinte = new JButton("Buscar Cliente\r\n\r\n");
-		btnBuscarClinte.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		btnBuscarClinte.setBounds(1443, 445, 274, 88);
-		contentPane.add(btnBuscarClinte);
+		JPanel PanelGestionFacturas = new JPanel();
+		PanelCardPrinci.add(PanelGestionFacturas, "GetionFacturas");
 		
-		JPanel panelContadorClientes = new JPanel();
-		panelContadorClientes.setBackground(new Color(133, 133, 133));
-		panelContadorClientes.setBounds(534, 782, 227, 191);
-		contentPane.add(panelContadorClientes);
-		panelContadorClientes.setLayout(null);
+		JPanel PanelGestionInformes = new JPanel();
+		PanelCardPrinci.add(PanelGestionInformes, "GestionInformes");
 		
-		JLabel lblContadorClientes = new JLabel("17");
-		lblContadorClientes.setBounds(117, 5, 100, 175);
-		lblContadorClientes.setFont(new Font("Tahoma", Font.PLAIN, 68));
-		panelContadorClientes.add(lblContadorClientes);
-		
-		JPanel panelContadorVehiculos = new JPanel();
-		panelContadorVehiculos.setBackground(new Color(133, 133, 133));
-		panelContadorVehiculos.setBounds(1036, 782, 227, 191);
-		contentPane.add(panelContadorVehiculos);
-		panelContadorVehiculos.setLayout(null);
-		
-		JLabel lblContadorVehiculos = new JLabel("11");
-		lblContadorVehiculos.setBounds(129, 5, 88, 175);
-		lblContadorVehiculos.setFont(new Font("Tahoma", Font.PLAIN, 68));
-		panelContadorVehiculos.add(lblContadorVehiculos);
-		
-		JPanel panelContadorMecanicos = new JPanel();
-		panelContadorMecanicos.setBackground(new Color(133, 133, 133));
-		panelContadorMecanicos.setBounds(1563, 782, 227, 191);
-		contentPane.add(panelContadorMecanicos);
-		panelContadorMecanicos.setLayout(null);
-		
-		JLabel lblContadorMecanicos = new JLabel("8");
-		lblContadorMecanicos.setFont(new Font("Tahoma", Font.PLAIN, 68));
-		lblContadorMecanicos.setBounds(122, 5, 95, 175);
-		panelContadorMecanicos.add(lblContadorMecanicos);
-		
+		cardLayout= (CardLayout) PanelCardPrinci.getLayout();
 	}
 	
 
