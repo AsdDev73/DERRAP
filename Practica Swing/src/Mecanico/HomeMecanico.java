@@ -101,7 +101,7 @@ public class HomeMecanico extends JFrame {
 		JLabel lblUsuario = new JLabel("Mecanico\r\n");
 		lblUsuario.setForeground(new Color(255, 255, 255));
 		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblUsuario.setBounds(1753, 141, 66, 39);
+		lblUsuario.setBounds(1725, 141, 132, 39);
 		panelTextoPricipal.add(lblUsuario);
 		
 		JPanel PanelOpciones = new JPanel();

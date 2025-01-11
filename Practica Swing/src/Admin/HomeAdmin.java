@@ -82,10 +82,16 @@ public class HomeAdmin extends JFrame {
 		panelTextoPricipal.add(labelLogoPanel);
 		
 		JLabel lblPrincipal = new JLabel("DASHBOARD");
+		lblPrincipal.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				cardLayout.show(PanelCardPrinci, "PanelDashBoard");
+			}
+		});
 		lblPrincipal.setFont(new Font("Tahoma", Font.PLAIN, 99));
 		lblPrincipal.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPrincipal.setForeground(new Color(255, 255, 255));
-		lblPrincipal.setBounds(566, 25, 975, 207);
+		lblPrincipal.setBounds(682, 25, 787, 207);
 		panelTextoPricipal.add(lblPrincipal);
 		
 		JLabel lblUsuario = new JLabel("Admin\r\n");
@@ -105,7 +111,6 @@ public class HomeAdmin extends JFrame {
 		btnGestionClientes.setBackground(new Color(133, 133, 133));
 		btnGestionClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				cardLayout.show(PanelCardPrinci, "GestionClientes");
 			}
 		});
@@ -115,8 +120,7 @@ public class HomeAdmin extends JFrame {
 		
 		JButton btnGestioMateriales = new JButton("Modelo de gestion \r\nde material");
 		btnGestioMateriales.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
+			public void actionPerformed(ActionEvent e) {			
 				cardLayout.show(PanelCardPrinci, "GestionMateriales");
 			}
 		});
@@ -125,21 +129,41 @@ public class HomeAdmin extends JFrame {
 		PanelOpciones.add(btnGestioMateriales);
 		
 		JButton btnGEstionServicios = new JButton("Modelo de gestion \r\nde servicios");
+		btnGEstionServicios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(PanelCardPrinci, "GestionServicios");
+			}
+		});
 		btnGEstionServicios.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnGEstionServicios.setBounds(0, 264, 323, 105);
 		PanelOpciones.add(btnGEstionServicios);
 		
 		JButton btnGestionDeTaller = new JButton("Modelo de gestion \r\neconomia del taller\r\n");
+		btnGestionDeTaller.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(PanelCardPrinci, "GestionEconomia");
+			}
+		});
 		btnGestionDeTaller.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnGestionDeTaller.setBounds(1, 389, 323, 105);
 		PanelOpciones.add(btnGestionDeTaller);
 		
 		JButton btnGestionarFacturas = new JButton("Gestionar Facturas");
+		btnGestionarFacturas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(PanelCardPrinci, "GetionFacturas");
+			}
+		});
 		btnGestionarFacturas.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnGestionarFacturas.setBounds(0, 515, 323, 105);
 		PanelOpciones.add(btnGestionarFacturas);
 		
 		JButton btnGestionInformes = new JButton("Modelo de gestion \r\nde informes");
+		btnGestionInformes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(PanelCardPrinci, "GestionInformes");
+			}
+		});
 		btnGestionInformes.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnGestionInformes.setBounds(0, 637, 323, 105);
 		PanelOpciones.add(btnGestionInformes);
@@ -185,7 +209,7 @@ public class HomeAdmin extends JFrame {
 		
 		JPanel PanelGestionCliente = new JPanel();
 		PanelGestionCliente.setBackground(new Color(0, 255, 0));
-		PanelCardPrinci.add(PanelGestionCliente, "GestionCliente");
+		PanelCardPrinci.add(PanelGestionCliente, "GestionClientes");
 		PanelGestionCliente.setLayout(null);
 		
 		JPanel PanelGestionMateriales = new JPanel();
@@ -207,6 +231,9 @@ public class HomeAdmin extends JFrame {
 		PanelCardPrinci.add(PanelGestionInformes, "GestionInformes");
 		
 		cardLayout= (CardLayout) PanelCardPrinci.getLayout();
+		
+		JPanel PanelDashBoard = new JPanel();
+		PanelCardPrinci.add(PanelDashBoard, "PanelDashBoard");
 	}
 	
 
