@@ -155,6 +155,19 @@ public class InicioDeSesion extends JFrame {
 		panel.add(btnSalir);
 		
 		txtUser = new JTextField();
+		txtUser.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (txtUser.getText().equals("Escriba su Usuario")) {
+					 txtUser.setText("");
+					 txtUser.setForeground(Color.black);
+			        }
+			        if (String.valueOf(txtContra.getPassword()).isEmpty()) {
+			        	txtContra.setText("********");
+			        	txtContra.setForeground(Color.gray);
+			        }
+			}
+		});
 		txtUser.setForeground(new Color(192, 192, 192));
 		txtUser.addMouseListener(new MouseAdapter() {
 			@Override
