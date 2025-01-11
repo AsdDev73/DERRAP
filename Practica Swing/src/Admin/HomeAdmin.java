@@ -238,6 +238,7 @@ public class HomeAdmin extends JFrame {
 			public void mousePressed(MouseEvent e) {
 				InsertCliente ic = new InsertCliente();
 				ic.setVisible(true);
+				setEnabled(false);
 			}
 		});
 		lblInsertarCliente.setHorizontalAlignment(SwingConstants.CENTER);
