@@ -231,6 +231,12 @@ public class HomeAdmin extends JFrame {
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
 		panel_2.add(lblNewLabel_1);
 		
+		JLabel lblInsertarCliente = new JLabel("Insertar\r\n");
+		lblInsertarCliente.setHorizontalAlignment(SwingConstants.CENTER);
+		lblInsertarCliente.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblInsertarCliente.setBounds(10, 70, 272, 117);
+		PanelCliente.add(lblInsertarCliente);
+		
 		JPanel PanelTrabajadores = new JPanel();
 		PanelTrabajadores.setLayout(null);
 		PanelTrabajadores.setBounds(676, 105, 292, 518);
