@@ -76,8 +76,24 @@ public class ConexionMySQL {
         return rol;
     }
 
+    
+    //metodo para insertar clientes
+    public int insetarClientes(String dni,String nombre, String apellido, String telefono) throws SQLException {
+        
+        String consulta = "INSERT INTO "+ "Cliente" +"(DNI, Nombre, Apellido, Tlf) VALUES (?, ?, ?, ?)";
+        
+         PreparedStatement pstmt = con.prepareStatement(consulta);
+        //le paso los parametros a la consulta sustityendo los ?
+           pstmt.setString(1, dni);
+           pstmt.setString(2, nombre);
+           pstmt.setString(3, apellido);
+           pstmt.setString(4, telefono);
+           //ejecuto el insert
+            int insert = pstmt.executeUpdate();
+            //devuelvo las columnas que han sido afectadas con el insert
+           return  insert;
     	
-		
+    }
     }
 
     

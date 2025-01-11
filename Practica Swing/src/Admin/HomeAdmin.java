@@ -62,6 +62,7 @@ public class HomeAdmin extends JFrame {
 
 	public HomeAdmin(String admin) {
 		
+		//cardLayout.show(PanelCardPrinci, "PanelDashBoard");
 		//pantallaCompleta(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1920, 1080);
@@ -215,7 +216,7 @@ public class HomeAdmin extends JFrame {
 		PanelGestionCliente.setLayout(null);
 		
 		JPanel PanelCliente = new JPanel();
-		PanelCliente.setBounds(179, 105, 292, 518);
+		PanelCliente.setBounds(75, 105, 292, 518);
 		PanelGestionCliente.add(PanelCliente);
 		PanelCliente.setLayout(null);
 		
@@ -232,14 +233,33 @@ public class HomeAdmin extends JFrame {
 		panel_2.add(lblNewLabel_1);
 		
 		JLabel lblInsertarCliente = new JLabel("Insertar\r\n");
+		lblInsertarCliente.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				InsertCliente ic = new InsertCliente();
+				ic.setVisible(true);
+			}
+		});
 		lblInsertarCliente.setHorizontalAlignment(SwingConstants.CENTER);
 		lblInsertarCliente.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblInsertarCliente.setBounds(10, 70, 272, 117);
 		PanelCliente.add(lblInsertarCliente);
 		
+		JLabel lblConsultaCliente = new JLabel("Consultar");
+		lblConsultaCliente.setHorizontalAlignment(SwingConstants.CENTER);
+		lblConsultaCliente.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblConsultaCliente.setBounds(10, 219, 272, 117);
+		PanelCliente.add(lblConsultaCliente);
+		
+		JLabel lblUpdate = new JLabel("Update\r\n");
+		lblUpdate.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUpdate.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblUpdate.setBounds(10, 366, 272, 117);
+		PanelCliente.add(lblUpdate);
+		
 		JPanel PanelTrabajadores = new JPanel();
 		PanelTrabajadores.setLayout(null);
-		PanelTrabajadores.setBounds(676, 105, 292, 518);
+		PanelTrabajadores.setBounds(433, 105, 292, 518);
 		PanelGestionCliente.add(PanelTrabajadores);
 		
 		JPanel panel_2_1 = new JPanel();
@@ -248,15 +268,39 @@ public class HomeAdmin extends JFrame {
 		panel_2_1.setBounds(0, 0, 292, 59);
 		PanelTrabajadores.add(panel_2_1);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Trabajadores");
+		JLabel lblNewLabel_1_1 = new JLabel("Mecanicos\r\n");
 		lblNewLabel_1_1.setForeground(Color.WHITE);
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblNewLabel_1_1.setBounds(65, 11, 162, 31);
+		lblNewLabel_1_1.setBounds(80, 11, 162, 31);
 		panel_2_1.add(lblNewLabel_1_1);
+		
+		JLabel lblInsertarMecanico = new JLabel("Insetar\r\n");
+		lblInsertarMecanico.setHorizontalAlignment(SwingConstants.CENTER);
+		lblInsertarMecanico.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblInsertarMecanico.setBounds(10, 70, 272, 96);
+		PanelTrabajadores.add(lblInsertarMecanico);
+		
+		JLabel lblConsultaMecanica = new JLabel("Consulta\r\n");
+		lblConsultaMecanica.setHorizontalAlignment(SwingConstants.CENTER);
+		lblConsultaMecanica.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblConsultaMecanica.setBounds(10, 172, 272, 96);
+		PanelTrabajadores.add(lblConsultaMecanica);
+		
+		JLabel lblDarDeBaja = new JLabel("Dar de Baja\r\n");
+		lblDarDeBaja.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDarDeBaja.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblDarDeBaja.setBounds(10, 279, 272, 96);
+		PanelTrabajadores.add(lblDarDeBaja);
+		
+		JLabel lblUpdate_1 = new JLabel("Update");
+		lblUpdate_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUpdate_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblUpdate_1.setBounds(10, 399, 272, 96);
+		PanelTrabajadores.add(lblUpdate_1);
 		
 		JPanel PanelProveedores = new JPanel();
 		PanelProveedores.setLayout(null);
-		PanelProveedores.setBounds(1150, 105, 292, 518);
+		PanelProveedores.setBounds(830, 105, 292, 518);
 		PanelGestionCliente.add(PanelProveedores);
 		
 		JPanel panel_2_2 = new JPanel();
@@ -265,11 +309,70 @@ public class HomeAdmin extends JFrame {
 		panel_2_2.setBounds(0, 0, 292, 59);
 		PanelProveedores.add(panel_2_2);
 		
-		JLabel lblNewLabel_1_2 = new JLabel("Proveedores\r\n");
+		JLabel lblNewLabel_1_2 = new JLabel("Vehiculos\r\n");
 		lblNewLabel_1_2.setForeground(Color.WHITE);
 		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblNewLabel_1_2.setBounds(80, 11, 174, 31);
+		lblNewLabel_1_2.setBounds(80, 11, 114, 31);
 		panel_2_2.add(lblNewLabel_1_2);
+		
+		JLabel lblInsertarVehiculo = new JLabel("Insertar\r\n");
+		lblInsertarVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblInsertarVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblInsertarVehiculo.setBounds(10, 71, 272, 117);
+		PanelProveedores.add(lblInsertarVehiculo);
+		
+		JLabel lblConsultaVehiculo = new JLabel("Consultar");
+		lblConsultaVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblConsultaVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblConsultaVehiculo.setBounds(10, 220, 272, 117);
+		PanelProveedores.add(lblConsultaVehiculo);
+		
+		JLabel lblUpdateVehiculo = new JLabel("Update\r\n");
+		lblUpdateVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUpdateVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblUpdateVehiculo.setBounds(10, 367, 272, 117);
+		PanelProveedores.add(lblUpdateVehiculo);
+		
+		JPanel PanelProveedores_1 = new JPanel();
+		PanelProveedores_1.setLayout(null);
+		PanelProveedores_1.setBounds(1227, 105, 292, 518);
+		PanelGestionCliente.add(PanelProveedores_1);
+		
+		JPanel panel_2_2_1 = new JPanel();
+		panel_2_2_1.setLayout(null);
+		panel_2_2_1.setBackground(new Color(133, 133, 133));
+		panel_2_2_1.setBounds(0, 0, 292, 59);
+		PanelProveedores_1.add(panel_2_2_1);
+		
+		JLabel lblNewLabel_1_2_1 = new JLabel("Proveedores\r\n");
+		lblNewLabel_1_2_1.setForeground(Color.WHITE);
+		lblNewLabel_1_2_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblNewLabel_1_2_1.setBounds(80, 11, 174, 31);
+		panel_2_2_1.add(lblNewLabel_1_2_1);
+		
+		JLabel lblInsertarMecanico_1 = new JLabel("Insetar\r\n");
+		lblInsertarMecanico_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblInsertarMecanico_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblInsertarMecanico_1.setBounds(10, 70, 272, 96);
+		PanelProveedores_1.add(lblInsertarMecanico_1);
+		
+		JLabel lblConsultaMecanica_1 = new JLabel("Consulta\r\n");
+		lblConsultaMecanica_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblConsultaMecanica_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblConsultaMecanica_1.setBounds(10, 172, 272, 96);
+		PanelProveedores_1.add(lblConsultaMecanica_1);
+		
+		JLabel lblEliminarProveedor = new JLabel("Dar de Baja\r\n");
+		lblEliminarProveedor.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEliminarProveedor.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblEliminarProveedor.setBounds(10, 279, 272, 96);
+		PanelProveedores_1.add(lblEliminarProveedor);
+		
+		JLabel lblUpdate_1_1 = new JLabel("Update");
+		lblUpdate_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUpdate_1_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblUpdate_1_1.setBounds(10, 399, 272, 96);
+		PanelProveedores_1.add(lblUpdate_1_1);
 		
 		JPanel PanelGestionMateriales = new JPanel();
 		PanelGestionMateriales.setBackground(new Color(255, 255, 128));

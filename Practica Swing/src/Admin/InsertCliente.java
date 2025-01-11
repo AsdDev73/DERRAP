@@ -5,12 +5,19 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Inicio.ConexionMySQL;
+
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 
 public class InsertCliente extends JFrame {
@@ -21,7 +28,9 @@ public class InsertCliente extends JFrame {
 	private JTextField txtNombre;
 	private JTextField txtApellido;
 	private JTextField txtTelefono;
-
+	
+	private ConexionMySQL con = new ConexionMySQL();
+	private Statement stm = null;
 	/**
 	 * Launch the application.
 	 */
@@ -31,6 +40,7 @@ public class InsertCliente extends JFrame {
 				try {
 					InsertCliente frame = new InsertCliente();
 					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -106,17 +116,45 @@ public class InsertCliente extends JFrame {
 		btnAgregarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				String dni= txtDNI.getText();
+				String DNI= txtDNI.getText();
 				String Nombre = txtNombre.getText();
 				String Apellido = txtApellido.getText();
 				String Telefono = txtTelefono.getText();
 				
+				try {
+					con.conectar();					
+				int funciona=con.insetarClientes(DNI, Nombre, Apellido, Telefono);
 				
+				if (funciona > 0) {
+	                 JOptionPane.showMessageDialog(null, "Datos insertados correctamente");
+	                     dispose();
+	                    
+	            }
+					
+				} 
+				catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error al insertar los datos");
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				limpiarCampos();
 				
 				
 			}
 		});
 		btnAgregarCliente.setBounds(210, 400, 110, 36);
 		contentPane.add(btnAgregarCliente);
+	}
+	
+	
+	
+	private void limpiarCampos() {
+		txtDNI.setText("");
+		txtNombre.setText("");
+		txtApellido.setText("");
+		txtTelefono.setText("");
 	}
 }
