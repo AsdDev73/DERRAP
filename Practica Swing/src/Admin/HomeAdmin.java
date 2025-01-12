@@ -25,6 +25,7 @@ import Inicio.InicioDeSesion;
 import javax.swing.JTextPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -249,6 +250,33 @@ public class HomeAdmin extends JFrame {
 		PanelCliente.add(lblInsertarCliente);
 		
 		JLabel lblConsultaCliente = new JLabel("Consultar");
+		lblConsultaCliente.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				 // Mostrar JOptionPane para ingresar una frase
+	            String frase = JOptionPane.showInputDialog(null, "Por favor, introduce una frase:", "Entrada de texto", JOptionPane.QUESTION_MESSAGE);
+	            
+	            // Verificar si el usuario ingresó algo
+	            if (frase != null && !frase.trim().isEmpty()) {
+	                // Abrir un nuevo JFrame con la frase ingresada
+	                MostrarConsulta mc = null;
+					try {
+						mc = new MostrarConsulta(frase);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+	                mc.setVisible(true);
+	            } else {
+	                JOptionPane.showMessageDialog(null, "No ingresaste ninguna frase.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+	            }
+				
+			}
+		});
 		lblConsultaCliente.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblConsultaCliente.setHorizontalAlignment(SwingConstants.CENTER);
 		lblConsultaCliente.setFont(new Font("Tahoma", Font.PLAIN, 24));

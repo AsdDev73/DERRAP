@@ -94,6 +94,13 @@ public class ConexionMySQL {
            return  insert;
     	
     }
+    
+    //metodo que pasandole la consulta devuelve el cunrsor con los datos 
+    public ResultSet ejecutarSelect( String Consulta) throws SQLException {
+       Statement stmt =  con.createStatement();
+       ResultSet rset = stmt.executeQuery(Consulta);
+       return rset;
+   }
     }
 
     
