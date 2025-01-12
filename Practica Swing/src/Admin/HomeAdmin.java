@@ -30,6 +30,8 @@ import java.awt.CardLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Cursor;
+import java.awt.BorderLayout;
+import javax.swing.UIManager;
 
 public class HomeAdmin extends JFrame {
 
@@ -112,66 +114,107 @@ public class HomeAdmin extends JFrame {
 		contentPane.add(PanelOpciones);
 		PanelOpciones.setLayout(null);
 		
-		JButton btnGestionClientes = new JButton("Modelo de gestion \r\nde clientes");
-		btnGestionClientes.setBackground(new Color(133, 133, 133));
-		btnGestionClientes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		JPanel lblGestionClientes = new JPanel();
+		lblGestionClientes.setBackground(new Color(240, 240, 240));
+		lblGestionClientes.setBounds(0, 11, 323, 115);
+		PanelOpciones.add(lblGestionClientes);
+		lblGestionClientes.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblNewLabel_2 = new JLabel("Modelo de gestion \r\nde clientes");
+		lblNewLabel_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
 				cardLayout.show(PanelCardPrinci, "GestionClientes");
 			}
 		});
-		btnGestionClientes.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnGestionClientes.setBounds(0, 11, 323, 105);
-		PanelOpciones.add(btnGestionClientes);
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblGestionClientes.add(lblNewLabel_2);
 		
-		JButton btnGestioMateriales = new JButton("Modelo de gestion \r\nde material");
-		btnGestioMateriales.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {			
+		JPanel lblGestionMateriales = new JPanel();
+		lblGestionMateriales.setBackground(UIManager.getColor("Button.background"));
+		lblGestionMateriales.setBounds(0, 138, 323, 115);
+		PanelOpciones.add(lblGestionMateriales);
+		lblGestionMateriales.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblNewLabel_3 = new JLabel("Modelo de gestion \r\nde material");
+		lblNewLabel_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
 				cardLayout.show(PanelCardPrinci, "GestionMateriales");
 			}
 		});
-		btnGestioMateriales.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnGestioMateriales.setBounds(0, 143, 323, 105);
-		PanelOpciones.add(btnGestioMateriales);
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblGestionMateriales.add(lblNewLabel_3, BorderLayout.CENTER);
 		
-		JButton btnGEstionServicios = new JButton("Modelo de gestion \r\nde servicios");
-		btnGEstionServicios.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		JPanel lblGestionServicios = new JPanel();
+		lblGestionServicios.setBackground(UIManager.getColor("Button.background"));
+		lblGestionServicios.setBounds(1, 263, 323, 115);
+		PanelOpciones.add(lblGestionServicios);
+		lblGestionServicios.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblNewLabel_4 = new JLabel("Modelo de gestion \r\nde servicios");
+		lblNewLabel_4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
 				cardLayout.show(PanelCardPrinci, "GestionServicios");
 			}
 		});
-		btnGEstionServicios.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnGEstionServicios.setBounds(0, 264, 323, 105);
-		PanelOpciones.add(btnGEstionServicios);
+		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblGestionServicios.add(lblNewLabel_4, BorderLayout.CENTER);
 		
-		JButton btnGestionDeTaller = new JButton("Modelo de gestion \r\neconomia del taller\r\n");
-		btnGestionDeTaller.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		JPanel lblGestionEconomia = new JPanel();
+		lblGestionEconomia.setBackground(UIManager.getColor("Button.background"));
+		lblGestionEconomia.setBounds(0, 389, 323, 115);
+		PanelOpciones.add(lblGestionEconomia);
+		lblGestionEconomia.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblNewLabel_5 = new JLabel("Modelo de gestion \r\neconomia del taller\r\n");
+		lblNewLabel_5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
 				cardLayout.show(PanelCardPrinci, "GestionEconomia");
 			}
 		});
-		btnGestionDeTaller.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnGestionDeTaller.setBounds(1, 389, 323, 105);
-		PanelOpciones.add(btnGestionDeTaller);
+		lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblGestionEconomia.add(lblNewLabel_5, BorderLayout.CENTER);
 		
-		JButton btnGestionarFacturas = new JButton("Gestionar Facturas");
-		btnGestionarFacturas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		JPanel lblGestionFacturas = new JPanel();
+		lblGestionFacturas.setBackground(UIManager.getColor("Button.background"));
+		lblGestionFacturas.setBounds(0, 511, 323, 115);
+		PanelOpciones.add(lblGestionFacturas);
+		lblGestionFacturas.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblNewLabel_6 = new JLabel("Gestionar Facturas");
+		lblNewLabel_6.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
 				cardLayout.show(PanelCardPrinci, "GetionFacturas");
 			}
 		});
-		btnGestionarFacturas.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnGestionarFacturas.setBounds(0, 515, 323, 105);
-		PanelOpciones.add(btnGestionarFacturas);
+		lblNewLabel_6.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
+		lblGestionFacturas.add(lblNewLabel_6, BorderLayout.CENTER);
 		
-		JButton btnGestionInformes = new JButton("Modelo de gestion \r\nde informes");
-		btnGestionInformes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		JPanel lblGestionFacturas_1 = new JPanel();
+		lblGestionFacturas_1.setBackground(UIManager.getColor("Button.background"));
+		lblGestionFacturas_1.setBounds(0, 638, 323, 115);
+		PanelOpciones.add(lblGestionFacturas_1);
+		lblGestionFacturas_1.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblNewLabel_7 = new JLabel("Modelo de gestion \r\nde informes");
+		lblNewLabel_7.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
 				cardLayout.show(PanelCardPrinci, "GestionInformes");
 			}
 		});
-		btnGestionInformes.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnGestionInformes.setBounds(0, 637, 323, 105);
-		PanelOpciones.add(btnGestionInformes);
+		lblNewLabel_7.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblNewLabel_7.setHorizontalAlignment(SwingConstants.CENTER);
+		lblGestionFacturas_1.add(lblNewLabel_7, BorderLayout.CENTER);
 		setLogo(labelLogoPanel);
 		
 		JPanel panel = new JPanel();

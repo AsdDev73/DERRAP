@@ -120,27 +120,31 @@ public class InsertCliente extends JFrame {
 				String Nombre = txtNombre.getText();
 				String Apellido = txtApellido.getText();
 				String Telefono = txtTelefono.getText();
-				
-				try {
-					con.conectar();					
-				int funciona=con.insetarClientes(DNI, Nombre, Apellido, Telefono);
-				
-				if (funciona > 0) {
-	                 JOptionPane.showMessageDialog(null, "Datos insertados correctamente");
-	                     dispose();
-	                    
-	            }
+				if (!DNI.isEmpty() && !Nombre.isEmpty() && !Apellido.isEmpty() && !Telefono.isEmpty()) {
+					try {
+						con.conectar();					
+					int funciona=con.insetarClientes(DNI, Nombre, Apellido, Telefono);
 					
-				} 
-				catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-					JOptionPane.showMessageDialog(null, "Error al insertar los datos");
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					if (funciona > 0) {
+		                 JOptionPane.showMessageDialog(null, "Datos insertados correctamente");
+		                     dispose();
+		                    
+		            }
+						
+					} 
+					catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						
+					} catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					limpiarCampos();
 				}
-				limpiarCampos();
+				else {
+					JOptionPane.showMessageDialog(null, "Error al insertar los datos, revise si hay algun campo vacio");
+				}
 				
 				
 			}
