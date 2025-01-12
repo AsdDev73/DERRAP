@@ -28,6 +28,7 @@ import java.awt.event.MouseEvent;
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Cursor;
 
 public class HomeAdmin extends JFrame {
 
@@ -233,6 +234,7 @@ public class HomeAdmin extends JFrame {
 		panel_2.add(lblNewLabel_1);
 		
 		JLabel lblInsertarCliente = new JLabel("Insertar\r\n");
+		lblInsertarCliente.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblInsertarCliente.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -247,12 +249,14 @@ public class HomeAdmin extends JFrame {
 		PanelCliente.add(lblInsertarCliente);
 		
 		JLabel lblConsultaCliente = new JLabel("Consultar");
+		lblConsultaCliente.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblConsultaCliente.setHorizontalAlignment(SwingConstants.CENTER);
 		lblConsultaCliente.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblConsultaCliente.setBounds(10, 219, 272, 117);
 		PanelCliente.add(lblConsultaCliente);
 		
 		JLabel lblUpdate = new JLabel("Update\r\n");
+		lblUpdate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblUpdate.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUpdate.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblUpdate.setBounds(10, 366, 272, 117);
@@ -276,24 +280,28 @@ public class HomeAdmin extends JFrame {
 		panel_2_1.add(lblNewLabel_1_1);
 		
 		JLabel lblInsertarMecanico = new JLabel("Insetar\r\n");
+		lblInsertarMecanico.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblInsertarMecanico.setHorizontalAlignment(SwingConstants.CENTER);
 		lblInsertarMecanico.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblInsertarMecanico.setBounds(10, 70, 272, 96);
 		PanelTrabajadores.add(lblInsertarMecanico);
 		
 		JLabel lblConsultaMecanica = new JLabel("Consulta\r\n");
+		lblConsultaMecanica.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblConsultaMecanica.setHorizontalAlignment(SwingConstants.CENTER);
 		lblConsultaMecanica.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblConsultaMecanica.setBounds(10, 172, 272, 96);
 		PanelTrabajadores.add(lblConsultaMecanica);
 		
 		JLabel lblDarDeBaja = new JLabel("Dar de Baja\r\n");
+		lblDarDeBaja.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblDarDeBaja.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDarDeBaja.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblDarDeBaja.setBounds(10, 279, 272, 96);
 		PanelTrabajadores.add(lblDarDeBaja);
 		
 		JLabel lblUpdate_1 = new JLabel("Update");
+		lblUpdate_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblUpdate_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUpdate_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblUpdate_1.setBounds(10, 399, 272, 96);
@@ -317,18 +325,21 @@ public class HomeAdmin extends JFrame {
 		panel_2_2.add(lblNewLabel_1_2);
 		
 		JLabel lblInsertarVehiculo = new JLabel("Insertar\r\n");
+		lblInsertarVehiculo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblInsertarVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblInsertarVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblInsertarVehiculo.setBounds(10, 71, 272, 117);
 		PanelProveedores.add(lblInsertarVehiculo);
 		
 		JLabel lblConsultaVehiculo = new JLabel("Consultar");
+		lblConsultaVehiculo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblConsultaVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblConsultaVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblConsultaVehiculo.setBounds(10, 220, 272, 117);
 		PanelProveedores.add(lblConsultaVehiculo);
 		
 		JLabel lblUpdateVehiculo = new JLabel("Update\r\n");
+		lblUpdateVehiculo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblUpdateVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUpdateVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblUpdateVehiculo.setBounds(10, 367, 272, 117);
@@ -352,24 +363,28 @@ public class HomeAdmin extends JFrame {
 		panel_2_2_1.add(lblNewLabel_1_2_1);
 		
 		JLabel lblInsertarMecanico_1 = new JLabel("Insetar\r\n");
+		lblInsertarMecanico_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblInsertarMecanico_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblInsertarMecanico_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblInsertarMecanico_1.setBounds(10, 70, 272, 96);
 		PanelProveedores_1.add(lblInsertarMecanico_1);
 		
 		JLabel lblConsultaMecanica_1 = new JLabel("Consulta\r\n");
+		lblConsultaMecanica_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblConsultaMecanica_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblConsultaMecanica_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblConsultaMecanica_1.setBounds(10, 172, 272, 96);
 		PanelProveedores_1.add(lblConsultaMecanica_1);
 		
 		JLabel lblEliminarProveedor = new JLabel("Dar de Baja\r\n");
+		lblEliminarProveedor.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblEliminarProveedor.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEliminarProveedor.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblEliminarProveedor.setBounds(10, 279, 272, 96);
 		PanelProveedores_1.add(lblEliminarProveedor);
 		
 		JLabel lblUpdate_1_1 = new JLabel("Update");
+		lblUpdate_1_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblUpdate_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUpdate_1_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblUpdate_1_1.setBounds(10, 399, 272, 96);
