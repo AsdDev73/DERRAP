@@ -141,6 +141,17 @@ public class ConexionMySQL {
        ResultSet rset = stmt.executeQuery(Consulta);
        return rset;
    }
+    
+    public int ejecutarUpdateCliente(String dni,String nombre, String apellido, String telefono) throws SQLException{
+        String consulta = "UPDATE Cliente SET Nombre = ?, Apellido = ?, Tlf = ? WHERE dni = ?;";
+        PreparedStatement pstmt = con.prepareStatement(consulta);
+        pstmt.setString(4, dni);
+        pstmt.setString(1, nombre);
+        pstmt.setString(2, apellido);
+        pstmt.setString(3, telefono);
+         int update = pstmt.executeUpdate();
+        return update;
+     }
     }
 
     

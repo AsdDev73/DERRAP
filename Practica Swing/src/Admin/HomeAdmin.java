@@ -283,9 +283,9 @@ public class HomeAdmin extends JFrame {
 		lblInsertarCliente.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				InsertCliente ic = new InsertCliente();
+				InsertCliente ic = new InsertCliente(" sfsd ",1);
 				ic.setVisible(true);
-				setEnabled(false);
+				
 			}
 		});
 		lblInsertarCliente.setHorizontalAlignment(SwingConstants.CENTER);
@@ -328,6 +328,27 @@ public class HomeAdmin extends JFrame {
 		PanelCliente.add(lblConsultaCliente);
 		
 		JLabel lblUpdate = new JLabel("Update\r\n");
+		lblUpdate.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				 // Mostrar JOptionPane para ingresar una frase
+	            String frase = JOptionPane.showInputDialog(null, "Por favor, introduce el DNI:", "Entrada de texto", JOptionPane.QUESTION_MESSAGE);
+	            
+	            // Verificar si el usuario ingresó algo
+	            if (frase != null && !frase.trim().isEmpty()) {
+	                // Abrir un nuevo JFrame con la frase ingresada
+	      
+					InsertCliente ic = new InsertCliente(frase,2);
+					ic.setVisible(true);
+					setEnabled(false);
+					
+	            } else {
+	                JOptionPane.showMessageDialog(null, "No ingresaste ningun DNI.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+	            }
+				
+			}
+		});
 		lblUpdate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblUpdate.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUpdate.setFont(new Font("Tahoma", Font.PLAIN, 24));

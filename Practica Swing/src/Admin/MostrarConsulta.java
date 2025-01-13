@@ -52,8 +52,9 @@ public class MostrarConsulta extends JFrame {
 	/**
 	 * Create the frame.
 	 * @param frase 
+	 * @param i 
 	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
+	 * @throws ClassNotFoundException `+
 	 */
 	public MostrarConsulta(String frase) throws SQLException, ClassNotFoundException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -90,9 +91,7 @@ public class MostrarConsulta extends JFrame {
 		contentPane.add(btnVolver);
 		
 		mostrarSelect(frase,ResultadosConsuta);
-		
-		
-		
+
 		
 	}
 	

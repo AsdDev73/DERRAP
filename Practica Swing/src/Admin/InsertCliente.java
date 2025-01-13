@@ -38,7 +38,7 @@ public class InsertCliente extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					InsertCliente frame = new InsertCliente();
+					InsertCliente frame = new InsertCliente("", 1);
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
@@ -50,8 +50,12 @@ public class InsertCliente extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param frase 
+	 * @param i 
 	 */
-	public InsertCliente() {
+	public InsertCliente(String frase, int i) {
+		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 365, 503);
 		contentPane = new JPanel();
@@ -71,6 +75,12 @@ public class InsertCliente extends JFrame {
 		lblNewLabel.setBounds(0, 0, 41, 35);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		panel.add(lblNewLabel);
+		
+		JLabel lblPrincipal = new JLabel("New label");
+		lblPrincipal.setForeground(new Color(255, 255, 255));
+		lblPrincipal.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblPrincipal.setBounds(103, 15, 101, 39);
+		panel.add(lblPrincipal);
 		
 		JLabel lblDNI = new JLabel("DNI");
 		lblDNI.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -115,42 +125,81 @@ public class InsertCliente extends JFrame {
 		JButton btnAgregarCliente = new JButton("Agregar");
 		btnAgregarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int controlFuncion=i;
 				
 				String DNI= txtDNI.getText();
 				String Nombre = txtNombre.getText();
 				String Apellido = txtApellido.getText();
 				String Telefono = txtTelefono.getText();
-				if (!DNI.isEmpty() && !Nombre.isEmpty() && !Apellido.isEmpty() && !Telefono.isEmpty()) {
-					try {
-						con.conectar();					
-					int funciona=con.insetarClientes(DNI, Nombre, Apellido, Telefono);
-					
-					if (funciona > 0) {
-		                 JOptionPane.showMessageDialog(null, "Datos insertados correctamente");
-		                     dispose();
-		                    
-		            }
+				
+				if(i==1) {//1 es para que haga el insert
+
+					if (!DNI.isEmpty() && !Nombre.isEmpty() && !Apellido.isEmpty() && !Telefono.isEmpty()) {
+						try {
+							con.conectar();					
+						int funciona=con.insetarClientes(DNI, Nombre, Apellido, Telefono);
 						
-					} 
-					catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-						
-					} catch (ClassNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						if (funciona > 0) {
+			                 JOptionPane.showMessageDialog(null, "Datos insertados correctamente");
+			                     dispose();		                    
+			            	}
+						} 
+						catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+							
+						} catch (ClassNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						limpiarCampos();
 					}
-					limpiarCampos();
+					else {
+						JOptionPane.showMessageDialog(null, "Error al insertar los datos, revise si hay algun campo vacio");
+					}
 				}
-				else {
-					JOptionPane.showMessageDialog(null, "Error al insertar los datos, revise si hay algun campo vacio");
+				
+				if(i==2) {//hace el update
+					if (!DNI.isEmpty() && !Nombre.isEmpty() && !Apellido.isEmpty() && !Telefono.isEmpty()) {
+						try {
+							con.conectar();					
+						int funciona=con.ejecutarUpdateCliente(DNI, Nombre, Apellido, Telefono);
+						
+						if (funciona > 0) {
+			                 JOptionPane.showMessageDialog(null, "Cliente actualizado correctamente");
+			                     dispose();
+			            	}
+						} 
+						catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+							
+						} catch (ClassNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						limpiarCampos();
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Error al insertar los datos, revise si hay algun campo vacio");
+					}
 				}
+				
 				
 				
 			}
 		});
 		btnAgregarCliente.setBounds(210, 400, 110, 36);
 		contentPane.add(btnAgregarCliente);
+		
+		if(i==2) {
+			lblPrincipal.setText("Update");
+			txtDNI.setText(frase);
+			txtDNI.setEnabled(false);
+		}
+		else {
+			lblPrincipal.setText("Insert");
+		}
 	}
 	
 	
