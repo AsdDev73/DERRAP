@@ -83,11 +83,51 @@ public class ConexionMySQL {
         String consulta = "INSERT INTO "+ "Cliente" +"(DNI, Nombre, Apellido, Tlf) VALUES (?, ?, ?, ?)";
         
          PreparedStatement pstmt = con.prepareStatement(consulta);
-        //le paso los parametros a la consulta sustityendo los ?
+        //le paso los parametros a la consulta sustituyendo los ?
            pstmt.setString(1, dni);
            pstmt.setString(2, nombre);
            pstmt.setString(3, apellido);
            pstmt.setString(4, telefono);
+           //ejecuto el insert
+            int insert = pstmt.executeUpdate();
+            //devuelvo las columnas que han sido afectadas con el insert
+           return  insert;
+    	
+    }
+    
+  //metodo para insertar Mecanico
+    public int insetarMecanico(String dni,String nombre, String apellido, String telefono) throws SQLException {
+        
+        String consulta = "INSERT INTO "+ "Mecanico" +"(DNI, Nombre, Apellido, Tlf) VALUES (?, ?, ?, ?)";
+        
+         PreparedStatement pstmt = con.prepareStatement(consulta);
+        //le paso los parametros a la consulta sustituyendo los ?
+           pstmt.setString(1, dni);
+           pstmt.setString(2, nombre);
+           pstmt.setString(3, apellido);
+           pstmt.setString(4, telefono);
+           //ejecuto el insert
+            int insert = pstmt.executeUpdate();
+            //devuelvo las columnas que han sido afectadas con el insert
+           return  insert;
+    	
+    }
+    
+    //metodo para insertar Vehiculo
+    public int insetarVehiculo(String matricula,String marca, String modelo, String color, String Fecha_Entrada, String fecha_salida,String clienteDNI,String ReparacionCodigoReparacion) throws SQLException {
+        
+        String consulta = "INSERT INTO "+ "Vehiculo" +"(Matricula, marca, modelo, color, Fecha_Entrada, Fecha_Salida, cliente_DNI, Reparacion_Codigo_Reparacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        
+         PreparedStatement pstmt = con.prepareStatement(consulta);
+        //le paso los parametros a la consulta sustituyendo los ?
+           pstmt.setString(1, matricula);
+           pstmt.setString(2, marca);
+           pstmt.setString(3, modelo);
+           pstmt.setString(4, color);
+           pstmt.setString(5, Fecha_Entrada);
+           pstmt.setString(6, fecha_salida);
+           pstmt.setString(7, clienteDNI);
+           pstmt.setString(8, ReparacionCodigoReparacion);
            //ejecuto el insert
             int insert = pstmt.executeUpdate();
             //devuelvo las columnas que han sido afectadas con el insert
