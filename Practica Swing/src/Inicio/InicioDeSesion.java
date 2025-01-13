@@ -81,62 +81,21 @@ public class InicioDeSesion extends JFrame {
 		panel.setLayout(null);
 		
 		JButton btnLogIn = new JButton("Iniciar Sesion");
+		btnLogIn.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				
+				if (e.getKeyChar()==KeyEvent.VK_ENTER) {
+					iniciarSesion();
+				}
+			}
+		});
 		btnLogIn.setForeground(new Color(255, 255, 255));
 		btnLogIn.setBackground(new Color(0, 0, 0));
 		btnLogIn.addActionListener(new ActionListener() {
 			//boton login
-			public void actionPerformed(ActionEvent e) {
-				//recojemos las variables 
-				String usuario = txtUser.getText();
-				String contra = new String(txtContra.getPassword());
-				try {
-					//cpnectamos con la basede datos 
-					con.conectar();
-					//Controlamos que rol tiene y ejecutamos diferentes pestañas
-				int ControlVentana=	con.logIn(usuario, contra);
-				
-				switch(ControlVentana) {
-				
-				case 1: //Ventana Admin
-					
-					HomeAdmin homeAdmin = new HomeAdmin(txtUser.getText());
-					homeAdmin.setVisible(true);
-					dispose();
-					break;
-					
-				case 2: //Ventana mecanico 
-					HomeMecanico homeMecanico = new HomeMecanico(txtUser.getText());
-					homeMecanico.setVisible(true);
-					dispose();
-					break;
-				
-				case 3: //Error en el Usuario
-					 JOptionPane.showMessageDialog(null, "No se ha encotrado ese usario en la base de datos");
-					limpiarLogIn();
-					break;
-				case 4: //Error de contraseña
-					 JOptionPane.showMessageDialog(null, "Contraseña Incorrecta");
-					 limpiarLogIn();
-					break;
-				default: //error fatal
-					 JOptionPane.showMessageDialog(null, "Problemas con la conexion al servidor");
-					 limpiarLogIn();
-				}
-				} catch (ClassNotFoundException e1) {
-					e1.printStackTrace();
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-			
-			
-				
-			}
-
-			//metodo para limpiar los campos si el login falla
-			private void limpiarLogIn() {
-				 txtUser.setText("Escriba su Usuario");
-				 txtContra.setText("");
-				 txtUser.setForeground(Color.gray);
+			public void actionPerformed(ActionEvent e) {	
+				iniciarSesion();
 			}
 		});
 		btnLogIn.setBounds(143, 341, 121, 23);
@@ -201,6 +160,14 @@ public class InicioDeSesion extends JFrame {
 		
 		
 		txtContra = new JPasswordField();
+		txtContra.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyChar()==KeyEvent.VK_ENTER) {
+					iniciarSesion();
+				}
+			}
+		});
 		txtContra.setForeground(new Color(192, 192, 192));
 		txtContra.setText("********");
 		txtContra.addMouseListener(new MouseAdapter() {
@@ -248,5 +215,55 @@ public class InicioDeSesion extends JFrame {
 	    }
 	}
 
+	private void iniciarSesion() {
+		//recojemos las variables 
+		String usuario = txtUser.getText();
+		String contra = new String(txtContra.getPassword());
+		try {
+			//cpnectamos con la basede datos 
+			con.conectar();
+			//Controlamos que rol tiene y ejecutamos diferentes pestañas
+		int ControlVentana=	con.logIn(usuario, contra);
+		
+		switch(ControlVentana) {
+		
+		case 1: //Ventana Admin
+			
+			HomeAdmin homeAdmin = new HomeAdmin(txtUser.getText());
+			homeAdmin.setVisible(true);
+			dispose();
+			break;
+			
+		case 2: //Ventana mecanico 
+			HomeMecanico homeMecanico = new HomeMecanico(txtUser.getText());
+			homeMecanico.setVisible(true);
+			dispose();
+			break;
+		
+		case 3: //Error en el Usuario
+			 JOptionPane.showMessageDialog(null, "No se ha encotrado ese usario en la base de datos");
+			limpiarLogIn();
+			break;
+		case 4: //Error de contraseña
+			 JOptionPane.showMessageDialog(null, "Contraseña Incorrecta");
+			 limpiarLogIn();
+			break;
+		default: //error fatal
+			 JOptionPane.showMessageDialog(null, "Problemas con la conexion al servidor");
+			 limpiarLogIn();
+		}
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	//metodo para limpiar los campos si el login falla
+	private void limpiarLogIn() {
+		 txtUser.setText("Escriba su Usuario");
+		 txtContra.setText("");
+		 txtUser.setForeground(Color.gray);
+	}
 	
 }

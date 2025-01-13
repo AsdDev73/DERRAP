@@ -26,6 +26,9 @@ import javax.swing.JOptionPane;
 import javax.swing.AbstractListModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.CardLayout;
+import java.awt.BorderLayout;
+import java.awt.Cursor;
 
 public class HomeMecanico extends JFrame {
 
@@ -33,6 +36,8 @@ public class HomeMecanico extends JFrame {
 	private JPanel contentPane;
 	public JLabel labelLogoPanel;
 	private JTextField txtMatriculaVehiculo;
+	JPanel PanelCardPrinci;
+	static CardLayout cardLayout;
 	/**
 	 * Launch the application.
 	 */
@@ -57,7 +62,7 @@ public class HomeMecanico extends JFrame {
 
 		//pantallaCompleta(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1920, 1080);
+		setBounds(100, 100, 1250, 800);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -68,80 +73,130 @@ public class HomeMecanico extends JFrame {
 		JPanel panelTextoPricipal = new JPanel();
 		panelTextoPricipal.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panelTextoPricipal.setBackground(new Color(133, 133, 133));
-		panelTextoPricipal.setBounds(0, 0, 1920, 288);
+		panelTextoPricipal.setBounds(0, 0, 1234, 189);
 		contentPane.add(panelTextoPricipal);
 		panelTextoPricipal.setLayout(null);
 		
 		labelLogoPanel = new JLabel("New label");
-		labelLogoPanel.setBounds(76, 43, 199, 189);
+		labelLogoPanel.setBounds(76, 11, 168, 151);
 		panelTextoPricipal.add(labelLogoPanel);
 		
 		JLabel lblBuscarVehiculo = new JLabel("Buscar un vehiculo");
 		lblBuscarVehiculo.setForeground(new Color(255, 255, 255));
 		lblBuscarVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblBuscarVehiculo.setBounds(343, 43, 160, 28);
+		lblBuscarVehiculo.setBounds(269, 29, 160, 28);
 		panelTextoPricipal.add(lblBuscarVehiculo);
 		
 		txtMatriculaVehiculo = new JTextField();
-		txtMatriculaVehiculo.setBounds(343, 71, 160, 39);
+		txtMatriculaVehiculo.setBounds(269, 57, 160, 39);
 		panelTextoPricipal.add(txtMatriculaVehiculo);
 		txtMatriculaVehiculo.setColumns(10);
 		
 		JButton btbBuscarMatricula = new JButton("OK");
-		btbBuscarMatricula.setBounds(341, 121, 89, 23);
+		btbBuscarMatricula.setBounds(267, 107, 89, 23);
 		panelTextoPricipal.add(btbBuscarMatricula);
 		
-		JLabel lblPrincipal = new JLabel("DASHBOARD");
-		lblPrincipal.setFont(new Font("Tahoma", Font.PLAIN, 99));
+		JLabel lblPrincipal = new JLabel("DERRAP");
+		lblPrincipal.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				cardLayout.show(PanelCardPrinci, "panelPricipal");
+			}
+		});
+		lblPrincipal.setFont(new Font("Tahoma", Font.PLAIN, 71));
 		lblPrincipal.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPrincipal.setForeground(new Color(255, 255, 255));
-		lblPrincipal.setBounds(566, 25, 975, 207);
+		lblPrincipal.setBounds(552, 26, 365, 120);
 		panelTextoPricipal.add(lblPrincipal);
 		
 		JLabel lblUsuario = new JLabel("Mecanico\r\n");
 		lblUsuario.setForeground(new Color(255, 255, 255));
 		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblUsuario.setBounds(1725, 141, 132, 39);
+		lblUsuario.setBounds(1080, 107, 132, 39);
 		panelTextoPricipal.add(lblUsuario);
 		
 		JPanel PanelOpciones = new JPanel();
 		PanelOpciones.setBorder(new LineBorder(new Color(0, 0, 0)));
 		PanelOpciones.setBackground(new Color(133, 133, 133));
-		PanelOpciones.setBounds(0, 288, 323, 813);
+		PanelOpciones.setBounds(0, 189, 218, 572);
 		contentPane.add(PanelOpciones);
 		PanelOpciones.setLayout(null);
 		
-		JTextPane lblModificarOrdenVehiculo = new JTextPane();
-		lblModificarOrdenVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblModificarOrdenVehiculo.setForeground(new Color(255, 255, 255));
-		lblModificarOrdenVehiculo.setText("Modificar una orden de reparación de un vehículo asignado");
-		lblModificarOrdenVehiculo.setBackground(new Color(133, 133, 133));
-		lblModificarOrdenVehiculo.setBounds(74, 11, 164, 71);
-		PanelOpciones.add(lblModificarOrdenVehiculo);
-		
-		JTextPane lblConsultarStock = new JTextPane();
-		lblConsultarStock.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblConsultarStock.setText("Consultar el stock disponiblede piezas en el almacen");
-		lblConsultarStock.setForeground(Color.WHITE);
-		lblConsultarStock.setBackground(new Color(133, 133, 133));
-		lblConsultarStock.setBounds(74, 189, 164, 71);
-		PanelOpciones.add(lblConsultarStock);
-		
-		JTextPane lblModificarEstadoOrden = new JTextPane();
-		lblModificarEstadoOrden.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblModificarEstadoOrden.setText("Modificar el estado de una orden de reparación para si mismo");
-		lblModificarEstadoOrden.setForeground(Color.WHITE);
-		lblModificarEstadoOrden.setBackground(new Color(133, 133, 133));
-		lblModificarEstadoOrden.setBounds(61, 375, 168, 86);
-		PanelOpciones.add(lblModificarEstadoOrden);
-		
-		JTextPane lblSolicitarPiezas = new JTextPane();
-		lblSolicitarPiezas.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblSolicitarPiezas.setText("Solicitar piezas de sustitución");
-		lblSolicitarPiezas.setForeground(Color.WHITE);
-		lblSolicitarPiezas.setBackground(new Color(133, 133, 133));
-		lblSolicitarPiezas.setBounds(74, 569, 133, 51);
+		JPanel lblSolicitarPiezas = new JPanel();
+		lblSolicitarPiezas.setBounds(0, 424, 217, 86);
 		PanelOpciones.add(lblSolicitarPiezas);
+		lblSolicitarPiezas.setLayout(new BorderLayout(0, 0));
+		
+		JTextPane lblSolicitarPiezas2 = new JTextPane();
+		lblSolicitarPiezas2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				cardLayout.show(PanelCardPrinci, "panelSolicitarPiezas");
+			}
+		});
+		lblSolicitarPiezas2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblSolicitarPiezas.add(lblSolicitarPiezas2);
+		lblSolicitarPiezas2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblSolicitarPiezas2.setText("Solicitar piezas de sustitución");
+		lblSolicitarPiezas2.setForeground(new Color(0, 0, 0));
+		lblSolicitarPiezas2.setBackground(new Color(240, 240, 240));
+		
+		JPanel lblModificarEstadoOrden = new JPanel();
+		lblModificarEstadoOrden.setBounds(0, 283, 217, 86);
+		PanelOpciones.add(lblModificarEstadoOrden);
+		lblModificarEstadoOrden.setLayout(new BorderLayout(0, 0));
+		
+		JTextPane sdf21 = new JTextPane();
+		sdf21.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				cardLayout.show(PanelCardPrinci, "panelModificarEstadoOrden");
+			}
+		});
+		sdf21.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblModificarEstadoOrden.add(sdf21, BorderLayout.CENTER);
+		sdf21.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		sdf21.setText("Modificar el estado de una orden de reparación para si mismo");
+		sdf21.setForeground(new Color(0, 0, 0));
+		sdf21.setBackground(new Color(240, 240, 240));
+		
+		JPanel lblConsultarStock = new JPanel();
+		lblConsultarStock.setBounds(0, 156, 217, 86);
+		PanelOpciones.add(lblConsultarStock);
+		lblConsultarStock.setLayout(new BorderLayout(0, 0));
+		
+		JTextPane lblConsultarStock2 = new JTextPane();
+		lblConsultarStock2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				cardLayout.show(PanelCardPrinci, "panelConsultarStock");
+			}
+		});
+		lblConsultarStock2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblConsultarStock.add(lblConsultarStock2, BorderLayout.CENTER);
+		lblConsultarStock2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblConsultarStock2.setText("Consultar el stock disponiblede piezas en el almacen");
+		lblConsultarStock2.setForeground(new Color(0, 0, 0));
+		lblConsultarStock2.setBackground(new Color(240, 240, 240));
+		
+		JPanel lblModificarOrdenVehiculo = new JPanel();
+		lblModificarOrdenVehiculo.setBounds(0, 34, 217, 86);
+		PanelOpciones.add(lblModificarOrdenVehiculo);
+		lblModificarOrdenVehiculo.setLayout(new BorderLayout(0, 0));
+		
+		JTextPane lblModificarOrdenVehiculo2 = new JTextPane();
+		lblModificarOrdenVehiculo2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				cardLayout.show(PanelCardPrinci, "panelModificarOrdenVehiculo");
+			}
+		});
+		lblModificarOrdenVehiculo2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblModificarOrdenVehiculo.add(lblModificarOrdenVehiculo2, BorderLayout.CENTER);
+		lblModificarOrdenVehiculo2.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblModificarOrdenVehiculo2.setForeground(new Color(0, 0, 0));
+		lblModificarOrdenVehiculo2.setText("Modificar una orden de reparación de un vehículo asignado");
+		lblModificarOrdenVehiculo2.setBackground(new Color(240, 240, 240));
 		setLogo(labelLogoPanel);
 		
 		JPanel panel = new JPanel();
@@ -177,70 +232,25 @@ public class HomeMecanico extends JFrame {
 		lblNewLabel.setBounds(0, 0, 86, 78);
 		panel.add(lblNewLabel);
 		
-		JPanel panelValoracion = new JPanel();
-		panelValoracion.setBackground(new Color(133, 133, 133));
-		panelValoracion.setBounds(402, 348, 280, 224);
-		contentPane.add(panelValoracion);
-		panelValoracion.setLayout(null);
+		JPanel PanelCardPrinci = new JPanel();
+		PanelCardPrinci.setBounds(217, 189, 1017, 572);
+		contentPane.add(PanelCardPrinci);
+		PanelCardPrinci.setLayout(new CardLayout(0, 0));
 		
-		JLabel lblValoracion = new JLabel("4.8");
-		lblValoracion.setFont(new Font("Tahoma", Font.PLAIN, 59));
-		lblValoracion.setBounds(104, 11, 166, 190);
-		panelValoracion.add(lblValoracion);
+		JPanel panelPricipal = new JPanel();
+		PanelCardPrinci.add(panelPricipal, "panelPricipal");
 		
-		JPanel panelClientes = new JPanel();
-		panelClientes.setLayout(null);
-		panelClientes.setBackground(new Color(133, 133, 133));
-		panelClientes.setBounds(786, 348, 280, 224);
-		contentPane.add(panelClientes);
+		JPanel panelModificarOrdenVehiculo = new JPanel();
+		PanelCardPrinci.add(panelModificarOrdenVehiculo, "panelModificarOrdenVehiculo");
 		
-		JLabel lblClientes = new JLabel("21");
-		lblClientes.setFont(new Font("Tahoma", Font.PLAIN, 72));
-		lblClientes.setBounds(139, 11, 131, 190);
-		panelClientes.add(lblClientes);
+		JPanel panelConsultarStock = new JPanel();
+		PanelCardPrinci.add(panelConsultarStock, "panelConsultarStock");
 		
-		JPanel panelVehiculos = new JPanel();
-		panelVehiculos.setLayout(null);
-		panelVehiculos.setBackground(new Color(133, 133, 133));
-		panelVehiculos.setBounds(1171, 348, 280, 224);
-		contentPane.add(panelVehiculos);
+		JPanel panelModificarEstadoOrden = new JPanel();
+		PanelCardPrinci.add(panelModificarEstadoOrden, "panelModificarEstadoOrden");
 		
-		JLabel lblVehiculos = new JLabel("10");
-		lblVehiculos.setFont(new Font("Tahoma", Font.PLAIN, 82));
-		lblVehiculos.setBounds(119, 11, 151, 190);
-		panelVehiculos.add(lblVehiculos);
-		
-		JPanel panelMecanicos = new JPanel();
-		panelMecanicos.setLayout(null);
-		panelMecanicos.setBackground(new Color(133, 133, 133));
-		panelMecanicos.setBounds(1563, 348, 280, 224);
-		contentPane.add(panelMecanicos);
-		
-		JLabel lblMecanicos = new JLabel("7");
-		lblMecanicos.setFont(new Font("Tahoma", Font.PLAIN, 84));
-		lblMecanicos.setBounds(127, 11, 143, 190);
-		panelMecanicos.add(lblMecanicos);
-		
-		JList list = new JList();
-		list.setBorder(new LineBorder(new Color(0, 0, 0), 3));
-		list.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"- Cambio de aceite rutinario"};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
-		list.setBounds(477, 723, 1187, 327);
-		contentPane.add(list);
-		
-		JLabel lblReparacionesPendientes = new JLabel("Reparaciones pendientes");
-		lblReparacionesPendientes.setBackground(new Color(133, 133, 133));
-		lblReparacionesPendientes.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		lblReparacionesPendientes.setBounds(477, 696, 1187, 26);
-		contentPane.add(lblReparacionesPendientes);
+		JPanel panelSolicitarPiezas = new JPanel();
+		PanelCardPrinci.add(panelSolicitarPiezas, "panelSolicitarPiezas");
 	}
 
 	private void setLogo(JLabel labelLogoPanel2) {
