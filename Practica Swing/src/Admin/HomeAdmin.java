@@ -484,49 +484,49 @@ public class HomeAdmin extends JFrame {
 		PanelDashBoard.setLayout(null);
 		
 		JLabel lblBusquedVehiculo = new JLabel("Busqueda de Vehiculo\r\n");
-		lblBusquedVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		lblBusquedVehiculo.setBounds(103, 142, 258, 64);
+		lblBusquedVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblBusquedVehiculo.setBounds(25, 27, 202, 64);
 		PanelDashBoard.add(lblBusquedVehiculo);
 		
 		txtBusquedaVehiculo = new JTextField();
 		txtBusquedaVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		txtBusquedaVehiculo.setBounds(373, 142, 258, 64);
+		txtBusquedaVehiculo.setBounds(237, 29, 258, 64);
 		PanelDashBoard.add(txtBusquedaVehiculo);
 		txtBusquedaVehiculo.setColumns(10);
 		
-		txtBusquedaCliente = new JTextField();
-		txtBusquedaCliente.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		txtBusquedaCliente.setColumns(10);
-		txtBusquedaCliente.setBounds(1031, 142, 258, 64);
-		PanelDashBoard.add(txtBusquedaCliente);
-		
 		JLabel lblBusquedCliente = new JLabel("Busqueda de Cliente\r\n");
-		lblBusquedCliente.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		lblBusquedCliente.setBounds(761, 142, 258, 64);
+		lblBusquedCliente.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblBusquedCliente.setBounds(541, 31, 258, 64);
 		PanelDashBoard.add(lblBusquedCliente);
 		
 		JButton btnBuscarCliente = new JButton("Buscar Cliente\r\n");
-		btnBuscarCliente.setBounds(949, 217, 121, 43);
+		btnBuscarCliente.setBounds(668, 106, 121, 43);
 		PanelDashBoard.add(btnBuscarCliente);
 		
 		JButton btnBusquedaVehiculo = new JButton("Buscar Vehiculo");
-		btnBusquedaVehiculo.setBounds(284, 217, 121, 43);
+		btnBusquedaVehiculo.setBounds(142, 106, 121, 43);
 		PanelDashBoard.add(btnBusquedaVehiculo);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(133, 133, 133));
-		panel_1.setBounds(184, 461, 195, 174);
+		panel_1.setBounds(65, 348, 195, 174);
 		PanelDashBoard.add(panel_1);
 		
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setBackground(new Color(133, 133, 133));
-		panel_1_1.setBounds(624, 461, 195, 174);
+		panel_1_1.setBounds(386, 348, 195, 174);
 		PanelDashBoard.add(panel_1_1);
 		
-		JPanel panel_1_2 = new JPanel();
-		panel_1_2.setBackground(new Color(133, 133, 133));
-		panel_1_2.setBounds(1046, 461, 195, 174);
-		PanelDashBoard.add(panel_1_2);
+		txtBusquedaCliente = new JTextField();
+		txtBusquedaCliente.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		txtBusquedaCliente.setColumns(10);
+		txtBusquedaCliente.setBounds(736, 34, 154, 54);
+		PanelDashBoard.add(txtBusquedaCliente);
+		
+		JPanel panel_1_1_1 = new JPanel();
+		panel_1_1_1.setBackground(new Color(133, 133, 133));
+		panel_1_1_1.setBounds(715, 348, 195, 174);
+		PanelDashBoard.add(panel_1_1_1);
 		
 		dashBoard();
 	}
