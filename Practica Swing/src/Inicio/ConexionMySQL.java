@@ -170,6 +170,25 @@ public class ConexionMySQL {
          int update = pstmt.executeUpdate();
         return update;
      }
+
+
+public int ejecutarUpdateVehiculo(String dNI_Cliente, String matricula, String marca, String modelo, String color, String fecha_Entrada, String fecha_Salida, String reparacion) throws SQLException {
+    String consulta = "UPDATE Vehiculo SET Marca = ?, Modelo = ?, Color = ?, Fecha_Entrada = ?, Fecha_Salida = ?, Reparacion_Codigo_Reparacion = ? WHERE Matricula = ? AND cliente_DNI = ?;";
+    PreparedStatement pstmt = con.prepareStatement(consulta);
+    pstmt.setString(1, marca);
+    pstmt.setString(2, modelo);
+    pstmt.setString(3, color);
+    pstmt.setString(4, fecha_Entrada);
+    pstmt.setString(5, fecha_Salida);
+    pstmt.setString(6, reparacion);
+    pstmt.setString(7, matricula);
+    pstmt.setString(8, dNI_Cliente);
+    int update = pstmt.executeUpdate();
+    return update;
+}
+
+
+
     }
 
     
