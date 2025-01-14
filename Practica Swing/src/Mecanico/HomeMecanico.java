@@ -29,6 +29,8 @@ import java.awt.event.MouseEvent;
 import java.awt.CardLayout;
 import java.awt.BorderLayout;
 import java.awt.Cursor;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.CompoundBorder;
 
 public class HomeMecanico extends JFrame {
 
@@ -239,6 +241,25 @@ public class HomeMecanico extends JFrame {
 		
 		JPanel panelPricipal = new JPanel();
 		PanelCardPrinci.add(panelPricipal, "panelPricipal");
+		panelPricipal.setLayout(null);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_1.setBackground(new Color(192, 192, 192));
+		panel_1.setForeground(new Color(255, 255, 255));
+		panel_1.setBounds(134, 241, 776, 281);
+		panelPricipal.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBounds(10, 5, 756, 46);
+		panel_1.add(panel_2);
+		panel_2.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("Reparaciones pendientes a asignacion");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_1.setBounds(10, 11, 401, 24);
+		panel_2.add(lblNewLabel_1);
 		
 		JPanel panelModificarOrdenVehiculo = new JPanel();
 		PanelCardPrinci.add(panelModificarOrdenVehiculo, "panelModificarOrdenVehiculo");
