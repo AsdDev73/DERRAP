@@ -19,6 +19,8 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class InsertCliente extends JFrame {
 
@@ -72,6 +74,12 @@ public class InsertCliente extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("<--");
+		lblNewLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				dispose();
+			}
+		});
 		lblNewLabel.setBounds(0, 0, 41, 35);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		panel.add(lblNewLabel);
