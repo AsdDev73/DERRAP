@@ -90,6 +90,7 @@ public class HomeAdmin extends JFrame {
 		panelTextoPricipal.add(labelLogoPanel);
 		
 		JLabel lblPrincipal = new JLabel("DERRAP");
+		lblPrincipal.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblPrincipal.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -116,12 +117,15 @@ public class HomeAdmin extends JFrame {
 		PanelOpciones.setLayout(null);
 		
 		JPanel lblGestionClientes = new JPanel();
-		lblGestionClientes.setBackground(new Color(240, 240, 240));
+		lblGestionClientes.setBackground(new Color(133, 133, 133));
 		lblGestionClientes.setBounds(0, 11, 238, 82);
 		PanelOpciones.add(lblGestionClientes);
 		lblGestionClientes.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblNewLabel_2 = new JLabel("Modelo de gestion \r\nde clientes");
+		lblNewLabel_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblNewLabel_2.setForeground(new Color(255, 255, 255));
+		lblNewLabel_2.setBackground(new Color(133, 133, 133));
 		lblNewLabel_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -133,12 +137,15 @@ public class HomeAdmin extends JFrame {
 		lblGestionClientes.add(lblNewLabel_2);
 		
 		JPanel lblGestionMateriales = new JPanel();
-		lblGestionMateriales.setBackground(UIManager.getColor("Button.background"));
+		lblGestionMateriales.setBackground(new Color(133, 133, 133));
 		lblGestionMateriales.setBounds(0, 118, 238, 71);
 		PanelOpciones.add(lblGestionMateriales);
 		lblGestionMateriales.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblNewLabel_3 = new JLabel("Modelo de gestion \r\nde material");
+		lblNewLabel_3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblNewLabel_3.setForeground(new Color(255, 255, 255));
+		lblNewLabel_3.setBackground(new Color(133, 133, 133));
 		lblNewLabel_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -150,12 +157,15 @@ public class HomeAdmin extends JFrame {
 		lblGestionMateriales.add(lblNewLabel_3, BorderLayout.CENTER);
 		
 		JPanel lblGestionServicios = new JPanel();
-		lblGestionServicios.setBackground(UIManager.getColor("Button.background"));
+		lblGestionServicios.setBackground(new Color(133, 133, 133));
 		lblGestionServicios.setBounds(1, 211, 237, 71);
 		PanelOpciones.add(lblGestionServicios);
 		lblGestionServicios.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblNewLabel_4 = new JLabel("Modelo de gestion \r\nde servicios");
+		lblNewLabel_4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblNewLabel_4.setForeground(new Color(255, 255, 255));
+		lblNewLabel_4.setBackground(new Color(133, 133, 133));
 		lblNewLabel_4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -167,12 +177,15 @@ public class HomeAdmin extends JFrame {
 		lblGestionServicios.add(lblNewLabel_4, BorderLayout.CENTER);
 		
 		JPanel lblGestionEconomia = new JPanel();
-		lblGestionEconomia.setBackground(UIManager.getColor("Button.background"));
+		lblGestionEconomia.setBackground(new Color(133, 133, 133));
 		lblGestionEconomia.setBounds(0, 303, 238, 71);
 		PanelOpciones.add(lblGestionEconomia);
 		lblGestionEconomia.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblNewLabel_5 = new JLabel("Modelo de gestion \r\neconomia del taller\r\n");
+		lblNewLabel_5.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblNewLabel_5.setForeground(new Color(255, 255, 255));
+		lblNewLabel_5.setBackground(new Color(133, 133, 133));
 		lblNewLabel_5.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -184,12 +197,15 @@ public class HomeAdmin extends JFrame {
 		lblGestionEconomia.add(lblNewLabel_5, BorderLayout.CENTER);
 		
 		JPanel lblGestionFacturas = new JPanel();
-		lblGestionFacturas.setBackground(UIManager.getColor("Button.background"));
+		lblGestionFacturas.setBackground(new Color(133, 133, 133));
 		lblGestionFacturas.setBounds(0, 395, 238, 71);
 		PanelOpciones.add(lblGestionFacturas);
 		lblGestionFacturas.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblNewLabel_6 = new JLabel("Gestionar Facturas");
+		lblNewLabel_6.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblNewLabel_6.setForeground(new Color(255, 255, 255));
+		lblNewLabel_6.setBackground(new Color(133, 133, 133));
 		lblNewLabel_6.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -201,12 +217,15 @@ public class HomeAdmin extends JFrame {
 		lblGestionFacturas.add(lblNewLabel_6, BorderLayout.CENTER);
 		
 		JPanel lblGestionFacturas_1 = new JPanel();
-		lblGestionFacturas_1.setBackground(UIManager.getColor("Button.background"));
+		lblGestionFacturas_1.setBackground(new Color(133, 133, 133));
 		lblGestionFacturas_1.setBounds(0, 488, 238, 71);
 		PanelOpciones.add(lblGestionFacturas_1);
 		lblGestionFacturas_1.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblNewLabel_7 = new JLabel("Modelo de gestion \r\nde informes");
+		lblNewLabel_7.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblNewLabel_7.setForeground(new Color(255, 255, 255));
+		lblNewLabel_7.setBackground(new Color(133, 133, 133));
 		lblNewLabel_7.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
