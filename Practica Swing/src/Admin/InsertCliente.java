@@ -132,9 +132,7 @@ public class InsertCliente extends JFrame {
 		
 		JButton btnAgregarCliente = new JButton("Agregar");
 		btnAgregarCliente.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int controlFuncion=i;
-				
+			public void actionPerformed(ActionEvent e) {	
 				String DNI= txtDNI.getText();
 				String Nombre = txtNombre.getText();
 				String Apellido = txtApellido.getText();

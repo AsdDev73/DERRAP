@@ -113,28 +113,6 @@ public class ConexionMySQL {
     	
     }
     
-    //metodo para insertar Vehiculo
-    public int insetarVehiculo(String matricula,String marca, String modelo, String color, String Fecha_Entrada, String fecha_salida,String clienteDNI,String ReparacionCodigoReparacion) throws SQLException {
-        
-        String consulta = "INSERT INTO "+ "Vehiculo" +"(Matricula, marca, modelo, color, Fecha_Entrada, Fecha_Salida, cliente_DNI, Reparacion_Codigo_Reparacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        
-         PreparedStatement pstmt = con.prepareStatement(consulta);
-        //le paso los parametros a la consulta sustituyendo los ?
-           pstmt.setString(1, matricula);
-           pstmt.setString(2, marca);
-           pstmt.setString(3, modelo);
-           pstmt.setString(4, color);
-           pstmt.setString(5, Fecha_Entrada);
-           pstmt.setString(6, fecha_salida);
-           pstmt.setString(7, clienteDNI);
-           pstmt.setString(8, ReparacionCodigoReparacion);
-           //ejecuto el insert
-            int insert = pstmt.executeUpdate();
-            //devuelvo las columnas que han sido afectadas con el insert
-           return  insert;
-    	
-    }
-    
     //metodo que pasandole la consulta devuelve el cunrsor con los datos 
     public ResultSet ejecutarSelect( String Consulta) throws SQLException {
        Statement stmt =  con.createStatement();
@@ -172,6 +150,29 @@ public class ConexionMySQL {
      }
 
 
+    //metodo para insertar Vehiculo
+    public int insertarVehiculo(String matricula,String marca, String modelo, String color, String Fecha_Entrada, String fecha_salida,String clienteDNI,String ReparacionCodigoReparacion) throws SQLException {
+        
+        String consulta = "INSERT INTO "+ "Vehiculo" +"(Matricula, marca, modelo, color, Fecha_Entrada, Fecha_Salida, cliente_DNI, Reparacion_Codigo_Reparacion) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        
+         PreparedStatement pstmt = con.prepareStatement(consulta);
+        //le paso los parametros a la consulta sustituyendo los ?
+           pstmt.setString(1, matricula);
+           pstmt.setString(2, marca);
+           pstmt.setString(3, modelo);
+           pstmt.setString(4, color);
+           pstmt.setString(5, Fecha_Entrada);
+           pstmt.setString(6, fecha_salida);
+           pstmt.setString(7, clienteDNI);
+           pstmt.setString(8, ReparacionCodigoReparacion);
+           //ejecuto el insert
+            int insert = pstmt.executeUpdate();
+            //devuelvo las columnas que han sido afectadas con el insert
+           return  insert;
+    	
+    }
+    
+    
 public int ejecutarUpdateVehiculo(String dNI_Cliente, String matricula, String marca, String modelo, String color, String fecha_Entrada, String fecha_Salida, String reparacion) throws SQLException {
     String consulta = "UPDATE Vehiculo SET Marca = ?, Modelo = ?, Color = ?, Fecha_Entrada = ?, Fecha_Salida = ?, Reparacion_Codigo_Reparacion = ?, cliente_DNI = ? WHERE Matricula = ?;";
     PreparedStatement pstmt = con.prepareStatement(consulta);

@@ -169,8 +169,7 @@ public class InsertVehiculo extends JFrame {
         JButton btnAgregarVehiculo = new JButton("Agregar");
         btnAgregarVehiculo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int controlFuncion = i;
-
+            	
                 String DNI_Cliente = textDNI_Cliente.getText();
                 String Matricula = textMatricula.getText();
                 String Marca = textMarca.getText();
@@ -185,7 +184,7 @@ if(i == 1) { // 1 es para que haga el insert
     if (!DNI_Cliente.isEmpty() && !Matricula.isEmpty() && !Marca.isEmpty() && !Modelo.isEmpty() && !Color.isEmpty() && !Fecha_Entrada.isEmpty() && !Fecha_Salida.isEmpty() && !Reparacion.isEmpty()) {
         try {
             con.conectar();
-            int funciona = con.insetarVehiculo(DNI_Cliente, Matricula, Marca, Modelo, Color, Fecha_Entrada, Fecha_Salida, Reparacion);
+            int funciona = con.insertarVehiculo(Matricula,Marca,Modelo,Color,Fecha_Entrada,Fecha_Salida,DNI_Cliente,Reparacion);
 
             if (funciona > 0) {
                 JOptionPane.showMessageDialog(null, "Datos insertados correctamente");

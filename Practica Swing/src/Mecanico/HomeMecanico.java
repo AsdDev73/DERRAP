@@ -99,6 +99,7 @@ public class HomeMecanico extends JFrame {
 		panelTextoPricipal.add(btbBuscarMatricula);
 		
 		JLabel lblPrincipal = new JLabel("DERRAP");
+		lblPrincipal.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblPrincipal.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -140,8 +141,8 @@ public class HomeMecanico extends JFrame {
 		lblSolicitarPiezas.add(lblSolicitarPiezas2);
 		lblSolicitarPiezas2.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblSolicitarPiezas2.setText("Solicitar piezas de sustitución");
-		lblSolicitarPiezas2.setForeground(new Color(0, 0, 0));
-		lblSolicitarPiezas2.setBackground(new Color(240, 240, 240));
+		lblSolicitarPiezas2.setForeground(new Color(255, 255, 255));
+		lblSolicitarPiezas2.setBackground(new Color(133, 133, 133));
 		
 		JPanel lblModificarEstadoOrden = new JPanel();
 		lblModificarEstadoOrden.setBounds(0, 283, 217, 86);
@@ -159,8 +160,8 @@ public class HomeMecanico extends JFrame {
 		lblModificarEstadoOrden.add(sdf21, BorderLayout.CENTER);
 		sdf21.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		sdf21.setText("Modificar el estado de una orden de reparación para si mismo");
-		sdf21.setForeground(new Color(0, 0, 0));
-		sdf21.setBackground(new Color(240, 240, 240));
+		sdf21.setForeground(new Color(255, 255, 255));
+		sdf21.setBackground(new Color(133, 133, 133));
 		
 		JPanel lblConsultarStock = new JPanel();
 		lblConsultarStock.setBounds(0, 156, 217, 86);
@@ -178,10 +179,11 @@ public class HomeMecanico extends JFrame {
 		lblConsultarStock.add(lblConsultarStock2, BorderLayout.CENTER);
 		lblConsultarStock2.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblConsultarStock2.setText("Consultar el stock disponiblede piezas en el almacen");
-		lblConsultarStock2.setForeground(new Color(0, 0, 0));
-		lblConsultarStock2.setBackground(new Color(240, 240, 240));
+		lblConsultarStock2.setForeground(new Color(255, 255, 255));
+		lblConsultarStock2.setBackground(new Color(133, 133, 133));
 		
 		JPanel lblModificarOrdenVehiculo = new JPanel();
+		lblModificarOrdenVehiculo.setBackground(new Color(133, 133, 133));
 		lblModificarOrdenVehiculo.setBounds(0, 34, 217, 86);
 		PanelOpciones.add(lblModificarOrdenVehiculo);
 		lblModificarOrdenVehiculo.setLayout(new BorderLayout(0, 0));
@@ -196,9 +198,9 @@ public class HomeMecanico extends JFrame {
 		lblModificarOrdenVehiculo2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblModificarOrdenVehiculo.add(lblModificarOrdenVehiculo2, BorderLayout.CENTER);
 		lblModificarOrdenVehiculo2.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblModificarOrdenVehiculo2.setForeground(new Color(0, 0, 0));
+		lblModificarOrdenVehiculo2.setForeground(new Color(255, 255, 255));
 		lblModificarOrdenVehiculo2.setText("Modificar una orden de reparación de un vehículo asignado");
-		lblModificarOrdenVehiculo2.setBackground(new Color(240, 240, 240));
+		lblModificarOrdenVehiculo2.setBackground(new Color(133, 133, 133));
 		setLogo(labelLogoPanel);
 		
 		JPanel panel = new JPanel();

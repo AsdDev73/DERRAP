@@ -270,6 +270,10 @@ public class HomeAdmin extends JFrame {
 		lblNewLabel.setBounds(0, 0, 72, 68);
 		panel.add(lblNewLabel);
 		
+		JLabel lblLogoUser = new JLabel("New label");
+		lblLogoUser.setBounds(1033, 21, 101, 99);
+		panelTextoPricipal.add(lblLogoUser);
+		
 		PanelCardPrinci = new JPanel(cardLayout);
 		PanelCardPrinci.setBounds(237, 193, 997, 568);
 		contentPane.add(PanelCardPrinci);
@@ -507,6 +511,16 @@ public class HomeAdmin extends JFrame {
 		panel_2_2.add(lblNewLabel_1_2);
 		
 		JLabel lblInsertarVehiculo = new JLabel("Insertar\r\n");
+		lblInsertarVehiculo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+			
+	      
+	            	InsertVehiculo iv = new InsertVehiculo(" ",1);
+					iv.setVisible(true);
+				
+			}
+		});
 		lblInsertarVehiculo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblInsertarVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblInsertarVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 24));
