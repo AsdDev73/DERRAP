@@ -283,7 +283,7 @@ public class HomeAdmin extends JFrame {
 		lblInsertarCliente.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				InsertCliente ic = new InsertCliente(" sfsd ",1);
+				InsertCliente ic = new InsertCliente("  ",1);
 				ic.setVisible(true);
 				
 			}
@@ -372,7 +372,14 @@ public class HomeAdmin extends JFrame {
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		panel_2_1.add(lblNewLabel_1_1);
 		
-		JLabel lblInsertarMecanico = new JLabel("Insetar\r\n");
+		JLabel lblInsertarMecanico = new JLabel("Insertar\r\n");
+		lblInsertarMecanico.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				InsertMecanico frame = new InsertMecanico("  ", 1);
+				frame.setVisible(true);
+			}
+		});
 		lblInsertarMecanico.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblInsertarMecanico.setHorizontalAlignment(SwingConstants.CENTER);
 		lblInsertarMecanico.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -380,6 +387,31 @@ public class HomeAdmin extends JFrame {
 		PanelTrabajadores.add(lblInsertarMecanico);
 		
 		JLabel lblConsultaMecanica = new JLabel("Consulta\r\n");
+		lblConsultaMecanica.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				 // Mostrar JOptionPane para ingresar una frase
+	            String frase = JOptionPane.showInputDialog(null, "Por favor, introduce una frase:", "Entrada de texto", JOptionPane.QUESTION_MESSAGE);
+	            
+	            // Verificar si el usuario ingresó algo
+	            if (frase != null && !frase.trim().isEmpty()) {
+	                // Abrir un nuevo JFrame con la frase ingresada
+	                MostrarConsulta mc = null;
+					try {
+						mc = new MostrarConsulta(frase);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+	                mc.setVisible(true);
+	            } else {
+	                JOptionPane.showMessageDialog(null, "No ingresaste ninguna frase.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+	            }
+			}
+		});
 		lblConsultaMecanica.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblConsultaMecanica.setHorizontalAlignment(SwingConstants.CENTER);
 		lblConsultaMecanica.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -387,13 +419,51 @@ public class HomeAdmin extends JFrame {
 		PanelTrabajadores.add(lblConsultaMecanica);
 		
 		JLabel lblDarDeBaja = new JLabel("Dar de Baja\r\n");
+		lblDarDeBaja.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+	            String frase = JOptionPane.showInputDialog(null, "Por favor, introduce una frase:", "Entrada de texto", JOptionPane.QUESTION_MESSAGE);
+	            if (frase != null && !frase.trim().isEmpty()) {
+	                // Abrir un nuevo JFrame con la frase ingresada
+	            	
+					DeleteMecanico dc = new DeleteMecanico(frase);
+					dc.setVisible(true);
+					
+					
+	            } else {
+	                JOptionPane.showMessageDialog(null, "No ingresaste ningun DNI.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+	            
+	            }
+			}
+		});
 		lblDarDeBaja.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblDarDeBaja.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDarDeBaja.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblDarDeBaja.setBounds(10, 279, 272, 96);
 		PanelTrabajadores.add(lblDarDeBaja);
 		
-		JLabel lblUpdate_1 = new JLabel("Update");
+		JLabel lblUpdate_1 = new JLabel("Update\r\n");
+		lblUpdate_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				 // Mostrar JOptionPane para ingresar una frase
+	            String frase = JOptionPane.showInputDialog(null, "Por favor, introduce el DNI:", "Entrada de texto", JOptionPane.QUESTION_MESSAGE);
+	            
+	            // Verificar si el usuario ingresó algo
+	            if (frase != null && !frase.trim().isEmpty()) {
+	                // Abrir un nuevo JFrame con la frase ingresada
+	      
+					InsertMecanico ic = new InsertMecanico(frase,2);
+					ic.setVisible(true);
+					
+					
+	            } else {
+	                JOptionPane.showMessageDialog(null, "No ingresaste ningun DNI.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+	            }
+				
+			}
+		});
 		lblUpdate_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblUpdate_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUpdate_1.setFont(new Font("Tahoma", Font.PLAIN, 24));

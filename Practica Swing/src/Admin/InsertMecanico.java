@@ -21,6 +21,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class InsertMecanico extends JFrame {
 
@@ -41,7 +43,7 @@ public class InsertMecanico extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					InsertMecanico frame = new InsertMecanico();
+					InsertMecanico frame = new InsertMecanico("   ", 1);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,7 +55,7 @@ public class InsertMecanico extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public InsertMecanico() {
+	public InsertMecanico(String frase, int i) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 491, 584);
 		contentPane = new JPanel();
@@ -63,13 +65,24 @@ public class InsertMecanico extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JLabel lblNewLabel_1 = new JLabel("<--");
+		lblNewLabel_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				dispose();
+			}
+		});
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblNewLabel_1.setBounds(10, 11, 59, 34);
+		contentPane.add(lblNewLabel_1);
+		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(130, 130, 130));
 		panel.setBounds(0, 0, 475, 81);
 		contentPane.add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel = new JLabel("Nuevo Mecanico");
+		JLabel lblNewLabel = new JLabel("Mecánico");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 41));
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -81,7 +94,7 @@ public class InsertMecanico extends JFrame {
 		contentPane.add(lblNombre);
 		
 		txtNombre = new JTextField();
-		txtNombre.setBounds(104, 104, 239, 33);
+		txtNombre.setBounds(104, 108, 239, 33);
 		contentPane.add(txtNombre);
 		txtNombre.setColumns(10);
 		
@@ -118,55 +131,75 @@ public class InsertMecanico extends JFrame {
 		JButton btnAñadir = new JButton("Añadir");
 		btnAñadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int controlFuncion=i;
 				
 				String DNI= txtDNI.getText();
 				String Nombre = txtNombre.getText();
 				String Apellido = txtApellido.getText();
 				String Telefono = txtTelefono.getText();
-				if (!DNI.isEmpty() && !Nombre.isEmpty() && !Apellido.isEmpty() && !Telefono.isEmpty()) {
-					try {
-						con.conectar();					
-					int funciona=con.insetarClientes(DNI, Nombre, Apellido, Telefono);
-					
-					if (funciona > 0) {
-		                 JOptionPane.showMessageDialog(null, "Datos insertados correctamente");
-		                     dispose();
-		                    
-		            }
+				
+				if(i==1) {//1 es para que haga el insert
+
+					if (!DNI.isEmpty() && !Nombre.isEmpty() && !Apellido.isEmpty() && !Telefono.isEmpty()) {
+						try {
+							con.conectar();					
+						int funciona=con.insetarMecanico(DNI, Nombre, Apellido, Telefono);
 						
-					} 
-					catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-						
-					} catch (ClassNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						if (funciona > 0) {
+			                 JOptionPane.showMessageDialog(null, "Datos insertados correctamente");
+			                     dispose();		                    
+			            	}
+						} 
+						catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+							
+						} catch (ClassNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						limpiarCampos();
 					}
-					limpiarCampos();
+					else {
+						JOptionPane.showMessageDialog(null, "Error al insertar los datos, revise si hay algun campo vacio");
+					}
 				}
-				else {
-					JOptionPane.showMessageDialog(null, "Error al insertar los datos, revise si hay algun campo vacio");
+				
+				if(i==2) {//hace el update
+					if (!DNI.isEmpty() && !Nombre.isEmpty() && !Apellido.isEmpty() && !Telefono.isEmpty()) {
+						try {
+							con.conectar();					
+						int funciona=con.ejecutarUpdateMecanico(frase, Nombre, Apellido, Telefono, DNI);
+						
+						if (funciona > 0) {
+			                 JOptionPane.showMessageDialog(null, "Mecánico actualizado correctamente");
+			                     dispose();
+			            	}
+						} 
+						catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+							
+						} catch (ClassNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						limpiarCampos();
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Error al insertar los datos, revise si hay algun campo vacio");
+					}
 				}
+				
+				
 			}
 		});
+
 		btnAñadir.setForeground(new Color(255, 255, 255));
 		btnAñadir.setBackground(new Color(130, 130, 130));
 		btnAñadir.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnAñadir.setBounds(294, 416, 128, 42);
+		btnAñadir.setBounds(164, 402, 128, 42);
 		contentPane.add(btnAñadir);
-		
-		JButton btnVolver = new JButton("Volver");
-		btnVolver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-			}
-		});
-		btnVolver.setForeground(Color.WHITE);
-		btnVolver.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnVolver.setBackground(new Color(130, 130, 130));
-		btnVolver.setBounds(34, 416, 128, 42);
-		contentPane.add(btnVolver);
 	}
 	
 

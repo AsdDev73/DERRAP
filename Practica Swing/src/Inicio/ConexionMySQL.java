@@ -151,6 +151,24 @@ public class ConexionMySQL {
         pstmt.setString(3, telefono);
          int update = pstmt.executeUpdate();
         return update;
+     } 
+    public int ejecutarUpdateMecanico(String n_empleado,String nombre, String apellido, String telefono, String dni) throws SQLException{
+        String consulta = "UPDATE Mecanico SET Nombre = ?, Apellido = ?, Tlf = ?, dni = ? WHERE N_empleado = ?;";
+        PreparedStatement pstmt = con.prepareStatement(consulta);
+        pstmt.setString(5, n_empleado);
+        pstmt.setString(1, nombre);
+        pstmt.setString(2, apellido);
+        pstmt.setString(3, telefono);
+        pstmt.setString(4, dni);
+         int update = pstmt.executeUpdate();
+        return update;
+     }
+    public int ejecutarDeleteMecanico(String n_empleado) throws SQLException{
+        String consulta = "DELETE from Mecanico WHERE N_Empleado = ?;";
+        PreparedStatement pstmt = con.prepareStatement(consulta);
+        pstmt.setString(1, n_empleado);
+         int update = pstmt.executeUpdate();
+        return update;
      }
     }
 
