@@ -122,7 +122,7 @@ public class HomeAdmin extends JFrame {
 		PanelOpciones.add(lblGestionClientes);
 		lblGestionClientes.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel_2 = new JLabel("Modelo de gestion \r\nde clientes");
+		JLabel lblNewLabel_2 = new JLabel("Clientes");
 		lblNewLabel_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblNewLabel_2.setForeground(new Color(255, 255, 255));
 		lblNewLabel_2.setBackground(new Color(133, 133, 133));

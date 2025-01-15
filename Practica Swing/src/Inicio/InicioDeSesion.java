@@ -52,8 +52,7 @@ public class InicioDeSesion extends JFrame {
 					InicioDeSesion frame = new InicioDeSesion();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
-					
-					
+								
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
