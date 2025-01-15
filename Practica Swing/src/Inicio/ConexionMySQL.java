@@ -98,7 +98,7 @@ public class ConexionMySQL {
   //metodo para insertar Mecanico
     public int insetarMecanico(String dni,String nombre, String apellido, String telefono) throws SQLException {
         
-        String consulta = "INSERT INTO "+ "Mecanico" +"(DNI, Nombre, Apellido, Tlf) VALUES (?, ?, ?, ?)";
+        String consulta = "INSERT INTO "+ "Mecanico" +"(DNI, Nombre, Apellido, Tlf, Estado) VALUES (?, ?, ?, ?, ?)";
         
          PreparedStatement pstmt = con.prepareStatement(consulta);
         //le paso los parametros a la consulta sustituyendo los ?
@@ -106,6 +106,7 @@ public class ConexionMySQL {
            pstmt.setString(2, nombre);
            pstmt.setString(3, apellido);
            pstmt.setString(4, telefono);
+           pstmt.setString(5, "Disponible");
            //ejecuto el insert
             int insert = pstmt.executeUpdate();
             //devuelvo las columnas que han sido afectadas con el insert
@@ -148,6 +149,7 @@ public class ConexionMySQL {
          int update = pstmt.executeUpdate();
         return update;
      }
+    
 
 
     //metodo para insertar Vehiculo
@@ -187,6 +189,8 @@ public int ejecutarUpdateVehiculo(String dNI_Cliente, String matricula, String m
     int update = pstmt.executeUpdate();
     return update;
 }
+
+
 
 
 
