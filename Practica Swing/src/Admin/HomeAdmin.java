@@ -445,7 +445,7 @@ public class HomeAdmin extends JFrame {
 		lblDarDeBaja.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-	            String frase = JOptionPane.showInputDialog(null, "Por favor, introduce una frase:", "Entrada de texto", JOptionPane.QUESTION_MESSAGE);
+	            String frase = JOptionPane.showInputDialog(null, "Por favor, introduce la id:", "Entrada de texto", JOptionPane.QUESTION_MESSAGE);
 	            if (frase != null && !frase.trim().isEmpty()) {
 	                // Abrir un nuevo JFrame con la frase ingresada
 	            	
@@ -454,7 +454,7 @@ public class HomeAdmin extends JFrame {
 					
 					
 	            } else {
-	                JOptionPane.showMessageDialog(null, "No ingresaste ningun DNI.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+	                JOptionPane.showMessageDialog(null, "No ingresaste ningun ID.", "Advertencia", JOptionPane.WARNING_MESSAGE);
 	            
 	            }
 			}
