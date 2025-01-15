@@ -535,6 +535,12 @@ public class HomeAdmin extends JFrame {
 		PanelVehiculos.add(lblConsultaVehiculo);
 		
 		JLabel lblUpdateVehiculo = new JLabel("Update\r\n");
+		lblUpdateVehiculo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+			}
+		});
 		lblUpdateVehiculo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblUpdateVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUpdateVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 24));
