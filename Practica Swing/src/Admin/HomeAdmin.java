@@ -324,7 +324,7 @@ public class HomeAdmin extends JFrame {
 	                // Abrir un nuevo JFrame con la frase ingresada
 	                MostrarConsulta mc = null;
 					try {
-						mc = new MostrarConsulta("Select * from clientes");
+						mc = new MostrarConsulta("Select * from cliente");
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
