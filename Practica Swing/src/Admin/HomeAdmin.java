@@ -60,7 +60,7 @@ public class HomeAdmin extends JFrame {
 		});
 	}
 
-	/**
+	/**-
 	 * Create the frame.
 	 * @param string 
 	 */
@@ -540,6 +540,21 @@ public class HomeAdmin extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				
+				    // Mostrar JOptionPane para ingresar una frase
+                    String frase = JOptionPane.showInputDialog(null, "Por favor, introduce la matricula:", "Entrada de texto", JOptionPane.QUESTION_MESSAGE);
+                    
+                    // Verificar si el usuario ingresó algo
+                    if (frase != null && !frase.trim().isEmpty()) {
+                        // Abrir un nuevo JFrame con la frase ingresada
+            
+                        InsertVehiculo iv = new InsertVehiculo(frase,2);
+                        iv.setVisible(true);
+                        
+                        
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No ingresaste ningun DNI.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+				
+			}
 			}
 		});
 		lblUpdateVehiculo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
