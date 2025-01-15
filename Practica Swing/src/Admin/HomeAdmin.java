@@ -320,16 +320,11 @@ public class HomeAdmin extends JFrame {
 		lblConsultaCliente.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
-				 // Mostrar JOptionPane para ingresar una frase
-	            String frase = JOptionPane.showInputDialog(null, "Por favor, introduce una frase:", "Entrada de texto", JOptionPane.QUESTION_MESSAGE);
-	            
-	            // Verificar si el usuario ingresó algo
-	            if (frase != null && !frase.trim().isEmpty()) {
+	              
 	                // Abrir un nuevo JFrame con la frase ingresada
 	                MostrarConsulta mc = null;
 					try {
-						mc = new MostrarConsulta(frase);
+						mc = new MostrarConsulta("Select * from clientes");
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -338,9 +333,6 @@ public class HomeAdmin extends JFrame {
 						e1.printStackTrace();
 					}
 	                mc.setVisible(true);
-	            } else {
-	                JOptionPane.showMessageDialog(null, "No ingresaste ninguna frase.", "Advertencia", JOptionPane.WARNING_MESSAGE);
-	            }
 				
 			}
 		});
@@ -413,26 +405,18 @@ public class HomeAdmin extends JFrame {
 		lblConsultaMecanica.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				 // Mostrar JOptionPane para ingresar una frase
-	            String frase = JOptionPane.showInputDialog(null, "Por favor, introduce una frase:", "Entrada de texto", JOptionPane.QUESTION_MESSAGE);
-	            
-	            // Verificar si el usuario ingresó algo
-	            if (frase != null && !frase.trim().isEmpty()) {
-	                // Abrir un nuevo JFrame con la frase ingresada
-	                MostrarConsulta mc = null;
-					try {
-						mc = new MostrarConsulta(frase);
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (ClassNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-	                mc.setVisible(true);
-	            } else {
-	                JOptionPane.showMessageDialog(null, "No ingresaste ninguna frase.", "Advertencia", JOptionPane.WARNING_MESSAGE);
-	            }
+                // Abrir un nuevo JFrame con la frase ingresada
+                MostrarConsulta mc = null;
+				try {
+					mc = new MostrarConsulta("Select * from Mecanico");
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+                mc.setVisible(true);
 			}
 		});
 		lblConsultaMecanica.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -528,6 +512,23 @@ public class HomeAdmin extends JFrame {
 		PanelVehiculos.add(lblInsertarVehiculo);
 		
 		JLabel lblConsultaVehiculo = new JLabel("Consultar");
+		lblConsultaVehiculo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+                // Abrir un nuevo JFrame con la frase ingresada
+                MostrarConsulta mc = null;
+				try {
+					mc = new MostrarConsulta("Select * from Vehiculo");
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+                mc.setVisible(true);
+			}
+		});
 		lblConsultaVehiculo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblConsultaVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblConsultaVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 24));
