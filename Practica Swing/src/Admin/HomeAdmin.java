@@ -133,7 +133,7 @@ public class HomeAdmin extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				try {
-					String cabezera[]= {"DNI","Nombre","Apellido","Telefono"};
+					String [] cabezera= {"DNI","Nombre","Apellido","Telefono"};
 					mostrarSelect("Select * FROM Cliente", tblCliente,cabezera);
 				} catch (ClassNotFoundException | SQLException e1) {
 					// TODO Auto-generated catch block
@@ -313,10 +313,9 @@ public class HomeAdmin extends JFrame {
 			new Object[][] {
 			},
 			new String[] {
-				"DNI", "Nombre", "Apellido", "Telefono"
 			}
 		));
-		tblCliente.setBounds(20, 24, 755, 533);
+		tblCliente.setBounds(20, 11, 755, 546);
 		PanelClientes.add(tblCliente);
 		
 		JPanel panelDiseño1Cliente = new JPanel();
@@ -367,7 +366,6 @@ public class HomeAdmin extends JFrame {
 	      
 					InsertCliente ic = new InsertCliente(frase,2);
 					ic.setVisible(true);
-					setEnabled(false);
 					
 	            } else {
 	                JOptionPane.showMessageDialog(null, "No ingresaste ningun DNI.", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -430,7 +428,16 @@ public class HomeAdmin extends JFrame {
 		tblMecanico.setBounds(25, 11, 668, 534);
 		PanelMecanico.add(tblMecanico);
 		
+		JPanel panelInsertarMecanico = new JPanel();
+		panelInsertarMecanico.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		panelInsertarMecanico.setBackground(new Color(133, 133, 133));
+		panelInsertarMecanico.setBounds(803, 25, 165, 73);
+		PanelMecanico.add(panelInsertarMecanico);
+		panelInsertarMecanico.setLayout(new BorderLayout(0, 0));
+		
 		JLabel lblInsertarMecanico = new JLabel("Insertar\r\n");
+		lblInsertarMecanico.setForeground(new Color(255, 255, 255));
+		panelInsertarMecanico.add(lblInsertarMecanico, BorderLayout.CENTER);
 		lblInsertarMecanico.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -438,25 +445,19 @@ public class HomeAdmin extends JFrame {
 				frame.setVisible(true);
 			}
 		});
-		lblInsertarMecanico.setBounds(703, 28, 272, 96);
-		PanelMecanico.add(lblInsertarMecanico);
 		lblInsertarMecanico.setHorizontalAlignment(SwingConstants.CENTER);
 		lblInsertarMecanico.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		
-		JLabel lblConsultaMecanica = new JLabel("Consulta\r\n");
-		lblConsultaMecanica.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				
-				
-			}
-		});
-		lblConsultaMecanica.setBounds(713, 135, 272, 96);
-		PanelMecanico.add(lblConsultaMecanica);
-		lblConsultaMecanica.setHorizontalAlignment(SwingConstants.CENTER);
-		lblConsultaMecanica.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		JPanel panelDeleteMecanico = new JPanel();
+		panelDeleteMecanico.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		panelDeleteMecanico.setBackground(new Color(133, 133, 133));
+		panelDeleteMecanico.setBounds(803, 174, 165, 73);
+		PanelMecanico.add(panelDeleteMecanico);
+		panelDeleteMecanico.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblDarDeBaja = new JLabel("Dar de Baja\r\n");
+		lblDarDeBaja.setForeground(new Color(255, 255, 255));
+		panelDeleteMecanico.add(lblDarDeBaja, BorderLayout.CENTER);
 		lblDarDeBaja.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -472,22 +473,41 @@ public class HomeAdmin extends JFrame {
 		            }
 			}
 		});
-		lblDarDeBaja.setBounds(703, 242, 272, 96);
-		PanelMecanico.add(lblDarDeBaja);
 		lblDarDeBaja.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDarDeBaja.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		
+		JPanel panelUpdateMecanico = new JPanel();
+		panelUpdateMecanico.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		panelUpdateMecanico.setBackground(new Color(133, 133, 133));
+		panelUpdateMecanico.setBounds(803, 316, 165, 73);
+		PanelMecanico.add(panelUpdateMecanico);
+		panelUpdateMecanico.setLayout(new BorderLayout(0, 0));
+		
 		JLabel lblUpdate_1 = new JLabel("Update\r\n");
-		lblUpdate_1.setBounds(713, 366, 272, 96);
-		PanelMecanico.add(lblUpdate_1);
+		lblUpdate_1.setForeground(new Color(255, 255, 255));
+		panelUpdateMecanico.add(lblUpdate_1, BorderLayout.CENTER);
 		lblUpdate_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUpdate_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		
 		JPanel PanelVehiculo = new JPanel();
+		PanelVehiculo.setBackground(new Color(255, 255, 255));
 		PanelCardPrinci.add(PanelVehiculo, "Vehiculo");
 		PanelVehiculo.setLayout(null);
 		
+		tblVehiculo = new JTable();
+		tblVehiculo.setBounds(23, 11, 753, 516);
+		PanelVehiculo.add(tblVehiculo);
+		
+		JPanel panelInsertarVehiculo = new JPanel();
+		panelInsertarVehiculo.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		panelInsertarVehiculo.setBackground(new Color(133, 133, 133));
+		panelInsertarVehiculo.setBounds(786, 34, 175, 85);
+		PanelVehiculo.add(panelInsertarVehiculo);
+		panelInsertarVehiculo.setLayout(new BorderLayout(0, 0));
+		
 		JLabel lblInsertarVehiculo = new JLabel("Insertar\r\n");
+		lblInsertarVehiculo.setForeground(new Color(255, 255, 255));
+		panelInsertarVehiculo.add(lblInsertarVehiculo, BorderLayout.CENTER);
 		lblInsertarVehiculo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -498,12 +518,19 @@ public class HomeAdmin extends JFrame {
 			}
 		});
 		lblInsertarVehiculo.setBackground(new Color(133, 133, 133));
-		lblInsertarVehiculo.setBounds(715, 11, 272, 117);
-		PanelVehiculo.add(lblInsertarVehiculo);
 		lblInsertarVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblInsertarVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		
+		JPanel panelUpdateVehiculo = new JPanel();
+		panelUpdateVehiculo.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		panelUpdateVehiculo.setBackground(new Color(133, 133, 133));
+		panelUpdateVehiculo.setBounds(786, 221, 175, 85);
+		PanelVehiculo.add(panelUpdateVehiculo);
+		panelUpdateVehiculo.setLayout(new BorderLayout(0, 0));
+		
 		JLabel lblUpdateVehiculo = new JLabel("Update\r\n");
+		lblUpdateVehiculo.setForeground(new Color(255, 255, 255));
+		panelUpdateVehiculo.add(lblUpdateVehiculo, BorderLayout.CENTER);
 		lblUpdateVehiculo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -518,20 +545,8 @@ public class HomeAdmin extends JFrame {
 		            }
 			}
 		});
-		lblUpdateVehiculo.setBounds(715, 283, 272, 117);
-		PanelVehiculo.add(lblUpdateVehiculo);
 		lblUpdateVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUpdateVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		
-		JLabel lblConsultaVehiculo = new JLabel("Consultar");
-		lblConsultaVehiculo.setBounds(715, 139, 272, 117);
-		PanelVehiculo.add(lblConsultaVehiculo);
-		lblConsultaVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblConsultaVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		
-		tblVehiculo = new JTable();
-		tblVehiculo.setBounds(23, 11, 753, 516);
-		PanelVehiculo.add(tblVehiculo);
 		
 		JPanel PanelGestionEconomia = new JPanel();
 		PanelCardPrinci.add(PanelGestionEconomia, "GestionEconomia");
@@ -643,7 +658,7 @@ public class HomeAdmin extends JFrame {
 	    }
 	}
 	
-	private void mostrarSelect(String consulta, JTable jtDatos,String cabezera[]) throws SQLException, ClassNotFoundException {
+	private void mostrarSelectOrginal(String consulta, JTable jtDatos,String cabezera[]) throws SQLException, ClassNotFoundException {
 	      try {
 	    	  con.conectar();	
 	        ResultSet rs = con.ejecutarSelect(consulta);
@@ -690,4 +705,38 @@ public class HomeAdmin extends JFrame {
         // Asegurarse de que la ventana se cierre correctamente
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+	private void mostrarSelect(String consulta, JTable jtDatos, String cabezera[]) throws SQLException, ClassNotFoundException {
+	    try {
+	        con.conectar();	
+	        ResultSet rs = con.ejecutarSelect(consulta);
+	        DefaultTableModel modelo = new DefaultTableModel(cabezera,0);
+
+	        // Validar que el número de cabeceras coincida con el número de columnas en el ResultSet
+	        int columnCount = rs.getMetaData().getColumnCount();
+	        if (cabezera != null && cabezera.length == columnCount) {
+	            // Usar las cabeceras proporcionadas
+	            modelo.setColumnIdentifiers(cabezera);
+	        } else {
+	            // Usar las cabeceras del ResultSet si las proporcionadas no coinciden
+	            for (int i = 1; i <= columnCount; i++) {
+	                modelo.addColumn(rs.getMetaData().getColumnName(i));
+	            }
+	        }
+
+	        // Agregar filas al modelo de la tabla
+	        while (rs.next()) {
+	            Object[] fila = new Object[columnCount];
+	            for (int i = 0; i < columnCount; i++) {
+	                fila[i] = rs.getObject(i + 1);
+	            }
+	            modelo.addRow(fila);
+	        }
+
+	        // Establecer el modelo en la tabla
+	        jtDatos.setModel(modelo);
+	    } catch (SQLException e) {
+	        JOptionPane.showMessageDialog(null, "Error al ejecutar la consulta: " + e.getMessage());
+	    }
+	}
+
 }
