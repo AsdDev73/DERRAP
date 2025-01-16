@@ -52,8 +52,7 @@ public class InicioDeSesion extends JFrame {
 					InicioDeSesion frame = new InicioDeSesion();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
-					
-					
+								
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -166,6 +165,16 @@ public class InicioDeSesion extends JFrame {
 				if (e.getKeyChar()==KeyEvent.VK_ENTER) {
 					iniciarSesion();
 				}
+				
+			 if (String.valueOf(txtContra.getPassword()).equals("********")) {
+				 txtContra.setText("");
+				 txtContra.setForeground(Color.black);
+		        }
+	        if (txtUser.getText().isEmpty()) {
+		        	txtUser.setText("Escriba su Usuario");
+		        	txtUser.setForeground(Color.gray);
+		        }
+				
 			}
 		});
 		txtContra.setForeground(new Color(192, 192, 192));

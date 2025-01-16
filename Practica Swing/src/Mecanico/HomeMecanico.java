@@ -249,7 +249,7 @@ public class HomeMecanico extends JFrame {
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_1.setBackground(new Color(192, 192, 192));
 		panel_1.setForeground(new Color(255, 255, 255));
-		panel_1.setBounds(134, 241, 776, 281);
+		panel_1.setBounds(133, 242, 776, 281);
 		panelPricipal.add(panel_1);
 		panel_1.setLayout(null);
 		

@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
@@ -35,6 +36,8 @@ public class InsertMecanico extends JFrame {
 	
 	private ConexionMySQL con = new ConexionMySQL();
 	private Statement stm = null;
+	
+	private String select=" ";
 
 	/**
 	 * Launch the application.
@@ -201,7 +204,33 @@ public class InsertMecanico extends JFrame {
 		btnAñadir.setBounds(164, 402, 128, 42);
 		contentPane.add(btnAñadir);
 	}
-	
+
+	private void mostrarDatosMecanico (String frase) {
+		try {
+			con.conectar();
+            select = "SELECT * FROM Mecanico WHERE N_Empleado = "+frase+";";
+			ResultSet rs = con.ejecutarSelect(select);
+			while(rs.next()) {
+            String DNI = rs.getString("DNI");
+            txtDNI.setText(DNI);
+            String nombre = rs.getString("nombre");
+            txtNombre.setText(nombre);
+            String apellido = rs.getString("apellido");
+            txtApellido.setText(apellido);
+            String telefono = rs.getString("tlf");
+            txtTelefono.setText(telefono);
+           
+			}
+            
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	private void limpiarCampos() {
 		txtDNI.setText("");

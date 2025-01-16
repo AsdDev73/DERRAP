@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.Color;
@@ -34,6 +35,8 @@ public class InsertVehiculo extends JFrame {
     private JTextField textDNI_Cliente;
     private ConexionMySQL con = new ConexionMySQL();
     private Statement stm = null;
+    
+    String select = " ";
 
     /**
      * Launch the application.
@@ -239,9 +242,43 @@ if(i == 2) { // hace el update
         } else {
             lblPrincipal.setText("Insert");
         }
-
+        
+        mostrarDatosVehiculo(frase);
      
     }
+	private void mostrarDatosVehiculo (String frase) {
+		try {
+			con.conectar();
+            select = "SELECT * FROM Vehiculo WHERE matricula = "+frase+";";
+			ResultSet rs = con.ejecutarSelect(select);
+			while(rs.next()) {
+            String Matricula = rs.getString("Matricula");
+            textMatricula.setText(Matricula);
+            String marca = rs.getString("marca");
+            textMarca.setText(marca);
+            String modelo = rs.getString("modelo");
+            textModelo.setText(modelo);
+            String color = rs.getString("color");
+            textColor.setText(color);
+            String FechaEntrada = rs.getString("Fecha_Entrada");
+            textFecha_Entrada.setText(FechaEntrada);
+            String FechaSalida = rs.getString("Fecha_Salida");
+            textFecha_Salida.setText(FechaSalida);
+            String ClienteDNI = rs.getString("Cliente_DNI");
+            textDNI_Cliente.setText(ClienteDNI);
+            String ReparacionCodigoReparacion = rs.getString("Reparacion_Codigo_Reparacion");
+            textReparacion_Codigo_Reparacion.setText(ReparacionCodigoReparacion);
+			}
+            
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
     private void limpiarCampos() {
         textDNI_Cliente.setText("");
