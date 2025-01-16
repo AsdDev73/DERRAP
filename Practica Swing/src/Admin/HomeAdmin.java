@@ -270,7 +270,7 @@ public class HomeAdmin extends JFrame {
 		lblNewLabel.setBounds(0, 0, 72, 68);
 		panel.add(lblNewLabel);
 		
-		JLabel lblLogoUser = new JLabel("New label");
+		JLabel lblLogoUser = new JLabel("");
 		lblLogoUser.setBounds(1033, 21, 101, 99);
 		panelTextoPricipal.add(lblLogoUser);
 		
@@ -497,12 +497,9 @@ public class HomeAdmin extends JFrame {
 		JLabel lblInsertarVehiculo = new JLabel("Insertar\r\n");
 		lblInsertarVehiculo.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mousePressed(MouseEvent e) {
-			
-	      
+			public void mousePressed(MouseEvent e) {   
 	            	InsertVehiculo iv = new InsertVehiculo(" ",1);
 					iv.setVisible(true);
-				
 			}
 		});
 		lblInsertarVehiculo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -548,12 +545,9 @@ public class HomeAdmin extends JFrame {
                         // Abrir un nuevo JFrame con la frase ingresada
             
                         InsertVehiculo iv = new InsertVehiculo(frase,2);
-                        iv.setVisible(true);
-                        
-                        
+                        iv.setVisible(true);          
                     } else {
                         JOptionPane.showMessageDialog(null, "No ingresaste ningun DNI.", "Advertencia", JOptionPane.WARNING_MESSAGE);
-				
 			}
 			}
 		});
@@ -675,6 +669,8 @@ public class HomeAdmin extends JFrame {
 		PanelDashBoard.add(panel_1_1_1);
 		
 		dashBoard();
+		setLogo(labelLogoPanel);
+		setIcono(lblLogoUser);
 	}
 	
 
@@ -702,6 +698,24 @@ public class HomeAdmin extends JFrame {
 	    }
 	}
 	
+	private void setIcono(JLabel label) {
+	    try {
+	        // Cargar la imagen desde el paquete img
+	        ImageIcon iconoOriginal = new ImageIcon(getClass().getResource("/img/IconoAdminMecanico.png"));
+
+	        // Escalar la imagen
+	        Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
+
+	        // Crear un nuevo ImageIcon con la imagen escalada
+	        ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
+
+	        // Establecer el icono en el JLabel
+	        label.setIcon(iconoEscalado);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        System.out.println("Error: La imagen no se pudo cargar o asignar al JLabel.");
+	    }
+	}
 	private void pantallaCompleta(HomeAdmin frame) {
 		// Obtener el tamaño de la pantalla
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
