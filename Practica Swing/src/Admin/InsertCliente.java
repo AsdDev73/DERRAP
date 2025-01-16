@@ -16,6 +16,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
@@ -30,6 +31,7 @@ public class InsertCliente extends JFrame {
 	private JTextField txtNombre;
 	private JTextField txtApellido;
 	private JTextField txtTelefono;
+	String selectTableSQL = "";
 	
 	private ConexionMySQL con = new ConexionMySQL();
 	private Statement stm = null;
@@ -205,6 +207,32 @@ public class InsertCliente extends JFrame {
 		}
 		else {
 			lblPrincipal.setText("Insert");
+		}
+		
+		mostrarDatosCleinte(frase);
+	}
+	
+	private void mostrarDatosCleinte (String frase) {
+		try {
+			con.conectar();
+            selectTableSQL = "SELECT * FROM cliente WHERE dni = "+frase+";";
+			ResultSet rs = con.ejecutarSelect(selectTableSQL);
+			while(rs.next()) {
+            String nombre = rs.getString("Nombre");
+            String apellido = rs.getString("Apellido");
+            String tlf = rs.getString("Tlf");
+            txtNombre.setText(nombre);
+            txtApellido.setText(apellido);
+            txtTelefono.setText(tlf);
+			}
+            
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	

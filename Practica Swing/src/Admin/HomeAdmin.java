@@ -3,35 +3,32 @@ package Admin;
 import java.awt.EventQueue;
 import java.awt.Image;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
 
+import Inicio.ConexionMySQL;
 import Inicio.InicioDeSesion;
 
-import javax.swing.JTextPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Cursor;
 import java.awt.BorderLayout;
-import javax.swing.UIManager;
 import java.awt.GridLayout;
 
 public class HomeAdmin extends JFrame {
@@ -43,6 +40,12 @@ public class HomeAdmin extends JFrame {
 	static CardLayout cardLayout;
 	private JTextField txtBusquedaVehiculo;
 	private JTextField txtBusquedaCliente;
+	private JTable tblMecanico;
+	
+	private ConexionMySQL con = new ConexionMySQL();
+	private Statement stm = null;
+	private JTable tblCliente;
+	private JTable tblVehiculo;
 
 	/**
 	 * Launch the application.
@@ -129,6 +132,13 @@ public class HomeAdmin extends JFrame {
 		lblNewLabel_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				try {
+					String cabezera[]= {"DNI","Nombre","Apellido","Telefono"};
+					mostrarSelect("Select * FROM Cliente", tblCliente,cabezera);
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				cardLayout.show(PanelCardPrinci, "GestionClientes");
 			}
 		});
@@ -136,45 +146,59 @@ public class HomeAdmin extends JFrame {
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblGestionClientes.add(lblNewLabel_2);
 		
-		JPanel lblGestionMateriales = new JPanel();
-		lblGestionMateriales.setBackground(new Color(133, 133, 133));
-		lblGestionMateriales.setBounds(0, 118, 238, 71);
-		PanelOpciones.add(lblGestionMateriales);
-		lblGestionMateriales.setLayout(new BorderLayout(0, 0));
+		JPanel lblMecanicos = new JPanel();
+		lblMecanicos.setBackground(new Color(133, 133, 133));
+		lblMecanicos.setBounds(0, 118, 238, 71);
+		PanelOpciones.add(lblMecanicos);
+		lblMecanicos.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel_3 = new JLabel("Modelo de gestion \r\nde material");
+		JLabel lblNewLabel_3 = new JLabel("Mecanicos\r\n");
 		lblNewLabel_3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblNewLabel_3.setForeground(new Color(255, 255, 255));
 		lblNewLabel_3.setBackground(new Color(133, 133, 133));
 		lblNewLabel_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				cardLayout.show(PanelCardPrinci, "GestionMateriales");
+				try {
+					String cabezera[]= {"N_Empleado","DNI","Nombre","Apellido","Telefono","Estado"};
+					mostrarSelect("Select * FROM Mecanico", tblMecanico,cabezera);
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				cardLayout.show(PanelCardPrinci, "Mecanicos");
 			}
 		});
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblGestionMateriales.add(lblNewLabel_3, BorderLayout.CENTER);
+		lblMecanicos.add(lblNewLabel_3, BorderLayout.CENTER);
 		
-		JPanel lblGestionServicios = new JPanel();
-		lblGestionServicios.setBackground(new Color(133, 133, 133));
-		lblGestionServicios.setBounds(1, 211, 237, 71);
-		PanelOpciones.add(lblGestionServicios);
-		lblGestionServicios.setLayout(new BorderLayout(0, 0));
+		JPanel lblVehiculos = new JPanel();
+		lblVehiculos.setBackground(new Color(133, 133, 133));
+		lblVehiculos.setBounds(1, 211, 237, 71);
+		PanelOpciones.add(lblVehiculos);
+		lblVehiculos.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel_4 = new JLabel("Modelo de gestion \r\nde servicios");
+		JLabel lblNewLabel_4 = new JLabel("Vehiculos");
 		lblNewLabel_4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblNewLabel_4.setForeground(new Color(255, 255, 255));
 		lblNewLabel_4.setBackground(new Color(133, 133, 133));
 		lblNewLabel_4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				cardLayout.show(PanelCardPrinci, "GestionServicios");
+				try {
+					String cabezera[]= {"Matricula","Marca","Modelo","Color","Fecha_Estrada","Fecha_Salida","Cliente_DNI","Codigo_Reparacion"};
+					mostrarSelect("Select * FROM Vehiculo", tblVehiculo,cabezera);
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				cardLayout.show(PanelCardPrinci, "Vehiculo");
 			}
 		});
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblGestionServicios.add(lblNewLabel_4, BorderLayout.CENTER);
+		lblVehiculos.add(lblNewLabel_4, BorderLayout.CENTER);
 		
 		JPanel lblGestionEconomia = new JPanel();
 		lblGestionEconomia.setBackground(new Color(133, 133, 133));
@@ -279,29 +303,33 @@ public class HomeAdmin extends JFrame {
 		contentPane.add(PanelCardPrinci);
 		PanelCardPrinci.setLayout(new CardLayout(0, 0));
 		
-		JPanel PanelGestionCliente = new JPanel();
-		PanelGestionCliente.setBackground(new Color(255, 255, 255));
-		PanelCardPrinci.add(PanelGestionCliente, "GestionClientes");
-		PanelGestionCliente.setLayout(null);
+		JPanel PanelClientes = new JPanel();
+		PanelClientes.setBackground(new Color(255, 255, 255));
+		PanelCardPrinci.add(PanelClientes, "GestionClientes");
+		PanelClientes.setLayout(null);
 		
-		JPanel PanelCliente = new JPanel();
-		PanelCliente.setBounds(29, 29, 286, 518);
-		PanelGestionCliente.add(PanelCliente);
-		PanelCliente.setLayout(null);
+		tblCliente = new JTable();
+		tblCliente.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"DNI", "Nombre", "Apellido", "Telefono"
+			}
+		));
+		tblCliente.setBounds(20, 24, 755, 533);
+		PanelClientes.add(tblCliente);
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(133, 133, 133));
-		panel_2.setBounds(0, 0, 286, 59);
-		PanelCliente.add(panel_2);
-		panel_2.setLayout(new GridLayout(0, 1, 0, 0));
-		
-		JLabel lblNewLabel_1 = new JLabel("Cliente");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		panel_2.add(lblNewLabel_1);
+		JPanel panelDiseño1Cliente = new JPanel();
+		panelDiseño1Cliente.setBackground(new Color(133, 133, 133));
+		panelDiseño1Cliente.setBounds(813, 36, 162, 86);
+		PanelClientes.add(panelDiseño1Cliente);
+		panelDiseño1Cliente.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblInsertarCliente = new JLabel("Insertar\r\n");
+		lblInsertarCliente.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		lblInsertarCliente.setForeground(new Color(255, 255, 255));
+		panelDiseño1Cliente.add(lblInsertarCliente, BorderLayout.CENTER);
+		lblInsertarCliente.setBackground(new Color(133, 133, 133));
 		lblInsertarCliente.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblInsertarCliente.addMouseListener(new MouseAdapter() {
 			@Override
@@ -313,36 +341,19 @@ public class HomeAdmin extends JFrame {
 		});
 		lblInsertarCliente.setHorizontalAlignment(SwingConstants.CENTER);
 		lblInsertarCliente.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		lblInsertarCliente.setBounds(10, 70, 272, 117);
-		PanelCliente.add(lblInsertarCliente);
 		
-		JLabel lblConsultaCliente = new JLabel("Consultar");
-		lblConsultaCliente.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-	              
-	                // Abrir un nuevo JFrame con la frase ingresada
-	                MostrarConsulta mc = null;
-					try {
-						mc = new MostrarConsulta("Select * from cliente");
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (ClassNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-	                mc.setVisible(true);
-				
-			}
-		});
-		lblConsultaCliente.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblConsultaCliente.setHorizontalAlignment(SwingConstants.CENTER);
-		lblConsultaCliente.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		lblConsultaCliente.setBounds(10, 219, 272, 117);
-		PanelCliente.add(lblConsultaCliente);
+		JPanel panelDiseño2Cliente = new JPanel();
+		panelDiseño2Cliente.setBackground(new Color(133, 133, 133));
+		panelDiseño2Cliente.setForeground(new Color(255, 255, 255));
+		panelDiseño2Cliente.setBounds(813, 174, 162, 86);
+		PanelClientes.add(panelDiseño2Cliente);
+		panelDiseño2Cliente.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblUpdate = new JLabel("Update\r\n");
+		lblUpdate.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		lblUpdate.setForeground(new Color(255, 255, 255));
+		panelDiseño2Cliente.add(lblUpdate, BorderLayout.CENTER);
+		lblUpdate.setBackground(new Color(133, 133, 133));
 		lblUpdate.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -367,206 +378,17 @@ public class HomeAdmin extends JFrame {
 		lblUpdate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblUpdate.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUpdate.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		lblUpdate.setBounds(10, 366, 272, 117);
-		PanelCliente.add(lblUpdate);
 		
-		JPanel PanelTrabajadores = new JPanel();
-		PanelTrabajadores.setLayout(null);
-		PanelTrabajadores.setBounds(354, 29, 292, 518);
-		PanelGestionCliente.add(PanelTrabajadores);
-		
-		JPanel panel_2_1 = new JPanel();
-		panel_2_1.setBackground(new Color(133, 133, 133));
-		panel_2_1.setBounds(0, 0, 292, 59);
-		PanelTrabajadores.add(panel_2_1);
-		panel_2_1.setLayout(new GridLayout(0, 1, 0, 0));
-		
-		JLabel lblNewLabel_1_1 = new JLabel("Mecanicos\r\n");
-		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1.setForeground(Color.WHITE);
-		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		panel_2_1.add(lblNewLabel_1_1);
-		
-		JLabel lblInsertarMecanico = new JLabel("Insertar\r\n");
-		lblInsertarMecanico.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				InsertMecanico frame = new InsertMecanico("  ", 1);
-				frame.setVisible(true);
-			}
-		});
-		lblInsertarMecanico.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblInsertarMecanico.setHorizontalAlignment(SwingConstants.CENTER);
-		lblInsertarMecanico.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		lblInsertarMecanico.setBounds(10, 70, 272, 96);
-		PanelTrabajadores.add(lblInsertarMecanico);
-		
-		JLabel lblConsultaMecanica = new JLabel("Consulta\r\n");
-		lblConsultaMecanica.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-                // Abrir un nuevo JFrame con la frase ingresada
-                MostrarConsulta mc = null;
-				try {
-					mc = new MostrarConsulta("Select * from Mecanico");
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-                mc.setVisible(true);
-			}
-		});
-		lblConsultaMecanica.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblConsultaMecanica.setHorizontalAlignment(SwingConstants.CENTER);
-		lblConsultaMecanica.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		lblConsultaMecanica.setBounds(10, 172, 272, 96);
-		PanelTrabajadores.add(lblConsultaMecanica);
-		
-		JLabel lblDarDeBaja = new JLabel("Dar de Baja\r\n");
-		lblDarDeBaja.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-	            String frase = JOptionPane.showInputDialog(null, "Por favor, introduce la id:", "Entrada de texto", JOptionPane.QUESTION_MESSAGE);
-	            if (frase != null && !frase.trim().isEmpty()) {
-	                // Abrir un nuevo JFrame con la frase ingresada
-	            	
-					DeleteMecanico dc = new DeleteMecanico(frase);
-					dc.setVisible(true);
-					
-					
-	            } else {
-	                JOptionPane.showMessageDialog(null, "No ingresaste ningun ID.", "Advertencia", JOptionPane.WARNING_MESSAGE);
-	            
-	            }
-			}
-		});
-		lblDarDeBaja.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblDarDeBaja.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDarDeBaja.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		lblDarDeBaja.setBounds(10, 279, 272, 96);
-		PanelTrabajadores.add(lblDarDeBaja);
-		
-		JLabel lblUpdate_1 = new JLabel("Update\r\n");
-		lblUpdate_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				
-				 // Mostrar JOptionPane para ingresar una frase
-	            String frase = JOptionPane.showInputDialog(null, "Por favor, introduce el DNI:", "Entrada de texto", JOptionPane.QUESTION_MESSAGE);
-	            
-	            // Verificar si el usuario ingresó algo
-	            if (frase != null && !frase.trim().isEmpty()) {
-	                // Abrir un nuevo JFrame con la frase ingresada
-	      
-					InsertMecanico ic = new InsertMecanico(frase,2);
-					ic.setVisible(true);
-					
-					
-	            } else {
-	                JOptionPane.showMessageDialog(null, "No ingresaste ningun DNI.", "Advertencia", JOptionPane.WARNING_MESSAGE);
-	            }
-				
-			}
-		});
-		lblUpdate_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblUpdate_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblUpdate_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		lblUpdate_1.setBounds(10, 399, 272, 96);
-		PanelTrabajadores.add(lblUpdate_1);
-		
-		JPanel PanelVehiculos = new JPanel();
-		PanelVehiculos.setLayout(null);
-		PanelVehiculos.setBounds(684, 29, 292, 518);
-		PanelGestionCliente.add(PanelVehiculos);
-		
-		JPanel panel_2_2 = new JPanel();
-		panel_2_2.setBackground(new Color(133, 133, 133));
-		panel_2_2.setBounds(0, 0, 292, 59);
-		PanelVehiculos.add(panel_2_2);
-		panel_2_2.setLayout(new BorderLayout(0, 0));
-		
-		JLabel lblNewLabel_1_2 = new JLabel("Vehiculos\r\n");
-		lblNewLabel_1_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_2.setForeground(Color.WHITE);
-		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		panel_2_2.add(lblNewLabel_1_2);
-		
-		JLabel lblInsertarVehiculo = new JLabel("Insertar\r\n");
-		lblInsertarVehiculo.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {   
-	            	InsertVehiculo iv = new InsertVehiculo(" ",1);
-					iv.setVisible(true);
-			}
-		});
-		lblInsertarVehiculo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblInsertarVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblInsertarVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		lblInsertarVehiculo.setBounds(10, 71, 272, 117);
-		PanelVehiculos.add(lblInsertarVehiculo);
-		
-		JLabel lblConsultaVehiculo = new JLabel("Consultar");
-		lblConsultaVehiculo.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-                // Abrir un nuevo JFrame con la frase ingresada
-                MostrarConsulta mc = null;
-				try {
-					mc = new MostrarConsulta("Select * from Vehiculo");
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-                mc.setVisible(true);
-			}
-		});
-		lblConsultaVehiculo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblConsultaVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblConsultaVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		lblConsultaVehiculo.setBounds(10, 220, 272, 117);
-		PanelVehiculos.add(lblConsultaVehiculo);
-		
-		JLabel lblUpdateVehiculo = new JLabel("Update\r\n");
-		lblUpdateVehiculo.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				
-				    // Mostrar JOptionPane para ingresar una frase
-                    String frase = JOptionPane.showInputDialog(null, "Por favor, introduce la matricula:", "Entrada de texto", JOptionPane.QUESTION_MESSAGE);
-                    
-                    // Verificar si el usuario ingresó algo
-                    if (frase != null && !frase.trim().isEmpty()) {
-                        // Abrir un nuevo JFrame con la frase ingresada
-            
-                        InsertVehiculo iv = new InsertVehiculo(frase,2);
-                        iv.setVisible(true);          
-                    } else {
-                        JOptionPane.showMessageDialog(null, "No ingresaste ningun DNI.", "Advertencia", JOptionPane.WARNING_MESSAGE);
-			}
-			}
-		});
-		lblUpdateVehiculo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblUpdateVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblUpdateVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		lblUpdateVehiculo.setBounds(10, 367, 272, 117);
-		PanelVehiculos.add(lblUpdateVehiculo);
-		
-		JPanel PanelGestionMateriales = new JPanel();
-		PanelGestionMateriales.setBackground(new Color(255, 255, 255));
-		PanelGestionMateriales.setBounds(785, 5, 10, 10);
-		PanelCardPrinci.add(PanelGestionMateriales, "GestionMateriales");
-		PanelGestionMateriales.setLayout(null);
+		JPanel PanelMecanico = new JPanel();
+		PanelMecanico.setBackground(new Color(255, 255, 255));
+		PanelMecanico.setBounds(785, 5, 10, 10);
+		PanelCardPrinci.add(PanelMecanico, "Mecanicos");
+		PanelMecanico.setLayout(null);
 		
 		JPanel PanelProveedores_1_1 = new JPanel();
 		PanelProveedores_1_1.setLayout(null);
 		PanelProveedores_1_1.setBounds(1050, 108, 292, 518);
-		PanelGestionMateriales.add(PanelProveedores_1_1);
+		PanelMecanico.add(PanelProveedores_1_1);
 		
 		JPanel panel_2_2_1_1 = new JPanel();
 		panel_2_2_1_1.setLayout(null);
@@ -604,8 +426,112 @@ public class HomeAdmin extends JFrame {
 		lblUpdate_1_1_1.setBounds(10, 399, 272, 96);
 		PanelProveedores_1_1.add(lblUpdate_1_1_1);
 		
-		JPanel PanelGestionServicios = new JPanel();
-		PanelCardPrinci.add(PanelGestionServicios, "GestionServicios");
+		tblMecanico = new JTable();
+		tblMecanico.setBounds(25, 11, 668, 534);
+		PanelMecanico.add(tblMecanico);
+		
+		JLabel lblInsertarMecanico = new JLabel("Insertar\r\n");
+		lblInsertarMecanico.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				InsertMecanico frame = new InsertMecanico("  ", 1);
+				frame.setVisible(true);
+			}
+		});
+		lblInsertarMecanico.setBounds(703, 28, 272, 96);
+		PanelMecanico.add(lblInsertarMecanico);
+		lblInsertarMecanico.setHorizontalAlignment(SwingConstants.CENTER);
+		lblInsertarMecanico.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		
+		JLabel lblConsultaMecanica = new JLabel("Consulta\r\n");
+		lblConsultaMecanica.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				
+			}
+		});
+		lblConsultaMecanica.setBounds(713, 135, 272, 96);
+		PanelMecanico.add(lblConsultaMecanica);
+		lblConsultaMecanica.setHorizontalAlignment(SwingConstants.CENTER);
+		lblConsultaMecanica.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		
+		JLabel lblDarDeBaja = new JLabel("Dar de Baja\r\n");
+		lblDarDeBaja.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				  String frase = JOptionPane.showInputDialog(null, "Por favor, introduce la id:", "Entrada de texto", JOptionPane.QUESTION_MESSAGE);
+		            if (frase != null && !frase.trim().isEmpty()) {
+		                // Abrir un nuevo JFrame con la frase ingresada
+		            	
+						DeleteMecanico dc = new DeleteMecanico(frase);
+						dc.setVisible(true);
+		            }
+		            else {
+		            	JOptionPane.showMessageDialog(null, "No has ,etido ningun ID");
+		            }
+			}
+		});
+		lblDarDeBaja.setBounds(703, 242, 272, 96);
+		PanelMecanico.add(lblDarDeBaja);
+		lblDarDeBaja.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDarDeBaja.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		
+		JLabel lblUpdate_1 = new JLabel("Update\r\n");
+		lblUpdate_1.setBounds(713, 366, 272, 96);
+		PanelMecanico.add(lblUpdate_1);
+		lblUpdate_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUpdate_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		
+		JPanel PanelVehiculo = new JPanel();
+		PanelCardPrinci.add(PanelVehiculo, "Vehiculo");
+		PanelVehiculo.setLayout(null);
+		
+		JLabel lblInsertarVehiculo = new JLabel("Insertar\r\n");
+		lblInsertarVehiculo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				InsertVehiculo iv = new InsertVehiculo(" ",1);
+				iv.setVisible(true);
+				
+			}
+		});
+		lblInsertarVehiculo.setBackground(new Color(133, 133, 133));
+		lblInsertarVehiculo.setBounds(715, 11, 272, 117);
+		PanelVehiculo.add(lblInsertarVehiculo);
+		lblInsertarVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblInsertarVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		
+		JLabel lblUpdateVehiculo = new JLabel("Update\r\n");
+		lblUpdateVehiculo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				  String frase = JOptionPane.showInputDialog(null, "Por favor, introduce una matricula:", "Entrada de texto", JOptionPane.QUESTION_MESSAGE);
+		            if (frase != null && !frase.trim().isEmpty()) {
+		            	InsertVehiculo iv = new InsertVehiculo(frase ,1);
+						iv.setVisible(true);
+		            }
+		            else {
+		            	JOptionPane.showMessageDialog(null, "No has ,etido ninguna matricula");
+		            }
+			}
+		});
+		lblUpdateVehiculo.setBounds(715, 283, 272, 117);
+		PanelVehiculo.add(lblUpdateVehiculo);
+		lblUpdateVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUpdateVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		
+		JLabel lblConsultaVehiculo = new JLabel("Consultar");
+		lblConsultaVehiculo.setBounds(715, 139, 272, 117);
+		PanelVehiculo.add(lblConsultaVehiculo);
+		lblConsultaVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblConsultaVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		
+		tblVehiculo = new JTable();
+		tblVehiculo.setBounds(23, 11, 753, 516);
+		PanelVehiculo.add(tblVehiculo);
 		
 		JPanel PanelGestionEconomia = new JPanel();
 		PanelCardPrinci.add(PanelGestionEconomia, "GestionEconomia");
@@ -716,6 +642,42 @@ public class HomeAdmin extends JFrame {
 	        System.out.println("Error: La imagen no se pudo cargar o asignar al JLabel.");
 	    }
 	}
+	
+	private void mostrarSelect(String consulta, JTable jtDatos,String cabezera[]) throws SQLException, ClassNotFoundException {
+	      try {
+	    	  con.conectar();	
+	        ResultSet rs = con.ejecutarSelect(consulta);
+	        DefaultTableModel modelo = new DefaultTableModel();
+	        
+	        //	 modelo.setColumnIdentifiers(cabezera);
+	        
+	       
+	        // Obtener los metadatos para obtener el nombre y el numero de consultas
+	        int columnCount = rs.getMetaData().getColumnCount();
+	        
+	        // Agregar columnas al modelo de la tabla
+	        for (int i = 1; i <= columnCount; i++) {
+	            modelo.addColumn(rs.getMetaData().getColumnName(i));
+	        }
+
+	        // Agregar filas al modelo de la tabla
+	        while (rs.next()) {
+	            Object[] fila = new Object[columnCount];
+	            for (int i = 0; i < columnCount; i++) {
+	                fila[i] = rs.getObject(i + 1);
+	            }
+	            modelo.addRow(fila);
+	        }
+
+	        // Establecer el modelo en la tabla y cambiar de panel
+	       
+	        jtDatos.setModel(modelo);
+	       
+	    } catch (SQLException e) {
+	        JOptionPane.showMessageDialog(this, "Error al ejecutar la consulta: " + e.getMessage());
+	    }
+	      
+	    }
 	private void pantallaCompleta(HomeAdmin frame) {
 		// Obtener el tamaño de la pantalla
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
