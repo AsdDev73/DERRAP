@@ -308,16 +308,6 @@ public class HomeAdmin extends JFrame {
 		PanelCardPrinci.add(PanelClientes, "GestionClientes");
 		PanelClientes.setLayout(null);
 		
-		tblCliente = new JTable();
-		tblCliente.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-			}
-		));
-		tblCliente.setBounds(20, 11, 755, 546);
-		PanelClientes.add(tblCliente);
-		
 		JPanel panelDiseño1Cliente = new JPanel();
 		panelDiseño1Cliente.setBackground(new Color(133, 133, 133));
 		panelDiseño1Cliente.setBounds(813, 36, 162, 86);
@@ -377,6 +367,19 @@ public class HomeAdmin extends JFrame {
 		lblUpdate.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUpdate.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 11, 775, 546);
+		PanelClientes.add(scrollPane);
+		
+		tblCliente = new JTable();
+		scrollPane.setViewportView(tblCliente);
+		tblCliente.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+			}
+		));
+		
 		JPanel PanelMecanico = new JPanel();
 		PanelMecanico.setBackground(new Color(255, 255, 255));
 		PanelMecanico.setBounds(785, 5, 10, 10);
@@ -423,10 +426,6 @@ public class HomeAdmin extends JFrame {
 		lblUpdate_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblUpdate_1_1_1.setBounds(10, 399, 272, 96);
 		PanelProveedores_1_1.add(lblUpdate_1_1_1);
-		
-		tblMecanico = new JTable();
-		tblMecanico.setBounds(25, 11, 668, 534);
-		PanelMecanico.add(tblMecanico);
 		
 		JPanel panelInsertarMecanico = new JPanel();
 		panelInsertarMecanico.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -489,14 +488,17 @@ public class HomeAdmin extends JFrame {
 		lblUpdate_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUpdate_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(10, 11, 783, 546);
+		PanelMecanico.add(scrollPane_1);
+		
+		tblMecanico = new JTable();
+		scrollPane_1.setViewportView(tblMecanico);
+		
 		JPanel PanelVehiculo = new JPanel();
 		PanelVehiculo.setBackground(new Color(255, 255, 255));
 		PanelCardPrinci.add(PanelVehiculo, "Vehiculo");
 		PanelVehiculo.setLayout(null);
-		
-		tblVehiculo = new JTable();
-		tblVehiculo.setBounds(23, 11, 753, 516);
-		PanelVehiculo.add(tblVehiculo);
 		
 		JPanel panelInsertarVehiculo = new JPanel();
 		panelInsertarVehiculo.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -547,6 +549,13 @@ public class HomeAdmin extends JFrame {
 		});
 		lblUpdateVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUpdateVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		
+		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setBounds(10, 11, 766, 546);
+		PanelVehiculo.add(scrollPane_2);
+		
+		tblVehiculo = new JTable();
+		scrollPane_2.setViewportView(tblVehiculo);
 		
 		JPanel PanelGestionEconomia = new JPanel();
 		PanelCardPrinci.add(PanelGestionEconomia, "GestionEconomia");
@@ -709,7 +718,7 @@ public class HomeAdmin extends JFrame {
 	    try {
 	        con.conectar();	
 	        ResultSet rs = con.ejecutarSelect(consulta);
-	        DefaultTableModel modelo = new DefaultTableModel(cabezera,0);
+	        DefaultTableModel modelo = new DefaultTableModel(cabezera, 0);
 
 	        // Validar que el número de cabeceras coincida con el número de columnas en el ResultSet
 	        int columnCount = rs.getMetaData().getColumnCount();
@@ -731,6 +740,7 @@ public class HomeAdmin extends JFrame {
 	            }
 	            modelo.addRow(fila);
 	        }
+	      
 
 	        // Establecer el modelo en la tabla
 	        jtDatos.setModel(modelo);
@@ -738,5 +748,4 @@ public class HomeAdmin extends JFrame {
 	        JOptionPane.showMessageDialog(null, "Error al ejecutar la consulta: " + e.getMessage());
 	    }
 	}
-
 }
