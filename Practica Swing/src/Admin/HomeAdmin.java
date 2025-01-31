@@ -295,7 +295,7 @@ public class HomeAdmin extends JFrame {
 		panel.add(lblNewLabel);
 		
 		JLabel lblLogoUser = new JLabel("");
-		lblLogoUser.setBounds(1033, 21, 101, 99);
+		lblLogoUser.setBounds(1024, 24, 122, 121);
 		panelTextoPricipal.add(lblLogoUser);
 		
 		PanelCardPrinci = new JPanel(cardLayout);
