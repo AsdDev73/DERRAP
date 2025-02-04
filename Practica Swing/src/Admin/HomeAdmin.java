@@ -459,7 +459,7 @@ public class HomeAdmin extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				InsertMecanico im = new InsertMecanico("  ", 1,frame);
-				frame.setVisible(true);
+				im.setVisible(true);
 			}
 		});
 		lblInsertarMecanico.setHorizontalAlignment(SwingConstants.CENTER);
