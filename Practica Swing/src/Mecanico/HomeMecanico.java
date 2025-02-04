@@ -45,7 +45,6 @@ public class HomeMecanico extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	public JLabel labelLogoPanel;
 	private JTextField txtMatriculaVehiculo;
 	JPanel PanelCardPrinci;
 	static CardLayout cardLayout;
@@ -94,26 +93,7 @@ public class HomeMecanico extends JFrame {
 		contentPane.add(panelTextoPricipal);
 		panelTextoPricipal.setLayout(null);
 		
-		labelLogoPanel = new JLabel("New label");
-		labelLogoPanel.setBounds(76, 11, 168, 151);
-		panelTextoPricipal.add(labelLogoPanel);
-		
-		JLabel lblBuscarVehiculo = new JLabel("Buscar un vehiculo");
-		lblBuscarVehiculo.setForeground(new Color(255, 255, 255));
-		lblBuscarVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblBuscarVehiculo.setBounds(269, 29, 160, 28);
-		panelTextoPricipal.add(lblBuscarVehiculo);
-		
-		txtMatriculaVehiculo = new JTextField();
-		txtMatriculaVehiculo.setBounds(269, 57, 160, 39);
-		panelTextoPricipal.add(txtMatriculaVehiculo);
-		txtMatriculaVehiculo.setColumns(10);
-		
-		JButton btbBuscarMatricula = new JButton("OK");
-		btbBuscarMatricula.setBounds(267, 107, 89, 23);
-		panelTextoPricipal.add(btbBuscarMatricula);
-		
-		JLabel lblPrincipal = new JLabel("DERRAP");
+		JLabel lblPrincipal = new JLabel("");
 		lblPrincipal.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblPrincipal.addMouseListener(new MouseAdapter() {
 			@Override
@@ -124,10 +104,26 @@ public class HomeMecanico extends JFrame {
 		lblPrincipal.setFont(new Font("Tahoma", Font.PLAIN, 71));
 		lblPrincipal.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPrincipal.setForeground(new Color(255, 255, 255));
-		lblPrincipal.setBounds(553, 29, 365, 120);
+		lblPrincipal.setBounds(372, -174, 544, 542);
 		panelTextoPricipal.add(lblPrincipal);
+		setIcono(lblPrincipal, "LetrasDerrap");
 		
-		JLabel lblUsuario = new JLabel("Mecanico\r\n");
+		JLabel lblBuscarVehiculo = new JLabel("Buscar un vehiculo");
+		lblBuscarVehiculo.setForeground(new Color(255, 255, 255));
+		lblBuscarVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblBuscarVehiculo.setBounds(72, 29, 160, 28);
+		panelTextoPricipal.add(lblBuscarVehiculo);
+		
+		txtMatriculaVehiculo = new JTextField();
+		txtMatriculaVehiculo.setBounds(72, 57, 201, 39);
+		panelTextoPricipal.add(txtMatriculaVehiculo);
+		txtMatriculaVehiculo.setColumns(10);
+		
+		JButton btbBuscarMatricula = new JButton("OK");
+		btbBuscarMatricula.setBounds(72, 100, 89, 23);
+		panelTextoPricipal.add(btbBuscarMatricula);
+		
+		JLabel lblUsuario = new JLabel("Mecánico\r\n");
 		lblUsuario.setForeground(new Color(255, 255, 255));
 		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblUsuario.setBounds(1080, 107, 132, 39);
@@ -139,6 +135,16 @@ public class HomeMecanico extends JFrame {
 		PanelOpciones.setBounds(0, 189, 218, 572);
 		contentPane.add(PanelOpciones);
 		PanelOpciones.setLayout(null);
+		
+		JLabel lblImgMisOrdenes = new JLabel("");
+		lblImgMisOrdenes.setBounds(22, 165, 46, 43);
+		PanelOpciones.add(lblImgMisOrdenes);
+		setIcono(lblImgMisOrdenes, "MisOrdenes");
+		
+		JLabel lblImgOrdenesDispo = new JLabel("");
+		lblImgOrdenesDispo.setBounds(25, 37, 46, 38);
+		PanelOpciones.add(lblImgOrdenesDispo);
+		setIcono(lblImgOrdenesDispo, "OrdenesReparacion");
 		
 		JSeparator separator = new JSeparator();
 		separator.setBorder(new LineBorder(new Color(0, 0, 0), 4));
@@ -157,11 +163,50 @@ public class HomeMecanico extends JFrame {
 		separator_2.setBackground(Color.BLACK);
 		separator_2.setBounds(0, 418, 218, 2);
 		PanelOpciones.add(separator_2);
+<<<<<<< HEAD
 				
 		JLabel lblImgOrdenesDispo = new JLabel("");
 		lblImgOrdenesDispo.setBounds(25, 37, 46, 38);
 		PanelOpciones.add(lblImgOrdenesDispo);
 		setLogo(labelLogoPanel);
+=======
+		
+		JLabel lblNewLabel_3 = new JLabel("Stock");
+		lblNewLabel_3.setForeground(new Color(255, 255, 255));
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblNewLabel_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				cardLayout.show(PanelCardPrinci, "panelConsultarStock");
+			}
+		});
+		lblNewLabel_3.setBounds(78, 328, 46, 14);
+		PanelOpciones.add(lblNewLabel_3);
+		
+		JLabel lblMisOrdenes = new JLabel("Mis Ordenes");
+		lblMisOrdenes.setForeground(new Color(255, 255, 255));
+		lblMisOrdenes.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblMisOrdenes.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				cardLayout.show(PanelCardPrinci, "panelModificarEstadoOrden");
+			}
+		});
+		lblMisOrdenes.setBounds(78, 176, 109, 14);
+		PanelOpciones.add(lblMisOrdenes);
+		
+		lblFacturas = new JLabel("Facturas");
+		lblFacturas.setForeground(new Color(255, 255, 255));
+		lblFacturas.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblFacturas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				cardLayout.show(PanelCardPrinci, "panelSolicitarPiezas");
+			}
+		});
+		lblFacturas.setBounds(78, 488, 118, 14);
+		PanelOpciones.add(lblFacturas);
+>>>>>>> b39de19bc7b1111d0f60c85cce5598fe62272ef3
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
@@ -169,8 +214,8 @@ public class HomeMecanico extends JFrame {
 		panel.setBounds(0, 0, 96, 89);
 		panelTextoPricipal.add(panel);
 		
-		JLabel lblNewLabel = new JLabel("<--");
-		lblNewLabel.addMouseListener(new MouseAdapter() {
+		JLabel lblImgFlecha_Volver = new JLabel("");
+		lblImgFlecha_Volver.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				
@@ -192,12 +237,12 @@ public class HomeMecanico extends JFrame {
                 }
 			}
 		});
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 40));
-		lblNewLabel.setBounds(0, 0, 86, 78);
-		panel.add(lblNewLabel);
+		lblImgFlecha_Volver.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		lblImgFlecha_Volver.setBounds(0, 0, 63, 55);
+		panel.add(lblImgFlecha_Volver);
 		
 		JLabel lblPerfilMecanico = new JLabel("");
-		lblPerfilMecanico.setBounds(1080, 29, 89, 93);
+		lblPerfilMecanico.setBounds(1072, 26, 89, 89);
 		panelTextoPricipal.add(lblPerfilMecanico);
 		
 		JPanel PanelCardPrinci = new JPanel();
@@ -285,15 +330,16 @@ public class HomeMecanico extends JFrame {
 		lblOrdenesDisponibles.setForeground(new Color(255, 255, 255));
 		lblOrdenesDisponibles.setBackground(new Color(240, 240, 240));
 		
-		JLabel lblImgMisOrdenes = new JLabel("");
-		lblImgMisOrdenes.setBounds(22, 165, 46, 43);
-		PanelOpciones.add(lblImgMisOrdenes);
+		JLabel lblImgStock = new JLabel("");
+		lblImgStock.setBounds(22, 313, 46, 43);
+		PanelOpciones.add(lblImgStock);
 		lblOrdenesDisponibles.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				cardLayout.show(PanelCardPrinci, "panelModificarOrdenVehiculo");
 			}
 		});
+<<<<<<< HEAD
 		
 		
 		JLabel lblMisOrdenes = new JLabel("Mis Ordenes");
@@ -343,27 +389,23 @@ public class HomeMecanico extends JFrame {
 		
 	
 		cardLayout= (CardLayout) PanelCardPrinci.getLayout();
+=======
+		setIcono(lblPerfilMecanico, "IconoMecanico");
+		setIcono(lblImgStock, "Stock");
+		
+		JLabel lblImgFacturas = new JLabel("");
+		lblImgFacturas.setBounds(22, 475, 46, 43);
+		PanelOpciones.add(lblImgFacturas);
+		
+		setIcono(lblImgFacturas, "Factura");
+		setIcono(lblImgFlecha_Volver, "flecha_volver");
+
+
+>>>>>>> b39de19bc7b1111d0f60c85cce5598fe62272ef3
 		
 	}
 
-	private void setLogo(JLabel labelLogoPanel2) {
-	    try {
-	        // Cargar la imagen desde el paquete img
-	        ImageIcon iconoOriginal = new ImageIcon(getClass().getResource("/img/logo_Derrap.png"));
 
-	        // Escalar la imagen
-	        Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(labelLogoPanel.getWidth(), labelLogoPanel.getHeight(), Image.SCALE_SMOOTH);
-
-	        // Crear un nuevo ImageIcon con la imagen escalada
-	        ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
-
-	        // Establecer el icono en el JLabel
-	        labelLogoPanel.setIcon(iconoEscalado);
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        System.out.println("Error: La imagen no se pudo cargar o asignar al JLabel.");
-	    }
-	}
 
 	private void pantallaCompleta(HomeMecanico homeMecanico) {
 		// Obtener el tamaño de la pantalla
