@@ -225,13 +225,13 @@ public class HomeAdmin extends JFrame {
 		lblVehiculos.setHorizontalAlignment(SwingConstants.CENTER);
 		lblVehiculos.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
-		JLabel lblGestionEconomia = new JLabel("Gestión Economía");
-		lblGestionEconomia.setBounds(76, 303, 148, 71);
-		PanelOpciones.add(lblGestionEconomia);
-		lblGestionEconomia.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblGestionEconomia.setForeground(new Color(255, 255, 255));
-		lblGestionEconomia.setBackground(new Color(133, 133, 133));
-		lblGestionEconomia.addMouseListener(new MouseAdapter() {
+		JLabel lblStock = new JLabel("Stock");
+		lblStock.setBounds(76, 303, 148, 71);
+		PanelOpciones.add(lblStock);
+		lblStock.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblStock.setForeground(new Color(255, 255, 255));
+		lblStock.setBackground(new Color(133, 133, 133));
+		lblStock.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				TablaStock();
@@ -241,8 +241,8 @@ public class HomeAdmin extends JFrame {
 
 		
 		});
-		lblGestionEconomia.setHorizontalAlignment(SwingConstants.CENTER);
-		lblGestionEconomia.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblStock.setHorizontalAlignment(SwingConstants.CENTER);
+		lblStock.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
 		JLabel lblFacturas = new JLabel("Facturas");
 		lblFacturas.setBounds(80, 393, 80, 71);
@@ -321,7 +321,7 @@ public class HomeAdmin extends JFrame {
 		PanelCardPrinci.setLayout(new CardLayout(0, 0));
 		
 		JPanel PanelClientes = new JPanel();
-		PanelClientes.setBackground(new Color(255, 255, 255));
+		PanelClientes.setBackground(new Color(192, 192, 192));
 		PanelCardPrinci.add(PanelClientes, "GestionClientes");
 		PanelClientes.setLayout(null);
 		
@@ -399,7 +399,7 @@ public class HomeAdmin extends JFrame {
 		));
 		
 		JPanel PanelMecanico = new JPanel();
-		PanelMecanico.setBackground(new Color(255, 255, 255));
+		PanelMecanico.setBackground(new Color(192, 192, 192));
 		PanelMecanico.setBounds(785, 5, 10, 10);
 		PanelCardPrinci.add(PanelMecanico, "Mecanicos");
 		PanelMecanico.setLayout(null);
@@ -514,7 +514,7 @@ public class HomeAdmin extends JFrame {
 		scrollPane_1.setViewportView(tblMecanico);
 		
 		JPanel PanelVehiculo = new JPanel();
-		PanelVehiculo.setBackground(new Color(255, 255, 255));
+		PanelVehiculo.setBackground(new Color(192, 192, 192));
 		PanelCardPrinci.add(PanelVehiculo, "Vehiculo");
 		PanelVehiculo.setLayout(null);
 		
@@ -575,14 +575,14 @@ public class HomeAdmin extends JFrame {
 		tblVehiculo = new JTable();
 		scrollPane_2.setViewportView(tblVehiculo);
 		
-		JPanel PanelGestionEconomia = new JPanel();
-		PanelGestionEconomia.setBackground(new Color(192, 192, 192));
-		PanelCardPrinci.add(PanelGestionEconomia, "GestionEconomia");
-		PanelGestionEconomia.setLayout(null);
+		JPanel PanelStock = new JPanel();
+		PanelStock.setBackground(new Color(192, 192, 192));
+		PanelCardPrinci.add(PanelStock, "GestionEconomia");
+		PanelStock.setLayout(null);
 		
 		JScrollPane scrollPaneStock = new JScrollPane();
 		scrollPaneStock.setBounds(10, 11, 700, 534);
-		PanelGestionEconomia.add(scrollPaneStock);
+		PanelStock.add(scrollPaneStock);
 		
 		tblStock = new JTable();
 		scrollPaneStock.setViewportView(tblStock);
@@ -592,7 +592,7 @@ public class HomeAdmin extends JFrame {
 		PnlInserStock.setForeground(new Color(255, 255, 255));
 		PnlInserStock.setBackground(new Color(133, 133, 133));
 		PnlInserStock.setBounds(761, 39, 189, 64);
-		PanelGestionEconomia.add(PnlInserStock);
+		PanelStock.add(PnlInserStock);
 		PnlInserStock.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblInsertarStock = new JLabel("Insertar");
@@ -606,7 +606,7 @@ public class HomeAdmin extends JFrame {
 		PnlInserStock_1.setForeground(Color.WHITE);
 		PnlInserStock_1.setBackground(new Color(133, 133, 133));
 		PnlInserStock_1.setBounds(761, 157, 189, 64);
-		PanelGestionEconomia.add(PnlInserStock_1);
+		PanelStock.add(PnlInserStock_1);
 		PnlInserStock_1.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblUPdateStock = new JLabel("Update");
@@ -659,15 +659,17 @@ public class HomeAdmin extends JFrame {
 		PnlInserStock_1.add(lblUPdateStock, BorderLayout.CENTER);
 		
 		JPanel PanelGestionFacturas = new JPanel();
+		PanelGestionFacturas.setBackground(new Color(192, 192, 192));
 		PanelCardPrinci.add(PanelGestionFacturas, "GetionFacturas");
 		
 		JPanel PanelGestionInformes = new JPanel();
+		PanelGestionInformes.setBackground(new Color(192, 192, 192));
 		PanelCardPrinci.add(PanelGestionInformes, "GestionInformes");
 		
 		cardLayout= (CardLayout) PanelCardPrinci.getLayout();
 		
 		JPanel PanelDashBoard = new JPanel();
-		PanelDashBoard.setBackground(new Color(255, 255, 255));
+		PanelDashBoard.setBackground(new Color(192, 192, 192));
 		PanelCardPrinci.add(PanelDashBoard, "PanelDashBoard");
 		PanelDashBoard.setLayout(null);
 		

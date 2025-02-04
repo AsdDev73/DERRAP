@@ -169,20 +169,6 @@ public class HomeMecanico extends JFrame {
 		lblImgOrdenesDispo.setBounds(25, 37, 46, 38);
 		PanelOpciones.add(lblImgOrdenesDispo);
 		
-
-		
-		JLabel lblNewLabel_3 = new JLabel("Stock");
-		lblNewLabel_3.setForeground(new Color(255, 255, 255));
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblNewLabel_3.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				cardLayout.show(PanelCardPrinci, "panelConsultarStock");
-			}
-		});
-		lblNewLabel_3.setBounds(78, 328, 46, 14);
-		PanelOpciones.add(lblNewLabel_3);
-		
 		JLabel lblMisOrdenes = new JLabel("Mis Ordenes");
 		lblMisOrdenes.setForeground(new Color(255, 255, 255));
 		lblMisOrdenes.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -194,19 +180,6 @@ public class HomeMecanico extends JFrame {
 		});
 		lblMisOrdenes.setBounds(78, 176, 109, 14);
 		PanelOpciones.add(lblMisOrdenes);
-		
-		lblFacturas = new JLabel("Facturas");
-		lblFacturas.setForeground(new Color(255, 255, 255));
-		lblFacturas.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblFacturas.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				cardLayout.show(PanelCardPrinci, "panelSolicitarPiezas");
-			}
-		});
-		lblFacturas.setBounds(78, 488, 118, 14);
-		PanelOpciones.add(lblFacturas);
-
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
@@ -339,7 +312,33 @@ public class HomeMecanico extends JFrame {
 				cardLayout.show(PanelCardPrinci, "panelModificarOrdenVehiculo");
 			}
 		});
+		
+		lblFacturas = new JLabel("Facturas");
+		lblFacturas.setForeground(new Color(255, 255, 255));
+		lblFacturas.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblFacturas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				cardLayout.show(PanelCardPrinci, "panelSolicitarPiezas");
+			}
+		});
+		lblFacturas.setBounds(78, 488, 118, 14);
+		PanelOpciones.add(lblFacturas);
 
+
+
+		JLabel lblStock = new JLabel("Stock");
+		lblStock.setForeground(new Color(255, 255, 255));
+		lblStock.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblStock.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				UpdateTablaStock();
+				cardLayout.show(PanelCardPrinci, "panelConsultarStock");
+			}
+		});
+		lblStock.setBounds(78, 328, 46, 14);
+		PanelOpciones.add(lblStock);
 		
 		
 		 lblMisOrdenes = new JLabel("Mis Ordenes");
@@ -353,35 +352,6 @@ public class HomeMecanico extends JFrame {
 		});
 		lblMisOrdenes.setBounds(78, 176, 109, 14);
 		PanelOpciones.add(lblMisOrdenes);
-		
-		
-		 lblNewLabel_3 = new JLabel("Stock");
-		lblNewLabel_3.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				try {
-					String [] cabezera= {"Codiego_Repuesto","Precio","Cantidad","Proveedor_Codigo"};
-					mostrarSelect("Select * FROM repuesto", tblStock,cabezera);
-				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				cardLayout.show(PanelCardPrinci, "panelConsultarStock");
-			}
-		});
-		lblNewLabel_3.setBounds(81, 380, 46, 14);
-		PanelOpciones.add(lblNewLabel_3);
-		
-		
-		lblFacturas = new JLabel("Facturas");
-		lblFacturas.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				cardLayout.show(PanelCardPrinci, "panelSolicitarPiezas");
-			}
-		});
-		lblFacturas.setBounds(47, 477, 46, 14);
-		PanelOpciones.add(lblFacturas);
 		
 		setIcono(lblImgOrdenesDispo, "OrdenesReparacion");
 		setIcono(lblImgMisOrdenes, "MisOrdenes");
@@ -468,5 +438,15 @@ public class HomeMecanico extends JFrame {
 	    } catch (SQLException e) {
 	        JOptionPane.showMessageDialog(null, "Error al ejecutar la consulta: " + e.getMessage());
 	    }
+	}
+	
+	public void UpdateTablaStock() {
+		try {
+			String [] cabezera= {"Codiego_Repuesto","Precio","Cantidad","Proveedor_Codigo"};
+			mostrarSelect("Select * FROM repuesto", tblStock,cabezera);
+		} catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 }
