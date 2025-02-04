@@ -16,8 +16,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
 
 import Admin.HomeAdmin;
+import Inicio.ConexionMySQL;
 import Inicio.InicioDeSesion;
 
 import javax.swing.JTextPane;
@@ -26,6 +28,9 @@ import javax.swing.JOptionPane;
 import javax.swing.AbstractListModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.awt.CardLayout;
 import java.awt.BorderLayout;
 import java.awt.Cursor;
@@ -34,6 +39,7 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.JSeparator;
 import java.awt.Component;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class HomeMecanico extends JFrame {
 
@@ -44,6 +50,11 @@ public class HomeMecanico extends JFrame {
 	JPanel PanelCardPrinci;
 	static CardLayout cardLayout;
 	private JLabel lblFacturas;
+	private JTable tblStock;
+	
+	private ConexionMySQL con = new ConexionMySQL();
+	private Statement stm = null;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -146,39 +157,7 @@ public class HomeMecanico extends JFrame {
 		separator_2.setBackground(Color.BLACK);
 		separator_2.setBounds(0, 418, 218, 2);
 		PanelOpciones.add(separator_2);
-		
-		JLabel lblNewLabel_3 = new JLabel("Stock");
-		lblNewLabel_3.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				cardLayout.show(PanelCardPrinci, "panelConsultarStock");
-			}
-		});
-		lblNewLabel_3.setBounds(81, 380, 46, 14);
-		PanelOpciones.add(lblNewLabel_3);
-		
-		JLabel lblMisOrdenes = new JLabel("Mis Ordenes");
-		lblMisOrdenes.setForeground(new Color(255, 255, 255));
-		lblMisOrdenes.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblMisOrdenes.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				cardLayout.show(PanelCardPrinci, "panelModificarEstadoOrden");
-			}
-		});
-		lblMisOrdenes.setBounds(78, 176, 109, 14);
-		PanelOpciones.add(lblMisOrdenes);
-		
-		lblFacturas = new JLabel("Facturas");
-		lblFacturas.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				cardLayout.show(PanelCardPrinci, "panelSolicitarPiezas");
-			}
-		});
-		lblFacturas.setBounds(47, 477, 46, 14);
-		PanelOpciones.add(lblFacturas);
-		
+				
 		JLabel lblImgOrdenesDispo = new JLabel("");
 		lblImgOrdenesDispo.setBounds(25, 37, 46, 38);
 		PanelOpciones.add(lblImgOrdenesDispo);
@@ -275,11 +254,19 @@ public class HomeMecanico extends JFrame {
 		lblNewLabel_2_2.setBounds(10, 80, 399, 14);
 		panel_3.add(lblNewLabel_2_2);
 		
-		JPanel panelModificarOrdenVehiculo = new JPanel();
-		PanelCardPrinci.add(panelModificarOrdenVehiculo, "panelModificarOrdenVehiculo");
+	
 		
 		JPanel panelConsultarStock = new JPanel();
+		panelConsultarStock.setBackground(new Color(192, 192, 192));
 		PanelCardPrinci.add(panelConsultarStock, "panelConsultarStock");
+		panelConsultarStock.setLayout(null);
+		
+		JScrollPane scrollPaneStock = new JScrollPane();
+		scrollPaneStock.setBounds(21, 5, 986, 556);
+		panelConsultarStock.add(scrollPaneStock);
+		
+		tblStock = new JTable();
+		scrollPaneStock.setViewportView(tblStock);
 		
 		JPanel panelModificarEstadoOrden = new JPanel();
 		PanelCardPrinci.add(panelModificarEstadoOrden, "panelModificarEstadoOrden");
@@ -287,6 +274,8 @@ public class HomeMecanico extends JFrame {
 		JPanel panelSolicitarPiezas = new JPanel();
 		PanelCardPrinci.add(panelSolicitarPiezas, "panelSolicitarPiezas");
 		
+		JPanel panelModificarOrdenVehiculo = new JPanel();
+		PanelCardPrinci.add(panelModificarOrdenVehiculo, "panelModificarOrdenVehiculo");
 		
 		
 		JLabel lblOrdenesDisponibles = new JLabel("Ordenes");
@@ -305,10 +294,55 @@ public class HomeMecanico extends JFrame {
 				cardLayout.show(PanelCardPrinci, "panelModificarOrdenVehiculo");
 			}
 		});
+		
+		
+		JLabel lblMisOrdenes = new JLabel("Mis Ordenes");
+		lblMisOrdenes.setForeground(new Color(255, 255, 255));
+		lblMisOrdenes.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblMisOrdenes.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				cardLayout.show(PanelCardPrinci, "panelModificarEstadoOrden");
+			}
+		});
+		lblMisOrdenes.setBounds(78, 176, 109, 14);
+		PanelOpciones.add(lblMisOrdenes);
+		
+		
+		JLabel lblNewLabel_3 = new JLabel("Stock");
+		lblNewLabel_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				try {
+					String [] cabezera= {"Codiego_Repuesto","Precio","Cantidad","Proveedor_Codigo"};
+					mostrarSelect("Select * FROM repuesto", tblStock,cabezera);
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				cardLayout.show(PanelCardPrinci, "panelConsultarStock");
+			}
+		});
+		lblNewLabel_3.setBounds(81, 380, 46, 14);
+		PanelOpciones.add(lblNewLabel_3);
+		
+		
+		lblFacturas = new JLabel("Facturas");
+		lblFacturas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				cardLayout.show(PanelCardPrinci, "panelSolicitarPiezas");
+			}
+		});
+		lblFacturas.setBounds(47, 477, 46, 14);
+		PanelOpciones.add(lblFacturas);
+		
 		setIcono(lblImgOrdenesDispo, "OrdenesReparacion");
 		setIcono(lblImgMisOrdenes, "MisOrdenes");
 		setIcono(lblPerfilMecanico, "IconoMecanico");
-
+		
+	
+		cardLayout= (CardLayout) PanelCardPrinci.getLayout();
 		
 	}
 
@@ -359,6 +393,41 @@ public class HomeMecanico extends JFrame {
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	        System.out.println("Error: La imagen no se pudo cargar o asignar al JLabel.");
+	    }
+	}
+	
+	private void mostrarSelect(String consulta, JTable jtDatos, String cabezera[]) throws SQLException, ClassNotFoundException {
+	    try {
+	        con.conectar();	
+	        ResultSet rs = con.ejecutarSelect(consulta);
+	        DefaultTableModel modelo = new DefaultTableModel(cabezera, 0);
+
+	        // Validar que el número de cabeceras coincida con el número de columnas en el ResultSet
+	        int columnCount = rs.getMetaData().getColumnCount();
+	        if (cabezera != null && cabezera.length == columnCount) {
+	            // Usar las cabeceras proporcionadas
+	            modelo.setColumnIdentifiers(cabezera);
+	        } else {
+	            // Usar las cabeceras del ResultSet si las proporcionadas no coinciden
+	            for (int i = 1; i <= columnCount; i++) {
+	                modelo.addColumn(rs.getMetaData().getColumnName(i));
+	            }
+	        }
+
+	        // Agregar filas al modelo de la tabla
+	        while (rs.next()) {
+	            Object[] fila = new Object[columnCount];
+	            for (int i = 0; i < columnCount; i++) {
+	                fila[i] = rs.getObject(i + 1);
+	            }
+	            modelo.addRow(fila);
+	        }
+	      
+
+	        // Establecer el modelo en la tabla
+	        jtDatos.setModel(modelo);
+	    } catch (SQLException e) {
+	        JOptionPane.showMessageDialog(null, "Error al ejecutar la consulta: " + e.getMessage());
 	    }
 	}
 }
