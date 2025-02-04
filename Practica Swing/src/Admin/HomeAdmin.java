@@ -46,6 +46,7 @@ public class HomeAdmin extends JFrame {
 	private Statement stm = null;
 	private JTable tblCliente;
 	private JTable tblVehiculo;
+	private JTable tblStock;
 
 	/**
 	 * Launch the application.
@@ -213,6 +214,14 @@ public class HomeAdmin extends JFrame {
 		lblNewLabel_5.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				try {
+					String [] cabezera= {"Codiego_Repuesto","Precio","Cantidad","Proveedor_Codigo"};
+					mostrarSelect("Select * FROM repuesto", tblStock,cabezera);
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 				cardLayout.show(PanelCardPrinci, "GestionEconomia");
 			}
 		});
@@ -558,7 +567,87 @@ public class HomeAdmin extends JFrame {
 		scrollPane_2.setViewportView(tblVehiculo);
 		
 		JPanel PanelGestionEconomia = new JPanel();
+		PanelGestionEconomia.setBackground(new Color(192, 192, 192));
 		PanelCardPrinci.add(PanelGestionEconomia, "GestionEconomia");
+		PanelGestionEconomia.setLayout(null);
+		
+		JScrollPane scrollPaneStock = new JScrollPane();
+		scrollPaneStock.setBounds(10, 11, 700, 534);
+		PanelGestionEconomia.add(scrollPaneStock);
+		
+		tblStock = new JTable();
+		scrollPaneStock.setViewportView(tblStock);
+		
+		JPanel PnlInserStock = new JPanel();
+		PnlInserStock.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		PnlInserStock.setForeground(new Color(255, 255, 255));
+		PnlInserStock.setBackground(new Color(133, 133, 133));
+		PnlInserStock.setBounds(761, 39, 189, 64);
+		PanelGestionEconomia.add(PnlInserStock);
+		PnlInserStock.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblInsertarStock = new JLabel("Insertar");
+		lblInsertarStock.setForeground(new Color(255, 255, 255));
+		lblInsertarStock.setBackground(new Color(133, 133, 133));
+		lblInsertarStock.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblInsertarStock.setHorizontalAlignment(SwingConstants.CENTER);
+		PnlInserStock.add(lblInsertarStock, BorderLayout.CENTER);
+		
+		JPanel PnlInserStock_1 = new JPanel();
+		PnlInserStock_1.setForeground(Color.WHITE);
+		PnlInserStock_1.setBackground(new Color(133, 133, 133));
+		PnlInserStock_1.setBounds(761, 157, 189, 64);
+		PanelGestionEconomia.add(PnlInserStock_1);
+		PnlInserStock_1.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblUPdateStock = new JLabel("Update");
+		lblUPdateStock.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		lblUPdateStock.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				//update de precio en un respuesto 
+				int fila = tblStock.getSelectedRow(); // Obtiene el índice de la fila seleccionada
+				if(fila != -1) {	
+					 String dato1 = String.valueOf(tblStock.getValueAt(fila, 0));
+				 String frase = JOptionPane.showInputDialog(null, "Por favor, introduce el nuevo precio: ", "Entrada de texto", JOptionPane.QUESTION_MESSAGE);
+		            if (frase != null && !frase.trim().isEmpty()) {
+		            	try {
+		            		String FraseAux=frase;
+		                    Integer.parseInt(frase); // Trata de convertir el String a un número (entero)                   
+		                    con.conectar();
+		                   int funciona= con.UpdateStock(dato1, FraseAux);
+		                   if (funciona > 0) {
+				                 JOptionPane.showMessageDialog(null, "Repuesto Updateado");
+				                    
+				            	}
+		                   else {
+		                	   JOptionPane.showMessageDialog(null, "Error al Updatear el repuesto");
+		                   }
+		                } catch (NumberFormatException exx) {
+		                    // Si ocurre una excepción, significa que no es un número
+		                	JOptionPane.showMessageDialog(null, "Tienen que ser numeros ");
+		                } catch (ClassNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+		            }
+		            else {
+		            	JOptionPane.showMessageDialog(null, "No has metido mingun precio");
+		            }
+			
+			}else {
+				JOptionPane.showMessageDialog(null, "Selecciona el dato de la tabla");
+			}
+			}
+		});
+		lblUPdateStock.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblUPdateStock.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUPdateStock.setForeground(new Color(255, 255, 255));
+		PnlInserStock_1.add(lblUPdateStock, BorderLayout.CENTER);
 		
 		JPanel PanelGestionFacturas = new JPanel();
 		PanelCardPrinci.add(PanelGestionFacturas, "GetionFacturas");
@@ -748,4 +837,6 @@ public class HomeAdmin extends JFrame {
 	        JOptionPane.showMessageDialog(null, "Error al ejecutar la consulta: " + e.getMessage());
 	    }
 	}
+	
+	
 }

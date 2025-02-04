@@ -143,9 +143,11 @@ public class ConexionMySQL {
         return update;
      }
     public int ejecutarDeleteMecanico(String n_empleado) throws SQLException{
-        String consulta = "DELETE from Mecanico WHERE N_Empleado = ?;";
+    	String baja= "Baja";
+        String consulta = "Update Mecanico Set Estado = ? WHERE N_Empleado = ?;";
         PreparedStatement pstmt = con.prepareStatement(consulta);
-        pstmt.setString(1, n_empleado);
+        pstmt.setString(1, baja);
+        pstmt.setString(2, n_empleado);
          int update = pstmt.executeUpdate();
         return update;
      }
@@ -190,6 +192,15 @@ public int ejecutarUpdateVehiculo(String dNI_Cliente, String matricula, String m
     return update;
 }
 
+
+public int UpdateStock(String Id, String precio) throws SQLException{
+    String consulta = "Update Repuesto Set Precio = ? WHERE Codigo_Repuesto = ?;";
+    PreparedStatement pstmt = con.prepareStatement(consulta);
+    pstmt.setString(1, precio);
+    pstmt.setString(2, Id);
+     int update = pstmt.executeUpdate();
+    return update;
+ }
 
 
 
