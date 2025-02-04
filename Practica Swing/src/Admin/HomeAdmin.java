@@ -35,7 +35,6 @@ public class HomeAdmin extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	public JLabel labelLogoPanel;
 	JPanel PanelCardPrinci;
 	static CardLayout cardLayout;
 	private JTextField txtBusquedaVehiculo;
@@ -88,11 +87,7 @@ public class HomeAdmin extends JFrame {
 		contentPane.add(panelTextoPricipal);
 		panelTextoPricipal.setLayout(null);
 		
-		labelLogoPanel = new JLabel("New label");
-		labelLogoPanel.setBounds(92, 11, 167, 158);
-		panelTextoPricipal.add(labelLogoPanel);
-		
-		JLabel lblPrincipal = new JLabel("DERRAP");
+		JLabel lblPrincipal = new JLabel("");
 		lblPrincipal.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblPrincipal.addMouseListener(new MouseAdapter() {
 			@Override
@@ -103,8 +98,9 @@ public class HomeAdmin extends JFrame {
 		lblPrincipal.setFont(new Font("Tahoma", Font.PLAIN, 99));
 		lblPrincipal.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPrincipal.setForeground(new Color(255, 255, 255));
-		lblPrincipal.setBounds(454, 35, 454, 112);
+		lblPrincipal.setBounds(372, -174, 544, 542);
 		panelTextoPricipal.add(lblPrincipal);
+		setIcono(lblPrincipal, "LetrasDerrap");
 		
 		JLabel lblUsuario = new JLabel("Admin\r\n");
 		lblUsuario.setForeground(new Color(255, 255, 255));
@@ -119,17 +115,67 @@ public class HomeAdmin extends JFrame {
 		contentPane.add(PanelOpciones);
 		PanelOpciones.setLayout(null);
 		
-		JPanel lblGestionClientes = new JPanel();
-		lblGestionClientes.setBackground(new Color(133, 133, 133));
-		lblGestionClientes.setBounds(0, 11, 238, 82);
-		PanelOpciones.add(lblGestionClientes);
-		lblGestionClientes.setLayout(new BorderLayout(0, 0));
+		JLabel lblImgInformes = new JLabel("");
+		lblImgInformes.setBounds(24, 501, 46, 44);
+		PanelOpciones.add(lblImgInformes);
 		
-		JLabel lblNewLabel_2 = new JLabel("Clientes");
-		lblNewLabel_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblNewLabel_2.setForeground(new Color(255, 255, 255));
-		lblNewLabel_2.setBackground(new Color(133, 133, 133));
-		lblNewLabel_2.addMouseListener(new MouseAdapter() {
+		JLabel lblImgMecanicos = new JLabel("");
+		lblImgMecanicos.setBounds(24, 131, 46, 45);
+		PanelOpciones.add(lblImgMecanicos);
+		setIcono(lblImgMecanicos, "mecanico");
+		
+		JLabel lblImgVehiculos = new JLabel("");
+		lblImgVehiculos.setBounds(24, 223, 46, 43);
+		PanelOpciones.add(lblImgVehiculos);
+		setIcono(lblImgVehiculos, "coche");
+		
+		JLabel lblImgEconomia = new JLabel("");
+		lblImgEconomia.setBounds(24, 317, 46, 43);
+		PanelOpciones.add(lblImgEconomia);
+		setIcono(lblImgEconomia, "economia");
+		
+		JLabel lblImgFacturas = new JLabel("");
+		lblImgFacturas.setBounds(24, 406, 46, 43);
+		PanelOpciones.add(lblImgFacturas);
+		setIcono(lblImgFacturas, "Factura");
+		
+		JSeparator separator = new JSeparator();
+		separator.setBorder(new LineBorder(new Color(0, 0, 0), 4));
+		separator.setBackground(Color.BLACK);
+		separator.setBounds(0, 105, 238, 2);
+		PanelOpciones.add(separator);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBorder(new LineBorder(new Color(0, 0, 0), 4));
+		separator_1.setBackground(Color.BLACK);
+		separator_1.setBounds(0, 200, 238, 2);
+		PanelOpciones.add(separator_1);
+		
+		JSeparator separator_2 = new JSeparator();
+		separator_2.setBorder(new LineBorder(new Color(0, 0, 0), 4));
+		separator_2.setBackground(Color.BLACK);
+		separator_2.setBounds(0, 293, 238, 2);
+		PanelOpciones.add(separator_2);
+		
+		JSeparator separator_3 = new JSeparator();
+		separator_3.setBorder(new LineBorder(new Color(0, 0, 0), 4));
+		separator_3.setBackground(Color.BLACK);
+		separator_3.setBounds(0, 385, 238, 2);
+		PanelOpciones.add(separator_3);
+		
+		JSeparator separator_4 = new JSeparator();
+		separator_4.setBorder(new LineBorder(new Color(0, 0, 0), 4));
+		separator_4.setBackground(Color.BLACK);
+		separator_4.setBounds(0, 475, 238, 2);
+		PanelOpciones.add(separator_4);
+		
+		JLabel lblClientes = new JLabel("Clientes");
+		lblClientes.setBounds(76, 11, 71, 82);
+		PanelOpciones.add(lblClientes);
+		lblClientes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblClientes.setForeground(new Color(255, 255, 255));
+		lblClientes.setBackground(new Color(133, 133, 133));
+		lblClientes.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				try {
@@ -142,21 +188,16 @@ public class HomeAdmin extends JFrame {
 				cardLayout.show(PanelCardPrinci, "GestionClientes");
 			}
 		});
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblGestionClientes.add(lblNewLabel_2);
+		lblClientes.setHorizontalAlignment(SwingConstants.CENTER);
+		lblClientes.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
-		JPanel lblMecanicos = new JPanel();
-		lblMecanicos.setBackground(new Color(133, 133, 133));
-		lblMecanicos.setBounds(0, 118, 238, 71);
+		JLabel lblMecanicos = new JLabel("Mecanicos\r\n");
+		lblMecanicos.setBounds(80, 118, 80, 71);
 		PanelOpciones.add(lblMecanicos);
-		lblMecanicos.setLayout(new BorderLayout(0, 0));
-		
-		JLabel lblNewLabel_3 = new JLabel("Mecanicos\r\n");
-		lblNewLabel_3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblNewLabel_3.setForeground(new Color(255, 255, 255));
-		lblNewLabel_3.setBackground(new Color(133, 133, 133));
-		lblNewLabel_3.addMouseListener(new MouseAdapter() {
+		lblMecanicos.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblMecanicos.setForeground(new Color(255, 255, 255));
+		lblMecanicos.setBackground(new Color(133, 133, 133));
+		lblMecanicos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				try {
@@ -169,21 +210,16 @@ public class HomeAdmin extends JFrame {
 				cardLayout.show(PanelCardPrinci, "Mecanicos");
 			}
 		});
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMecanicos.add(lblNewLabel_3, BorderLayout.CENTER);
+		lblMecanicos.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblMecanicos.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JPanel lblVehiculos = new JPanel();
-		lblVehiculos.setBackground(new Color(133, 133, 133));
-		lblVehiculos.setBounds(1, 211, 237, 71);
+		JLabel lblVehiculos = new JLabel("Vehículos");
+		lblVehiculos.setBounds(81, 213, 79, 71);
 		PanelOpciones.add(lblVehiculos);
-		lblVehiculos.setLayout(new BorderLayout(0, 0));
-		
-		JLabel lblNewLabel_4 = new JLabel("Vehiculos");
-		lblNewLabel_4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblNewLabel_4.setForeground(new Color(255, 255, 255));
-		lblNewLabel_4.setBackground(new Color(133, 133, 133));
-		lblNewLabel_4.addMouseListener(new MouseAdapter() {
+		lblVehiculos.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblVehiculos.setForeground(new Color(255, 255, 255));
+		lblVehiculos.setBackground(new Color(133, 133, 133));
+		lblVehiculos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				try {
@@ -196,70 +232,57 @@ public class HomeAdmin extends JFrame {
 				cardLayout.show(PanelCardPrinci, "Vehiculo");
 			}
 		});
-		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblVehiculos.add(lblNewLabel_4, BorderLayout.CENTER);
+		lblVehiculos.setHorizontalAlignment(SwingConstants.CENTER);
+		lblVehiculos.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
-		JPanel lblGestionEconomia = new JPanel();
-		lblGestionEconomia.setBackground(new Color(133, 133, 133));
-		lblGestionEconomia.setBounds(0, 303, 238, 71);
+		JLabel lblGestionEconomia = new JLabel("Gestión Economía");
+		lblGestionEconomia.setBounds(76, 303, 148, 71);
 		PanelOpciones.add(lblGestionEconomia);
-		lblGestionEconomia.setLayout(new BorderLayout(0, 0));
-		
-		JLabel lblNewLabel_5 = new JLabel("Modelo de gestion \r\neconomia del taller\r\n");
-		lblNewLabel_5.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblNewLabel_5.setForeground(new Color(255, 255, 255));
-		lblNewLabel_5.setBackground(new Color(133, 133, 133));
-		lblNewLabel_5.addMouseListener(new MouseAdapter() {
+		lblGestionEconomia.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblGestionEconomia.setForeground(new Color(255, 255, 255));
+		lblGestionEconomia.setBackground(new Color(133, 133, 133));
+		lblGestionEconomia.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				cardLayout.show(PanelCardPrinci, "GestionEconomia");
 			}
 		});
-		lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblGestionEconomia.add(lblNewLabel_5, BorderLayout.CENTER);
+		lblGestionEconomia.setHorizontalAlignment(SwingConstants.CENTER);
+		lblGestionEconomia.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
-		JPanel lblGestionFacturas = new JPanel();
-		lblGestionFacturas.setBackground(new Color(133, 133, 133));
-		lblGestionFacturas.setBounds(0, 395, 238, 71);
-		PanelOpciones.add(lblGestionFacturas);
-		lblGestionFacturas.setLayout(new BorderLayout(0, 0));
-		
-		JLabel lblNewLabel_6 = new JLabel("Gestionar Facturas");
-		lblNewLabel_6.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblNewLabel_6.setForeground(new Color(255, 255, 255));
-		lblNewLabel_6.setBackground(new Color(133, 133, 133));
-		lblNewLabel_6.addMouseListener(new MouseAdapter() {
+		JLabel lblFacturas = new JLabel("Facturas");
+		lblFacturas.setBounds(80, 393, 80, 71);
+		PanelOpciones.add(lblFacturas);
+		lblFacturas.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblFacturas.setForeground(new Color(255, 255, 255));
+		lblFacturas.setBackground(new Color(133, 133, 133));
+		lblFacturas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				cardLayout.show(PanelCardPrinci, "GetionFacturas");
 			}
 		});
-		lblNewLabel_6.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
-		lblGestionFacturas.add(lblNewLabel_6, BorderLayout.CENTER);
+		lblFacturas.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblFacturas.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JPanel lblGestionFacturas_1 = new JPanel();
-		lblGestionFacturas_1.setBackground(new Color(133, 133, 133));
-		lblGestionFacturas_1.setBounds(0, 488, 238, 71);
-		PanelOpciones.add(lblGestionFacturas_1);
-		lblGestionFacturas_1.setLayout(new BorderLayout(0, 0));
-		
-		JLabel lblNewLabel_7 = new JLabel("Modelo de gestion \r\nde informes");
-		lblNewLabel_7.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblNewLabel_7.setForeground(new Color(255, 255, 255));
-		lblNewLabel_7.setBackground(new Color(133, 133, 133));
-		lblNewLabel_7.addMouseListener(new MouseAdapter() {
+		JLabel lblInformes = new JLabel("Informes");
+		lblInformes.setBounds(80, 488, 80, 71);
+		PanelOpciones.add(lblInformes);
+		lblInformes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblInformes.setForeground(new Color(255, 255, 255));
+		lblInformes.setBackground(new Color(133, 133, 133));
+		lblInformes.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				cardLayout.show(PanelCardPrinci, "GestionInformes");
 			}
 		});
-		lblNewLabel_7.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblNewLabel_7.setHorizontalAlignment(SwingConstants.CENTER);
-		lblGestionFacturas_1.add(lblNewLabel_7, BorderLayout.CENTER);
-		setLogo(labelLogoPanel);
+		lblInformes.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblInformes.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		JLabel lblImgClientes = new JLabel("");
+		lblImgClientes.setBounds(24, 33, 46, 43);
+		PanelOpciones.add(lblImgClientes);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(133, 133, 133));
@@ -267,8 +290,8 @@ public class HomeAdmin extends JFrame {
 		panelTextoPricipal.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("<--");
-		lblNewLabel.addMouseListener(new MouseAdapter() {
+		JLabel lblImgFlechaVolver = new JLabel("");
+		lblImgFlechaVolver.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				
@@ -290,12 +313,12 @@ public class HomeAdmin extends JFrame {
                 }
 			}
 		});
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 40));
-		lblNewLabel.setBounds(0, 0, 72, 68);
-		panel.add(lblNewLabel);
+		lblImgFlechaVolver.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		lblImgFlechaVolver.setBounds(0, 0, 72, 68);
+		panel.add(lblImgFlechaVolver);
 		
 		JLabel lblLogoUser = new JLabel("");
-		lblLogoUser.setBounds(1024, 24, 122, 121);
+		lblLogoUser.setBounds(1028, 11, 111, 112);
 		panelTextoPricipal.add(lblLogoUser);
 		
 		PanelCardPrinci = new JPanel(cardLayout);
@@ -619,8 +642,13 @@ public class HomeAdmin extends JFrame {
 		PanelDashBoard.add(panel_1_1_1);
 		
 		dashBoard();
-		setLogo(labelLogoPanel);
-		setIcono(lblLogoUser);
+		setIcono(lblImgClientes, "cliente");
+		setIcono(lblImgFlechaVolver, "flecha_volver");
+		setIcono(lblImgInformes, "informe");
+		setIcono(lblLogoUser, "admin");
+
+
+
 	}
 	
 
@@ -629,29 +657,12 @@ public class HomeAdmin extends JFrame {
 		
 	}
 
-	private void setLogo(JLabel labelLogoPanel2) {
-	    try {
-	        // Cargar la imagen desde el paquete img
-	        ImageIcon iconoOriginal = new ImageIcon(getClass().getResource("/img/logo_Derrap.png"));
 
-	        // Escalar la imagen
-	        Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(labelLogoPanel.getWidth(), labelLogoPanel.getHeight(), Image.SCALE_SMOOTH);
-
-	        // Crear un nuevo ImageIcon con la imagen escalada
-	        ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
-
-	        // Establecer el icono en el JLabel
-	        labelLogoPanel.setIcon(iconoEscalado);
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        System.out.println("Error: La imagen no se pudo cargar o asignar al JLabel.");
-	    }
-	}
 	
-	private void setIcono(JLabel label) {
+	private void setIcono(JLabel label, String img) {
 	    try {
 	        // Cargar la imagen desde el paquete img
-	        ImageIcon iconoOriginal = new ImageIcon(getClass().getResource("/img/IconoAdminMecanico.png"));
+	        ImageIcon iconoOriginal = new ImageIcon(getClass().getResource("/img/"+img+".png"));
 
 	        // Escalar la imagen
 	        Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
@@ -666,6 +677,7 @@ public class HomeAdmin extends JFrame {
 	        System.out.println("Error: La imagen no se pudo cargar o asignar al JLabel.");
 	    }
 	}
+
 	
 	private void mostrarSelectOrginal(String consulta, JTable jtDatos,String cabezera[]) throws SQLException, ClassNotFoundException {
 	      try {
