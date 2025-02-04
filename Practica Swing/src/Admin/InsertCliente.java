@@ -204,15 +204,16 @@ public class InsertCliente extends JFrame {
 			lblPrincipal.setText("Update");
 			txtDNI.setText(frase);
 			txtDNI.setEnabled(false);
+			mostrarDatosCliente(frase);
 		}
 		else {
 			lblPrincipal.setText("Insert");
 		}
 		
-		mostrarDatosCleinte(frase);
+		
 	}
 	
-	private void mostrarDatosCleinte (String frase) {
+	private void mostrarDatosCliente (String frase) {
 		try {
 			con.conectar();
             selectTableSQL = "SELECT * FROM cliente WHERE dni = "+frase+";";

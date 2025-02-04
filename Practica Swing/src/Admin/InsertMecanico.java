@@ -85,11 +85,11 @@ public class InsertMecanico extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel = new JLabel("Mecánico");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 41));
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		panel.add(lblNewLabel, BorderLayout.CENTER);
+		JLabel lblPrincipal = new JLabel("Mecánico");
+		lblPrincipal.setFont(new Font("Tahoma", Font.PLAIN, 41));
+		lblPrincipal.setForeground(new Color(255, 255, 255));
+		lblPrincipal.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(lblPrincipal, BorderLayout.CENTER);
 		
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -203,6 +203,17 @@ public class InsertMecanico extends JFrame {
 		btnAñadir.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btnAñadir.setBounds(164, 402, 128, 42);
 		contentPane.add(btnAñadir);
+		
+
+		if(i==2) {
+			lblPrincipal.setText("Update");
+			txtDNI.setText(frase);
+			txtDNI.setEnabled(false);
+			mostrarDatosMecanico(frase);
+		}
+		else {
+			lblPrincipal.setText("Insert");
+		}
 	}
 
 	private void mostrarDatosMecanico (String frase) {

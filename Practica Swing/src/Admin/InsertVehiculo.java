@@ -239,11 +239,12 @@ if(i == 2) { // hace el update
             lblPrincipal.setText("Update");
             textDNI_Cliente.setText(frase);
             textDNI_Cliente.setEnabled(false);
+            mostrarDatosVehiculo(frase);
         } else {
             lblPrincipal.setText("Insert");
         }
         
-        mostrarDatosVehiculo(frase);
+        
      
     }
 	private void mostrarDatosVehiculo (String frase) {
