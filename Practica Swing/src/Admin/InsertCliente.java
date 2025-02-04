@@ -42,7 +42,7 @@ public class InsertCliente extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					InsertCliente frame = new InsertCliente("", 1);
+					InsertCliente frame = new InsertCliente("", 1, null);
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
@@ -57,7 +57,7 @@ public class InsertCliente extends JFrame {
 	 * @param frase 
 	 * @param i 
 	 */
-	public InsertCliente(String frase, int i) {
+	public InsertCliente(String frase, int i, HomeAdmin frame) {
 		
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -149,6 +149,7 @@ public class InsertCliente extends JFrame {
 						
 						if (funciona > 0) {
 			                 JOptionPane.showMessageDialog(null, "Datos insertados correctamente");
+			                 frame.TablaCliente();
 			                     dispose();		                    
 			            	}
 						} 
@@ -175,6 +176,7 @@ public class InsertCliente extends JFrame {
 						
 						if (funciona > 0) {
 			                 JOptionPane.showMessageDialog(null, "Cliente actualizado correctamente");
+			                 frame.TablaCliente();
 			                     dispose();
 			            	}
 						} 

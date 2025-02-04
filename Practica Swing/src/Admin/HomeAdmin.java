@@ -47,6 +47,8 @@ public class HomeAdmin extends JFrame {
 	private JTable tblCliente;
 	private JTable tblVehiculo;
 	private JTable tblStock;
+	
+	private static HomeAdmin frame;
 
 	/**
 	 * Launch the application.
@@ -55,7 +57,7 @@ public class HomeAdmin extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					HomeAdmin frame = new HomeAdmin(null);
+					frame = new HomeAdmin(null);
 			        
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -71,7 +73,7 @@ public class HomeAdmin extends JFrame {
 
 	public HomeAdmin(String admin) {
 		
-		
+		frame = this;
 		//pantallaCompleta(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1250, 800);
@@ -133,15 +135,10 @@ public class HomeAdmin extends JFrame {
 		lblNewLabel_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				try {
-					String [] cabezera= {"DNI","Nombre","Apellido","Telefono"};
-					mostrarSelect("Select * FROM Cliente", tblCliente,cabezera);
-				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 				cardLayout.show(PanelCardPrinci, "GestionClientes");
+					TablaCliente();		
 			}
+
 		});
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -160,15 +157,11 @@ public class HomeAdmin extends JFrame {
 		lblNewLabel_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				try {
-					String cabezera[]= {"N_Empleado","DNI","Nombre","Apellido","Telefono","Estado"};
-					mostrarSelect("Select * FROM Mecanico", tblMecanico,cabezera);
-				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				TablaMecanico();
+
 				cardLayout.show(PanelCardPrinci, "Mecanicos");
 			}
+
 		});
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
@@ -187,15 +180,11 @@ public class HomeAdmin extends JFrame {
 		lblNewLabel_4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				try {
-					String cabezera[]= {"Matricula","Marca","Modelo","Color","Fecha_Estrada","Fecha_Salida","Cliente_DNI","Codigo_Reparacion"};
-					mostrarSelect("Select * FROM Vehiculo", tblVehiculo,cabezera);
-				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				TablaVehiculo();
+
 				cardLayout.show(PanelCardPrinci, "Vehiculo");
 			}
+
 		});
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -214,16 +203,12 @@ public class HomeAdmin extends JFrame {
 		lblNewLabel_5.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				try {
-					String [] cabezera= {"Codiego_Repuesto","Precio","Cantidad","Proveedor_Codigo"};
-					mostrarSelect("Select * FROM repuesto", tblStock,cabezera);
-				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				TablaStock();
 				
 				cardLayout.show(PanelCardPrinci, "GestionEconomia");
 			}
+
+		
 		});
 		lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -332,7 +317,8 @@ public class HomeAdmin extends JFrame {
 		lblInsertarCliente.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				InsertCliente ic = new InsertCliente("  ",1);
+				
+				InsertCliente ic = new InsertCliente("  ", 1, frame);
 				ic.setVisible(true);
 				
 			}
@@ -363,7 +349,7 @@ public class HomeAdmin extends JFrame {
 	            if (frase != null && !frase.trim().isEmpty()) {
 	                // Abrir un nuevo JFrame con la frase ingresada
 	      
-					InsertCliente ic = new InsertCliente(frase,2);
+					InsertCliente ic = new InsertCliente(frase,2, frame);
 					ic.setVisible(true);
 					
 	            } else {
@@ -449,7 +435,7 @@ public class HomeAdmin extends JFrame {
 		lblInsertarMecanico.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				InsertMecanico frame = new InsertMecanico("  ", 1);
+				InsertMecanico im = new InsertMecanico("  ", 1,frame);
 				frame.setVisible(true);
 			}
 		});
@@ -523,7 +509,7 @@ public class HomeAdmin extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				
-				InsertVehiculo iv = new InsertVehiculo(" ",1);
+				InsertVehiculo iv = new InsertVehiculo(" ",1,frame);
 				iv.setVisible(true);
 				
 			}
@@ -548,7 +534,7 @@ public class HomeAdmin extends JFrame {
 				
 				  String frase = JOptionPane.showInputDialog(null, "Por favor, introduce una matricula:", "Entrada de texto", JOptionPane.QUESTION_MESSAGE);
 		            if (frase != null && !frase.trim().isEmpty()) {
-		            	InsertVehiculo iv = new InsertVehiculo(frase ,1);
+		            	InsertVehiculo iv = new InsertVehiculo(frase ,1,frame);
 						iv.setVisible(true);
 		            }
 		            else {
@@ -619,7 +605,7 @@ public class HomeAdmin extends JFrame {
 		                   int funciona= con.UpdateStock(dato1, FraseAux);
 		                   if (funciona > 0) {
 				                 JOptionPane.showMessageDialog(null, "Repuesto Updateado");
-				                    
+				                    TablaStock();
 				            	}
 		                   else {
 		                	   JOptionPane.showMessageDialog(null, "Error al Updatear el repuesto");
@@ -837,6 +823,56 @@ public class HomeAdmin extends JFrame {
 	        JOptionPane.showMessageDialog(null, "Error al ejecutar la consulta: " + e.getMessage());
 	    }
 	}
+	
+	public void TablaCliente() {
+		try {
+		String [] cabezera= {"DNI","Nombre","Apellido","Telefono"};
+		mostrarSelect("Select * FROM Cliente", tblCliente,cabezera);
+	} catch (ClassNotFoundException | SQLException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+		
+	}
+
+	public void TablaMecanico() {
+		try {
+			String cabezera[]= {"N_Empleado","DNI","Nombre","Apellido","Telefono","Estado"};
+			mostrarSelect("Select * FROM Mecanico", tblMecanico,cabezera);
+		} catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+	
+
+	public void TablaVehiculo() {
+		// TODO Auto-generated method stub
+		try {
+			String cabezera[]= {"Matricula","Marca","Modelo","Color","Fecha_Estrada","Fecha_Salida","Cliente_DNI","Codigo_Reparacion"};
+			mostrarSelect("Select * FROM Vehiculo", tblVehiculo,cabezera);
+		} catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+	
+	public void TablaStock() {
+		try {
+			String [] cabezera= {"Codiego_Repuesto","Precio","Cantidad","Proveedor_Codigo"};
+			mostrarSelect("Select * FROM repuesto", tblStock,cabezera);
+		} catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 }

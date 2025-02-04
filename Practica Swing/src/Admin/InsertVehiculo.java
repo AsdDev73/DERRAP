@@ -45,7 +45,7 @@ public class InsertVehiculo extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    InsertVehiculo frame = new InsertVehiculo("", 1);
+                    InsertVehiculo frame = new InsertVehiculo("", 1,null);
                     frame.setVisible(true);
                     frame.setLocationRelativeTo(null);
                 } catch (Exception e) {
@@ -58,7 +58,7 @@ public class InsertVehiculo extends JFrame {
     /**
      * Create the frame.
      */
-    public InsertVehiculo(String frase, int i) {
+    public InsertVehiculo(String frase, int i,HomeAdmin frame) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 478, 513);
         contentPane = new JPanel();
@@ -193,6 +193,7 @@ if(i == 1) { // 1 es para que haga el insert
             if (funciona > 0) {
                 JOptionPane.showMessageDialog(null, "Datos insertados correctamente");
                 dispose();
+                frame.TablaVehiculo();
             }
         } catch (SQLException e1) {
             e1.printStackTrace();
@@ -214,6 +215,7 @@ if(i == 2) { // hace el update
             if (funciona > 0) {
                 JOptionPane.showMessageDialog(null, "Vehiculo actualizado correctamente");
                 dispose();
+                frame.TablaVehiculo();
             }
         } catch (SQLException e1) {
             e1.printStackTrace();

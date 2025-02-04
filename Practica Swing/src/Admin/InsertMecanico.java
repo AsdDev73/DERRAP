@@ -46,7 +46,7 @@ public class InsertMecanico extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					InsertMecanico frame = new InsertMecanico("   ", 1);
+					InsertMecanico frame = new InsertMecanico("   ", 1, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -58,7 +58,7 @@ public class InsertMecanico extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public InsertMecanico(String frase, int i) {
+	public InsertMecanico(String frase, int i, HomeAdmin frame) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 491, 584);
 		contentPane = new JPanel();
@@ -150,7 +150,8 @@ public class InsertMecanico extends JFrame {
 						
 						if (funciona > 0) {
 			                 JOptionPane.showMessageDialog(null, "Datos insertados correctamente");
-			                     dispose();		                    
+			                     dispose();		
+			                     frame.TablaMecanico();
 			            	}
 						} 
 						catch (SQLException e1) {
@@ -168,7 +169,8 @@ public class InsertMecanico extends JFrame {
 					}
 				}
 				
-				if(i==2) {//hace el update
+				if(i==2) { 
+					
 					if (!DNI.isEmpty() && !Nombre.isEmpty() && !Apellido.isEmpty() && !Telefono.isEmpty()) {
 						try {
 							con.conectar();					
@@ -177,6 +179,7 @@ public class InsertMecanico extends JFrame {
 						if (funciona > 0) {
 			                 JOptionPane.showMessageDialog(null, "Mecánico actualizado correctamente");
 			                     dispose();
+			                     frame.TablaMecanico();
 			            	}
 						} 
 						catch (SQLException e1) {
