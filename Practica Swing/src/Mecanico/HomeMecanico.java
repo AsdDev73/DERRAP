@@ -171,6 +171,7 @@ public class HomeMecanico extends JFrame {
 		PanelOpciones.add(lblImgOrdenesDispo);
 		
 		JLabel lblMisOrdenes = new JLabel("Mis Ordenes");
+		lblMisOrdenes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblMisOrdenes.setForeground(new Color(255, 255, 255));
 		lblMisOrdenes.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblMisOrdenes.addMouseListener(new MouseAdapter() {
@@ -179,7 +180,7 @@ public class HomeMecanico extends JFrame {
 				cardLayout.show(PanelCardPrinci, "panelMisOrdenes");
 			}
 		});
-		lblMisOrdenes.setBounds(78, 176, 109, 14);
+		lblMisOrdenes.setBounds(78, 125, 118, 122);
 		PanelOpciones.add(lblMisOrdenes);
 		
 		JPanel panel = new JPanel();
@@ -270,7 +271,8 @@ public class HomeMecanico extends JFrame {
 		
 		
 		JLabel lblOrdenesDisponibles = new JLabel("Ordenes");
-		lblOrdenesDisponibles.setBounds(81, 48, 82, 14);
+		lblOrdenesDisponibles.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblOrdenesDisponibles.setBounds(81, 11, 127, 90);
 		PanelOpciones.add(lblOrdenesDisponibles);
 		lblOrdenesDisponibles.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblOrdenesDisponibles.setForeground(new Color(255, 255, 255));
@@ -288,6 +290,7 @@ public class HomeMecanico extends JFrame {
 		});
 		
 		lblFacturas = new JLabel("Facturas");
+		lblFacturas.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblFacturas.setForeground(new Color(255, 255, 255));
 		lblFacturas.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblFacturas.addMouseListener(new MouseAdapter() {
@@ -296,12 +299,13 @@ public class HomeMecanico extends JFrame {
 				cardLayout.show(PanelCardPrinci, "panelFacturas");
 			}
 		});
-		lblFacturas.setBounds(78, 488, 118, 14);
+		lblFacturas.setBounds(78, 431, 118, 130);
 		PanelOpciones.add(lblFacturas);
 
 
 
 		JLabel lblStock = new JLabel("Stock");
+		lblStock.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblStock.setForeground(new Color(255, 255, 255));
 		lblStock.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblStock.addMouseListener(new MouseAdapter() {
@@ -311,21 +315,8 @@ public class HomeMecanico extends JFrame {
 				cardLayout.show(PanelCardPrinci, "panelConsultarStock");
 			}
 		});
-		lblStock.setBounds(78, 328, 46, 14);
+		lblStock.setBounds(78, 271, 118, 122);
 		PanelOpciones.add(lblStock);
-		
-		
-		 lblMisOrdenes = new JLabel("Mis Ordenes");
-		lblMisOrdenes.setForeground(new Color(255, 255, 255));
-		lblMisOrdenes.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblMisOrdenes.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				cardLayout.show(PanelCardPrinci, "panelModificarEstadoOrden");
-			}
-		});
-		lblMisOrdenes.setBounds(78, 176, 109, 14);
-		PanelOpciones.add(lblMisOrdenes);
 		
 		setIcono(lblImgOrdenesDispo, "OrdenesReparacion");
 		setIcono(lblImgMisOrdenes, "MisOrdenes");
