@@ -53,6 +53,7 @@ public class HomeMecanico extends JFrame {
 	
 	private ConexionMySQL con = new ConexionMySQL();
 	private Statement stm = null;
+	private JTable tblOrdenes;
 	
 	/**
 	 * Launch the application.
@@ -175,7 +176,7 @@ public class HomeMecanico extends JFrame {
 		lblMisOrdenes.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				cardLayout.show(PanelCardPrinci, "panelModificarEstadoOrden");
+				cardLayout.show(PanelCardPrinci, "panelMisOrdenes");
 			}
 		});
 		lblMisOrdenes.setBounds(78, 176, 109, 14);
@@ -229,50 +230,7 @@ public class HomeMecanico extends JFrame {
 		PanelCardPrinci.add(panelPricipal, "panelPricipal");
 		panelPricipal.setLayout(null);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(134, 78, 776, 403);
-		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_1.setBackground(new Color(192, 192, 192));
-		panel_1.setForeground(new Color(255, 255, 255));
-		panelPricipal.add(panel_1);
-		panel_1.setLayout(null);
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_2.setBounds(10, 5, 756, 46);
-		panel_1.add(panel_2);
-		panel_2.setLayout(null);
-		
-		JLabel lblNewLabel_1 = new JLabel("Reparaciones pendientes a asignacion");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel_1.setBounds(10, 11, 401, 24);
-		panel_2.add(lblNewLabel_1);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 62, 756, 330);
-		panel_1.add(scrollPane);
-		
-		JPanel panel_3 = new JPanel();
-		scrollPane.setViewportView(panel_3);
-		panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_3.setLayout(null);
-		
-		JLabel lblNewLabel_2 = new JLabel("Cambio de aceite");
-		lblNewLabel_2.setBounds(10, 24, 399, 14);
-		panel_3.add(lblNewLabel_2);
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		
-		JLabel lblNewLabel_2_1 = new JLabel("Cambio de Rueda");
-		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel_2_1.setBounds(10, 55, 399, 14);
-		panel_3.add(lblNewLabel_2_1);
-		
-		JLabel lblNewLabel_2_2 = new JLabel("Revision anual");
-		lblNewLabel_2_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel_2_2.setBounds(10, 80, 399, 14);
-		panel_3.add(lblNewLabel_2_2);
-		
-	
+
 		
 		JPanel panelConsultarStock = new JPanel();
 		panelConsultarStock.setBackground(new Color(192, 192, 192));
@@ -286,14 +244,29 @@ public class HomeMecanico extends JFrame {
 		tblStock = new JTable();
 		scrollPaneStock.setViewportView(tblStock);
 		
-		JPanel panelModificarEstadoOrden = new JPanel();
-		PanelCardPrinci.add(panelModificarEstadoOrden, "panelModificarEstadoOrden");
+		JPanel panelMisOrdenes = new JPanel();
+		PanelCardPrinci.add(panelMisOrdenes, "panelMisOrdenes");
 		
-		JPanel panelSolicitarPiezas = new JPanel();
-		PanelCardPrinci.add(panelSolicitarPiezas, "panelSolicitarPiezas");
+		JLabel lblNewLabel_2 = new JLabel("mis ordenes");
+		panelMisOrdenes.add(lblNewLabel_2);
 		
-		JPanel panelModificarOrdenVehiculo = new JPanel();
-		PanelCardPrinci.add(panelModificarOrdenVehiculo, "panelModificarOrdenVehiculo");
+		JPanel panelOrdenes = new JPanel();
+		panelOrdenes.setBackground(new Color(192, 192, 192));
+		PanelCardPrinci.add(panelOrdenes, "panelOrdenes");
+		panelOrdenes.setLayout(null);
+		
+		JScrollPane scrollPaneOrdenes = new JScrollPane();
+		scrollPaneOrdenes.setBounds(10, 11, 876, 550);
+		panelOrdenes.add(scrollPaneOrdenes);
+		
+		tblOrdenes = new JTable();
+		scrollPaneOrdenes.setViewportView(tblOrdenes);
+		
+		JPanel panelFacturas = new JPanel();
+		PanelCardPrinci.add(panelFacturas, "panelFacturas");
+		
+		JLabel lblNewLabel_1 = new JLabel("facturas");
+		panelFacturas.add(lblNewLabel_1);
 		
 		
 		JLabel lblOrdenesDisponibles = new JLabel("Ordenes");
@@ -309,7 +282,8 @@ public class HomeMecanico extends JFrame {
 		lblOrdenesDisponibles.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				cardLayout.show(PanelCardPrinci, "panelModificarOrdenVehiculo");
+				UpdateTablaOrdenes();
+				cardLayout.show(PanelCardPrinci, "panelOrdenes");
 			}
 		});
 		
@@ -319,7 +293,7 @@ public class HomeMecanico extends JFrame {
 		lblFacturas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				cardLayout.show(PanelCardPrinci, "panelSolicitarPiezas");
+				cardLayout.show(PanelCardPrinci, "panelFacturas");
 			}
 		});
 		lblFacturas.setBounds(78, 488, 118, 14);
@@ -442,8 +416,17 @@ public class HomeMecanico extends JFrame {
 	
 	public void UpdateTablaStock() {
 		try {
-			String [] cabezera= {"Codiego_Repuesto","Precio","Cantidad","Proveedor_Codigo"};
+			String [] cabezera= {"Codigo_Repuesto","Precio","Cantidad","Proveedor_Codigo"};
 			mostrarSelect("Select * FROM repuesto", tblStock,cabezera);
+		} catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+	public void UpdateTablaOrdenes() {
+		try {
+			String [] cabezera= {"Codido_Reparacion","Mano_de_obra","Tiempo","Estado","Nº_Empleado", "Id_Factura","Cº_Repuesto", "Matrícula"};
+			mostrarSelect("Select * FROM reparacion WHERE Mecanico_No_Empleado IS null", tblOrdenes,cabezera);
 		} catch (ClassNotFoundException | SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
