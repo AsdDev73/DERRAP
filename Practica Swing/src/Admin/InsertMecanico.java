@@ -68,16 +68,18 @@ public class InsertMecanico extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("<--");
-		lblNewLabel_1.addMouseListener(new MouseAdapter() {
+		JLabel lblImgVolver = new JLabel("<--");
+		lblImgVolver.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				dispose();
 			}
 		});
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblNewLabel_1.setBounds(10, 11, 59, 34);
-		contentPane.add(lblNewLabel_1);
+		lblImgVolver.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		lblImgVolver.setBounds(10, 11, 59, 34);
+		contentPane.add(lblImgVolver);
+		
+		frame.setIcono(lblImgVolver, "flecha_volver");
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(130, 130, 130));
@@ -151,7 +153,7 @@ public class InsertMecanico extends JFrame {
 						if (funciona > 0) {
 			                 JOptionPane.showMessageDialog(null, "Datos insertados correctamente");
 			                     dispose();		
-			                     frame.TablaMecanico();
+			                     frame.UpdateTablaMecanico();
 			            	}
 						} 
 						catch (SQLException e1) {
@@ -179,7 +181,7 @@ public class InsertMecanico extends JFrame {
 						if (funciona > 0) {
 			                 JOptionPane.showMessageDialog(null, "Mecánico actualizado correctamente");
 			                     dispose();
-			                     frame.TablaMecanico();
+			                     frame.UpdateTablaMecanico();
 			            	}
 						} 
 						catch (SQLException e1) {
@@ -245,6 +247,8 @@ public class InsertMecanico extends JFrame {
 			e.printStackTrace();
 		}
 	}
+	
+		
 
 	private void limpiarCampos() {
 		txtDNI.setText("");

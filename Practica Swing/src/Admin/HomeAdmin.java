@@ -173,7 +173,7 @@ public class HomeAdmin extends JFrame {
 		PanelOpciones.add(separator_4);
 		
 		JLabel lblClientes = new JLabel("Clientes");
-		lblClientes.setBounds(76, 11, 71, 82);
+		lblClientes.setBounds(76, 11, 152, 82);
 		PanelOpciones.add(lblClientes);
 		lblClientes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblClientes.setForeground(new Color(255, 255, 255));
@@ -186,11 +186,11 @@ public class HomeAdmin extends JFrame {
 			}
 
 		});
-		lblClientes.setHorizontalAlignment(SwingConstants.CENTER);
+		lblClientes.setHorizontalAlignment(SwingConstants.LEFT);
 		lblClientes.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
 		JLabel lblMecanicos = new JLabel("Mecanicos\r\n");
-		lblMecanicos.setBounds(80, 118, 80, 71);
+		lblMecanicos.setBounds(80, 118, 148, 71);
 		PanelOpciones.add(lblMecanicos);
 		lblMecanicos.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblMecanicos.setForeground(new Color(255, 255, 255));
@@ -205,10 +205,10 @@ public class HomeAdmin extends JFrame {
 
 		});
 		lblMecanicos.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblMecanicos.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMecanicos.setHorizontalAlignment(SwingConstants.LEFT);
 		
 		JLabel lblVehiculos = new JLabel("Vehículos");
-		lblVehiculos.setBounds(81, 213, 79, 71);
+		lblVehiculos.setBounds(81, 213, 147, 71);
 		PanelOpciones.add(lblVehiculos);
 		lblVehiculos.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblVehiculos.setForeground(new Color(255, 255, 255));
@@ -222,11 +222,11 @@ public class HomeAdmin extends JFrame {
 			}
 
 		});
-		lblVehiculos.setHorizontalAlignment(SwingConstants.CENTER);
+		lblVehiculos.setHorizontalAlignment(SwingConstants.LEFT);
 		lblVehiculos.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
 		JLabel lblStock = new JLabel("Stock");
-		lblStock.setBounds(76, 303, 148, 71);
+		lblStock.setBounds(80, 307, 148, 67);
 		PanelOpciones.add(lblStock);
 		lblStock.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblStock.setForeground(new Color(255, 255, 255));
@@ -241,11 +241,11 @@ public class HomeAdmin extends JFrame {
 
 		
 		});
-		lblStock.setHorizontalAlignment(SwingConstants.CENTER);
+		lblStock.setHorizontalAlignment(SwingConstants.LEFT);
 		lblStock.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
 		JLabel lblFacturas = new JLabel("Facturas");
-		lblFacturas.setBounds(80, 393, 80, 71);
+		lblFacturas.setBounds(80, 393, 148, 71);
 		PanelOpciones.add(lblFacturas);
 		lblFacturas.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblFacturas.setForeground(new Color(255, 255, 255));
@@ -257,10 +257,10 @@ public class HomeAdmin extends JFrame {
 			}
 		});
 		lblFacturas.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblFacturas.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFacturas.setHorizontalAlignment(SwingConstants.LEFT);
 		
 		JLabel lblInformes = new JLabel("Informes");
-		lblInformes.setBounds(80, 488, 80, 71);
+		lblInformes.setBounds(80, 488, 148, 71);
 		PanelOpciones.add(lblInformes);
 		lblInformes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblInformes.setForeground(new Color(255, 255, 255));
@@ -272,7 +272,7 @@ public class HomeAdmin extends JFrame {
 			}
 		});
 		lblInformes.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblInformes.setHorizontalAlignment(SwingConstants.CENTER);
+		lblInformes.setHorizontalAlignment(SwingConstants.LEFT);
 		
 		JLabel lblImgClientes = new JLabel("");
 		lblImgClientes.setBounds(24, 33, 46, 43);
@@ -743,7 +743,7 @@ public class HomeAdmin extends JFrame {
 
 
 	
-	private void setIcono(JLabel label, String img) {
+	public void setIcono(JLabel label, String img) {
 	    try {
 	        // Cargar la imagen desde el paquete img
 	        ImageIcon iconoOriginal = new ImageIcon(getClass().getResource("/img/"+img+".png"));

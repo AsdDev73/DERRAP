@@ -193,7 +193,7 @@ if(i == 1) { // 1 es para que haga el insert
             if (funciona > 0) {
                 JOptionPane.showMessageDialog(null, "Datos insertados correctamente");
                 dispose();
-                frame.TablaVehiculo();
+                frame.UpdateTablaVehiculo();
             }
         } catch (SQLException e1) {
             e1.printStackTrace();
@@ -215,7 +215,7 @@ if(i == 2) { // hace el update
             if (funciona > 0) {
                 JOptionPane.showMessageDialog(null, "Vehiculo actualizado correctamente");
                 dispose();
-                frame.TablaVehiculo();
+                frame.UpdateTablaVehiculo();
             }
         } catch (SQLException e1) {
             e1.printStackTrace();

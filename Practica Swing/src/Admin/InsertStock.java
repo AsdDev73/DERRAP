@@ -7,13 +7,20 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.BorderLayout;
 import javax.swing.border.LineBorder;
+
+import Inicio.ConexionMySQL;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class InsertStock extends JFrame {
 
@@ -23,6 +30,9 @@ public class InsertStock extends JFrame {
 	private JTextField txtPrecio;
 	private JTextField txtCantidad;
 	private JTextField txtCodigoProveedor;
+	
+	private ConexionMySQL con = new ConexionMySQL();
+	private Statement stm = null;
 
 	/**
 	 * Launch the application.
@@ -125,15 +135,48 @@ public class InsertStock extends JFrame {
 		lblInsertar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				String codigo= txtCodigoRespuesto.getText();
+				String precio= txtPrecio.getText();
+				String cantidad= txtCantidad.getText();
+				String preveedor= txtCodigoProveedor.getText();
+				
+				if (!codigo.isEmpty() && !precio.isEmpty() && !cantidad.isEmpty() && !preveedor.isEmpty()) {
+					try {
+						con.conectar();					
+					int funciona=con.insertStock(codigo, precio, cantidad, preveedor);
+					
+					if (funciona > 0) {
+		                 JOptionPane.showMessageDialog(null, "Datos insertados correctamente");
+		                 frame.UpdateTablaCliente();
+		                     dispose();		                    
+		            	}
+					} 
+					catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						
+					} catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					limpiarCampos();
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Error al insertar los datos, revise si hay algun campo vacio");
+					
+				}
 				
 				frame.UpdateTablaStock();
 				dispose();
+				limpiarCampos();
 			}
 		});
 		lblInsertar.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblInsertar.setForeground(new Color(255, 255, 255));
 		lblInsertar.setHorizontalAlignment(SwingConstants.CENTER);
 		PanelInsertar.add(lblInsertar, BorderLayout.CENTER);
+		
+		frame.setIcono(lblImgVolver, "flecha_volver");
 	}
 	
 	private void limpiarCampos(){

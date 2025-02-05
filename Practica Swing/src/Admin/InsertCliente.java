@@ -75,16 +75,17 @@ public class InsertCliente extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("<--");
-		lblNewLabel.addMouseListener(new MouseAdapter() {
+		JLabel lblImgVolver = new JLabel("<--");
+		lblImgVolver.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				dispose();
 			}
 		});
-		lblNewLabel.setBounds(0, 0, 41, 35);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		panel.add(lblNewLabel);
+		lblImgVolver.setBounds(0, 0, 41, 35);
+		lblImgVolver.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		panel.add(lblImgVolver);
+		frame.setIcono(lblImgVolver, "flecha_volver");
 		
 		JLabel lblPrincipal = new JLabel("New label");
 		lblPrincipal.setForeground(new Color(255, 255, 255));
@@ -149,7 +150,7 @@ public class InsertCliente extends JFrame {
 						
 						if (funciona > 0) {
 			                 JOptionPane.showMessageDialog(null, "Datos insertados correctamente");
-			                 frame.TablaCliente();
+			                 frame.UpdateTablaCliente();
 			                     dispose();		                    
 			            	}
 						} 
@@ -176,7 +177,7 @@ public class InsertCliente extends JFrame {
 						
 						if (funciona > 0) {
 			                 JOptionPane.showMessageDialog(null, "Cliente actualizado correctamente");
-			                 frame.TablaCliente();
+			                 frame.UpdateTablaCliente();
 			                     dispose();
 			            	}
 						} 

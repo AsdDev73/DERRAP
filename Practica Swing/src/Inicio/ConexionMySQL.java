@@ -202,7 +202,7 @@ public int UpdateStock(String Id, String precio) throws SQLException{
     return update;
  }
 
-public int InsertStock(String Codigo, String Precio, String Cantidad, String Proveedor) throws SQLException {
+public int insertStock(String Codigo, String Precio, String Cantidad, String Proveedor) throws SQLException {
 	
 	String consulta = "	INSERT INTO repuesto (Codigo_Repuesto, Precio, Cantidad, Proveedor_codigo) VALUES (?, ?, ?, ?);";
     PreparedStatement pstmt = con.prepareStatement(consulta);
