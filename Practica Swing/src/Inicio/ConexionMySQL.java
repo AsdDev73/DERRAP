@@ -63,7 +63,7 @@ public class ConexionMySQL {
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     String storedPassword = rs.getString("Contraseña");
-                    if (storedPassword.equalsIgnoreCase(contra)) {
+                    if (storedPassword.equals(contra)) {
                         rol = rs.getInt("Rol"); 
                     } else {
                         rol = 4; // Contraseña incorrecta
@@ -74,8 +74,22 @@ public class ConexionMySQL {
             }
         }
         return rol;
-    }
-
+	    }
+	//metodo para obtener el nombre del usuario
+	public String getNombre(String usuario2) throws SQLException {
+		String nombre="";
+		
+		String consulta="SELECT usuario from Usuarios WHERE ID_Usuario = ?" ;
+		 PreparedStatement pstmt = con.prepareStatement(consulta);
+		 pstmt.setString(1, usuario2);
+		 try (ResultSet rs = pstmt.executeQuery()) {
+		 if(rs.next()) {
+			 nombre=rs.getString("Usuario");
+		 }
+		 }
+		
+		return nombre;
+}
     
     //metodo para insertar clientes
     public int insetarClientes(String dni,String nombre, String apellido, String telefono) throws SQLException {
@@ -214,6 +228,7 @@ public int insertStock(String Codigo, String Precio, String Cantidad, String Pro
     return update;
     
 }
+
 
 
 

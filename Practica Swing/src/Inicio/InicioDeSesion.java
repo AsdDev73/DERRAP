@@ -228,23 +228,25 @@ public class InicioDeSesion extends JFrame {
 		//recojemos las variables 
 		String usuario = txtUser.getText();
 		String contra = new String(txtContra.getPassword());
+		
 		try {
 			//cpnectamos con la basede datos 
 			con.conectar();
 			//Controlamos que rol tiene y ejecutamos diferentes pestañas
 		int ControlVentana=	con.logIn(usuario, contra);
+		String NombreUser = con.getNombre(usuario);
 		
 		switch(ControlVentana) {
 		
 		case 1: //Ventana Admin
 			
-			HomeAdmin homeAdmin = new HomeAdmin(txtUser.getText());
+			HomeAdmin homeAdmin = new HomeAdmin(NombreUser);
 			homeAdmin.setVisible(true);
 			dispose();
 			break;
 			
 		case 2: //Ventana mecanico 
-			HomeMecanico homeMecanico = new HomeMecanico(txtUser.getText());
+			HomeMecanico homeMecanico = new HomeMecanico(NombreUser);
 			homeMecanico.setVisible(true);
 			dispose();
 			break;
