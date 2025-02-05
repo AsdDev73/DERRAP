@@ -123,10 +123,10 @@ public class HomeMecanico extends JFrame {
 		btbBuscarMatricula.setBounds(72, 100, 89, 23);
 		panelTextoPricipal.add(btbBuscarMatricula);
 		
-		JLabel lblUsuario = new JLabel("Mecánico\r\n");
+		JLabel lblUsuario = new JLabel(user);
 		lblUsuario.setForeground(new Color(255, 255, 255));
 		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblUsuario.setBounds(1080, 107, 132, 39);
+		lblUsuario.setBounds(1080, 107, 96, 39);
 		panelTextoPricipal.add(lblUsuario);
 		
 		JPanel PanelOpciones = new JPanel();

@@ -182,7 +182,7 @@ public class HomeAdmin extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				cardLayout.show(PanelCardPrinci, "GestionClientes");
-					TablaCliente();		
+				UpdateTablaCliente();		
 			}
 
 		});
@@ -198,7 +198,7 @@ public class HomeAdmin extends JFrame {
 		lblMecanicos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				TablaMecanico();
+				UpdateTablaMecanico();
 
 				cardLayout.show(PanelCardPrinci, "Mecanicos");
 			}
@@ -216,7 +216,7 @@ public class HomeAdmin extends JFrame {
 		lblVehiculos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				TablaVehiculo();
+				UpdateTablaVehiculo();
 
 				cardLayout.show(PanelCardPrinci, "Vehiculo");
 			}
@@ -234,7 +234,7 @@ public class HomeAdmin extends JFrame {
 		lblStock.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				TablaStock();
+				UpdateTablaStock();
 				
 				cardLayout.show(PanelCardPrinci, "GestionEconomia");
 			}
@@ -596,6 +596,13 @@ public class HomeAdmin extends JFrame {
 		PnlInserStock.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblInsertarStock = new JLabel("Insertar");
+		lblInsertarStock.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				InsertStock is = new InsertStock(frame);
+				is.setVisible(true);
+			}
+		});
 		lblInsertarStock.setForeground(new Color(255, 255, 255));
 		lblInsertarStock.setBackground(new Color(133, 133, 133));
 		lblInsertarStock.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -618,7 +625,7 @@ public class HomeAdmin extends JFrame {
 				//update de precio en un respuesto 
 				int fila = tblStock.getSelectedRow(); // Obtiene el índice de la fila seleccionada
 				if(fila != -1) {	
-					 String dato1 = String.valueOf(tblStock.getValueAt(fila, 0));
+				String dato1 = String.valueOf(tblStock.getValueAt(fila, 0));
 				 String frase = JOptionPane.showInputDialog(null, "Por favor, introduce el nuevo precio: ", "Entrada de texto", JOptionPane.QUESTION_MESSAGE);
 		            if (frase != null && !frase.trim().isEmpty()) {
 		            	try {
@@ -628,13 +635,13 @@ public class HomeAdmin extends JFrame {
 		                   int funciona= con.UpdateStock(dato1, FraseAux);
 		                   if (funciona > 0) {
 				                 JOptionPane.showMessageDialog(null, "Repuesto Updateado");
-				                    TablaStock();
+				                 UpdateTablaStock();
 				            	}
 		                   else {
 		                	   JOptionPane.showMessageDialog(null, "Error al Updatear el repuesto");
 		                   }
 		                } catch (NumberFormatException exx) {
-		                    // Si ocurre una excepción, significa que no es un número
+		                    //significa que no es un número
 		                	JOptionPane.showMessageDialog(null, "Tienen que ser numeros ");
 		                } catch (ClassNotFoundException e1) {
 							// TODO Auto-generated catch block
@@ -838,7 +845,7 @@ public class HomeAdmin extends JFrame {
 	    }
 	}
 	
-	public void TablaCliente() {
+	public void UpdateTablaCliente() {
 		try {
 		String [] cabezera= {"DNI","Nombre","Apellido","Telefono"};
 		mostrarSelect("Select * FROM Cliente", tblCliente,cabezera);
@@ -849,7 +856,7 @@ public class HomeAdmin extends JFrame {
 		
 	}
 
-	public void TablaMecanico() {
+	public void UpdateTablaMecanico() {
 		try {
 			String cabezera[]= {"N_Empleado","DNI","Nombre","Apellido","Telefono","Estado"};
 			mostrarSelect("Select * FROM Mecanico", tblMecanico,cabezera);
@@ -860,7 +867,7 @@ public class HomeAdmin extends JFrame {
 	}
 	
 
-	public void TablaVehiculo() {
+	public void UpdateTablaVehiculo() {
 		// TODO Auto-generated method stub
 		try {
 			String cabezera[]= {"Matricula","Marca","Modelo","Color","Fecha_Estrada","Fecha_Salida","Cliente_DNI","Codigo_Reparacion"};
@@ -871,7 +878,7 @@ public class HomeAdmin extends JFrame {
 		}
 	}
 	
-	public void TablaStock() {
+	public void UpdateTablaStock() {
 		try {
 			String [] cabezera= {"Codiego_Repuesto","Precio","Cantidad","Proveedor_Codigo"};
 			mostrarSelect("Select * FROM repuesto", tblStock,cabezera);
