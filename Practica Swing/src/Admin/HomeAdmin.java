@@ -235,7 +235,6 @@ public class HomeAdmin extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				UpdateTablaStock();
-				
 				cardLayout.show(PanelCardPrinci, "GestionEconomia");
 			}
 
@@ -259,20 +258,20 @@ public class HomeAdmin extends JFrame {
 		lblFacturas.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblFacturas.setHorizontalAlignment(SwingConstants.LEFT);
 		
-		JLabel lblInformes = new JLabel("Informes");
-		lblInformes.setBounds(80, 488, 148, 71);
-		PanelOpciones.add(lblInformes);
-		lblInformes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblInformes.setForeground(new Color(255, 255, 255));
-		lblInformes.setBackground(new Color(133, 133, 133));
-		lblInformes.addMouseListener(new MouseAdapter() {
+		JLabel lblOrdenes = new JLabel("Ordenes");
+		lblOrdenes.setBounds(80, 488, 148, 71);
+		PanelOpciones.add(lblOrdenes);
+		lblOrdenes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblOrdenes.setForeground(new Color(255, 255, 255));
+		lblOrdenes.setBackground(new Color(133, 133, 133));
+		lblOrdenes.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				cardLayout.show(PanelCardPrinci, "GestionInformes");
 			}
 		});
-		lblInformes.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblInformes.setHorizontalAlignment(SwingConstants.LEFT);
+		lblOrdenes.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblOrdenes.setHorizontalAlignment(SwingConstants.LEFT);
 		
 		JLabel lblImgClientes = new JLabel("");
 		lblImgClientes.setBounds(24, 33, 46, 43);
@@ -365,19 +364,18 @@ public class HomeAdmin extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				
-				 // Mostrar JOptionPane para ingresar una frase
+				int fila = tblStock.getSelectedRow();
+				String DNICliente = String.valueOf(tblStock.getValueAt(fila, 0));
+				if(fila != -1) {
+					
+					InsertCliente ic = new InsertCliente(DNICliente,2, frame);
+					ic.setVisible(true);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Selecciona un cliente de la tabla", "Advertencia", JOptionPane.WARNING_MESSAGE);
+				}
 	            String frase = JOptionPane.showInputDialog(null, "Por favor, introduce el DNI:", "Entrada de texto", JOptionPane.QUESTION_MESSAGE);
 	            
-	            // Verificar si el usuario ingresó algo
-	            if (frase != null && !frase.trim().isEmpty()) {
-	                // Abrir un nuevo JFrame con la frase ingresada
-	      
-					InsertCliente ic = new InsertCliente(frase,2, frame);
-					ic.setVisible(true);
-					
-	            } else {
-	                JOptionPane.showMessageDialog(null, "No ingresaste ningun DNI.", "Advertencia", JOptionPane.WARNING_MESSAGE);
-	            }
 				
 			}
 		});
@@ -669,9 +667,9 @@ public class HomeAdmin extends JFrame {
 		PanelGestionFacturas.setBackground(new Color(192, 192, 192));
 		PanelCardPrinci.add(PanelGestionFacturas, "GetionFacturas");
 		
-		JPanel PanelGestionInformes = new JPanel();
-		PanelGestionInformes.setBackground(new Color(192, 192, 192));
-		PanelCardPrinci.add(PanelGestionInformes, "GestionInformes");
+		JPanel PanelGestionOrdenes = new JPanel();
+		PanelGestionOrdenes.setBackground(new Color(192, 192, 192));
+		PanelCardPrinci.add(PanelGestionOrdenes, "GestionOrdenes");
 		
 		cardLayout= (CardLayout) PanelCardPrinci.getLayout();
 		
@@ -730,17 +728,14 @@ public class HomeAdmin extends JFrame {
 		setIcono(lblImgFlechaVolver, "flecha_volver");
 		setIcono(lblImgInformes, "informe");
 		setIcono(lblLogoUser, "admin");
-
-
-
+		
+		//final del main
 	}
-	
 
 	private void dashBoard() {
 		cardLayout.show(PanelCardPrinci, "PanelDashBoard");
 		
 	}
-
 
 	
 	public void setIcono(JLabel label, String img) {
