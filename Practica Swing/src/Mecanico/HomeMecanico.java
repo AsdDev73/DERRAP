@@ -28,6 +28,7 @@ import javax.swing.JOptionPane;
 import javax.swing.AbstractListModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -55,6 +56,9 @@ public class HomeMecanico extends JFrame {
 	private Statement stm = null;
 	private JTable tblOrdenes;
 	
+	HomeMecanico frame;
+	String dniMecanico;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -62,7 +66,7 @@ public class HomeMecanico extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					HomeMecanico frame = new HomeMecanico(null);
+					HomeMecanico frame = new HomeMecanico(null,null);
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
@@ -75,8 +79,11 @@ public class HomeMecanico extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public HomeMecanico(String user) {
-
+	public HomeMecanico(String user,String dni) {
+		frame=this;
+		dniMecanico=dni;
+		
+		
 		//pantallaCompleta(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1250, 800);
@@ -257,11 +264,38 @@ public class HomeMecanico extends JFrame {
 		panelOrdenes.setLayout(null);
 		
 		JScrollPane scrollPaneOrdenes = new JScrollPane();
-		scrollPaneOrdenes.setBounds(10, 11, 876, 550);
+		scrollPaneOrdenes.setBounds(10, 11, 771, 550);
 		panelOrdenes.add(scrollPaneOrdenes);
 		
 		tblOrdenes = new JTable();
 		scrollPaneOrdenes.setViewportView(tblOrdenes);
+		
+		JPanel panelAsignar = new JPanel();
+		panelAsignar.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		panelAsignar.setBackground(new Color(128, 128, 128));
+		panelAsignar.setBounds(833, 153, 147, 69);
+		panelOrdenes.add(panelAsignar);
+		panelAsignar.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblAsignar = new JLabel("Asignar");
+		lblAsignar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				try {
+					asignarOrden(frame.dniMecanico);
+				} catch (ArrayIndexOutOfBoundsException e2) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "Selecciona una orden de la tabla", "Advertencia", JOptionPane.WARNING_MESSAGE);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		lblAsignar.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAsignar.setForeground(new Color(255, 255, 255));
+		panelAsignar.add(lblAsignar);
+		lblAsignar.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JPanel panelFacturas = new JPanel();
 		PanelCardPrinci.add(panelFacturas, "panelFacturas");
@@ -422,5 +456,19 @@ public class HomeMecanico extends JFrame {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+	}
+	
+	private void asignarOrden(String dni) throws SQLException {
+        int filaSeleccionada = tblOrdenes.getSelectedRow();
+        String codigoReparacion = tblOrdenes.getValueAt(filaSeleccionada, 0).toString();
+		if(filaSeleccionada!=-1) {
+	        String sentenciaUpdate = "UPDATE reparacion SET Mecanico_No_Empleado = "+dni+" WHERE codigo_reparacion = "+codigoReparacion+";";
+	        con.update(sentenciaUpdate);
+	        JOptionPane.showMessageDialog(null, "Orden asignada correctamente");
+	        UpdateTablaOrdenes();
+		}else {
+			JOptionPane.showMessageDialog(null, "Selecciona una orden de la tabla", "Advertencia", JOptionPane.WARNING_MESSAGE);
+		}
+
 	}
 }

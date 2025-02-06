@@ -224,7 +224,7 @@ public class InsertMecanico extends JFrame {
 	private void mostrarDatosMecanico (String frase) {
 		try {
 			con.conectar();
-            select = "SELECT * FROM Mecanico WHERE N_Empleado = "+frase+";";
+            select = "SELECT * FROM Mecanico WHERE N_Empleado = '"+frase+"';";
 			ResultSet rs = con.ejecutarSelect(select);
 			while(rs.next()) {
             String DNI = rs.getString("DNI");

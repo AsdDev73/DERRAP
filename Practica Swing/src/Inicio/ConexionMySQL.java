@@ -75,6 +75,12 @@ public class ConexionMySQL {
         }
         return rol;
 	    }
+    // Metodo updatear
+    public void update(String consulta) throws SQLException {
+        PreparedStatement pstmt = con.prepareStatement(consulta);
+        pstmt.executeUpdate();
+    }
+    
 	//metodo para obtener el nombre del usuario
 	public String getNombre(String usuario2) throws SQLException {
 		String nombre="";

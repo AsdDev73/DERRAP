@@ -246,7 +246,7 @@ public class InicioDeSesion extends JFrame {
 			break;
 			
 		case 2: //Ventana mecanico 
-			HomeMecanico homeMecanico = new HomeMecanico(NombreUser);
+			HomeMecanico homeMecanico = new HomeMecanico(NombreUser,usuario);
 			homeMecanico.setVisible(true);
 			dispose();
 			break;
@@ -276,5 +276,8 @@ public class InicioDeSesion extends JFrame {
 		 txtContra.setText("");
 		 txtUser.setForeground(Color.gray);
 	}
+	
+
+	
 	
 }
