@@ -48,6 +48,7 @@ public class HomeAdmin extends JFrame {
 	private JTable tblStock;
 	
 	private static HomeAdmin frame;
+	private JTable tblOrdenes;
 
 	/**
 	 * Launch the application.
@@ -267,8 +268,11 @@ public class HomeAdmin extends JFrame {
 		lblOrdenes.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				cardLayout.show(PanelCardPrinci, "GestionInformes");
+				cardLayout.show(PanelCardPrinci, "GestionOrdenes");
+				UpdateTablaOrdenes();
 			}
+
+			
 		});
 		lblOrdenes.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblOrdenes.setHorizontalAlignment(SwingConstants.LEFT);
@@ -672,6 +676,54 @@ public class HomeAdmin extends JFrame {
 		JPanel PanelGestionOrdenes = new JPanel();
 		PanelGestionOrdenes.setBackground(new Color(192, 192, 192));
 		PanelCardPrinci.add(PanelGestionOrdenes, "GestionOrdenes");
+		PanelGestionOrdenes.setLayout(null);
+		
+		JScrollPane scrollPaneOrdenes = new JScrollPane();
+		scrollPaneOrdenes.setBounds(10, 11, 819, 546);
+		PanelGestionOrdenes.add(scrollPaneOrdenes);
+		
+		tblOrdenes = new JTable();
+		scrollPaneOrdenes.setViewportView(tblOrdenes);
+		
+		
+		
+		JPanel panelInsertar = new JPanel();
+		panelInsertar.setBackground(new Color(133, 133, 133));
+		panelInsertar.setBounds(839, 110, 148, 68);
+		PanelGestionOrdenes.add(panelInsertar);
+		panelInsertar.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblInsertarOrdenes = new JLabel("Insertar");
+		lblInsertarOrdenes.setForeground(new Color(255, 255, 255));
+		lblInsertarOrdenes.setBackground(new Color(133, 133, 133));
+		lblInsertarOrdenes.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblInsertarOrdenes.setHorizontalAlignment(SwingConstants.CENTER);
+		panelInsertar.add(lblInsertarOrdenes, BorderLayout.CENTER);
+		
+		JPanel panelUpdate = new JPanel();
+		panelUpdate.setBackground(new Color(133, 133, 133));
+		panelUpdate.setBounds(839, 234, 148, 68);
+		PanelGestionOrdenes.add(panelUpdate);
+		panelUpdate.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblUpdateOrdenes = new JLabel("Update");
+		lblUpdateOrdenes.setForeground(new Color(255, 255, 255));
+		lblUpdateOrdenes.setBackground(new Color(133, 133, 133));
+		lblUpdateOrdenes.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblUpdateOrdenes.setHorizontalAlignment(SwingConstants.CENTER);
+		panelUpdate.add(lblUpdateOrdenes, BorderLayout.CENTER);
+		
+		JPanel panelEliminar = new JPanel();
+		panelEliminar.setBackground(new Color(133, 133, 133));
+		panelEliminar.setBounds(839, 357, 148, 68);
+		PanelGestionOrdenes.add(panelEliminar);
+		panelEliminar.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblEliminarOrdenes = new JLabel("Eliminar");
+		lblEliminarOrdenes.setForeground(new Color(255, 255, 255));
+		lblEliminarOrdenes.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblEliminarOrdenes.setHorizontalAlignment(SwingConstants.CENTER);
+		panelEliminar.add(lblEliminarOrdenes, BorderLayout.CENTER);
 		
 		cardLayout= (CardLayout) PanelCardPrinci.getLayout();
 		
@@ -885,12 +937,15 @@ public class HomeAdmin extends JFrame {
 		}
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+	private void UpdateTablaOrdenes() {
+		try {
+            String [] cabezera= {"Codigo reparacion","Mano de Obra","Tiempo","Estado","Nº Mecanico","Id de la factura","Codigo repuesto","Matricula Vehiculo","Fecha"};
+            mostrarSelect("Select * FROM Ordenes", tblOrdenes,cabezera);
+        } catch (ClassNotFoundException | SQLException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+		
+		}
+
 }
+	}
