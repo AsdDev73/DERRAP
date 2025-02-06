@@ -342,6 +342,7 @@ public class HomeAdmin extends JFrame {
 				
 				InsertCliente ic = new InsertCliente("  ", 1, frame);
 				ic.setVisible(true);
+				ic.setLocationRelativeTo(null);
 				
 			}
 		});
@@ -369,6 +370,7 @@ public class HomeAdmin extends JFrame {
 					if(fila != -1) {
 						InsertCliente ic = new InsertCliente(DNICliente,2, frame);
 						ic.setVisible(true);
+						ic.setLocationRelativeTo(null);
 					}
 					else {
 						JOptionPane.showMessageDialog(null, "Selecciona un cliente de la tabla", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -377,7 +379,6 @@ public class HomeAdmin extends JFrame {
 				catch(ArrayIndexOutOfBoundsException ex) {
 					JOptionPane.showMessageDialog(null, "Selecciona un cliente de la tabla", "Advertencia", JOptionPane.WARNING_MESSAGE);
 				}
-					
 			
 			}
 		});
@@ -460,6 +461,7 @@ public class HomeAdmin extends JFrame {
 			public void mousePressed(MouseEvent e) {
 				InsertMecanico im = new InsertMecanico("  ", 1,frame);
 				im.setVisible(true);
+				im.setLocationRelativeTo(null);
 			}
 		});
 		lblInsertarMecanico.setHorizontalAlignment(SwingConstants.CENTER);
@@ -484,6 +486,7 @@ public class HomeAdmin extends JFrame {
 		            	
 						DeleteMecanico dc = new DeleteMecanico(frase);
 						dc.setVisible(true);
+						dc.setLocationRelativeTo(null);
 		            }
 		            else {
 		            	JOptionPane.showMessageDialog(null, "No has ,etido ningun ID");
@@ -501,6 +504,29 @@ public class HomeAdmin extends JFrame {
 		panelUpdateMecanico.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblUpdate_1 = new JLabel("Update\r\n");
+		lblUpdate_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				try {
+					int fila = tblMecanico.getSelectedRow();
+					String DNIMecanico = String.valueOf(tblMecanico.getValueAt(fila, 0));
+					if(fila != -1) {
+						InsertMecanico im = new InsertMecanico(DNIMecanico, 1,frame);
+						im.setVisible(true);
+						im.setLocationRelativeTo(null);
+					}
+						
+					else {
+						JOptionPane.showMessageDialog(null, "Selecciona un mecanico de la tabla", "Advertencia", JOptionPane.WARNING_MESSAGE);
+					}
+						
+				}catch(ArrayIndexOutOfBoundsException ex) {
+					JOptionPane.showMessageDialog(null, "Selecciona un mecanico de la tabla", "Advertencia", JOptionPane.WARNING_MESSAGE);
+				}
+				
+			}
+		});
 		lblUpdate_1.setForeground(new Color(255, 255, 255));
 		panelUpdateMecanico.add(lblUpdate_1, BorderLayout.CENTER);
 		lblUpdate_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -534,6 +560,7 @@ public class HomeAdmin extends JFrame {
 				
 				InsertVehiculo iv = new InsertVehiculo(" ",1,frame);
 				iv.setVisible(true);
+				iv.setLocationRelativeTo(null);
 				
 			}
 		});
@@ -554,15 +581,22 @@ public class HomeAdmin extends JFrame {
 		lblUpdateVehiculo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
-				  String frase = JOptionPane.showInputDialog(null, "Por favor, introduce una matricula:", "Entrada de texto", JOptionPane.QUESTION_MESSAGE);
-		            if (frase != null && !frase.trim().isEmpty()) {
-		            	InsertVehiculo iv = new InsertVehiculo(frase ,1,frame);
+				try {
+					int fila = tblMecanico.getSelectedRow();
+					String Matricula = String.valueOf(tblMecanico.getValueAt(fila, 0));
+					if(fila != -1) {
+						InsertVehiculo iv = new InsertVehiculo(Matricula ,1,frame);
 						iv.setVisible(true);
-		            }
-		            else {
-		            	JOptionPane.showMessageDialog(null, "No has ,etido ninguna matricula");
-		            }
+						iv.setLocationRelativeTo(null);
+					}
+						
+					else {
+						JOptionPane.showMessageDialog(null, "Selecciona un vehiculo de la tabla", "Advertencia", JOptionPane.WARNING_MESSAGE);
+					}
+						
+				}catch(ArrayIndexOutOfBoundsException ex) {
+					JOptionPane.showMessageDialog(null, "Selecciona un vehiculo de la tabla", "Advertencia", JOptionPane.WARNING_MESSAGE);
+				}
 			}
 		});
 		lblUpdateVehiculo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -601,6 +635,7 @@ public class HomeAdmin extends JFrame {
 			public void mousePressed(MouseEvent e) {
 				InsertStock is = new InsertStock(frame);
 				is.setVisible(true);
+				is.setLocationRelativeTo(null);
 			}
 		});
 		lblInsertarStock.setForeground(new Color(255, 255, 255));
@@ -759,54 +794,6 @@ public class HomeAdmin extends JFrame {
 	    }
 	}
 
-	
-	private void mostrarSelectOrginal(String consulta, JTable jtDatos,String cabezera[]) throws SQLException, ClassNotFoundException {
-	      try {
-	    	  con.conectar();	
-	        ResultSet rs = con.ejecutarSelect(consulta);
-	        DefaultTableModel modelo = new DefaultTableModel();
-	        
-	        //	 modelo.setColumnIdentifiers(cabezera);
-	        
-	       
-	        // Obtener los metadatos para obtener el nombre y el numero de consultas
-	        int columnCount = rs.getMetaData().getColumnCount();
-	        
-	        // Agregar columnas al modelo de la tabla
-	        for (int i = 1; i <= columnCount; i++) {
-	            modelo.addColumn(rs.getMetaData().getColumnName(i));
-	        }
-
-	        // Agregar filas al modelo de la tabla
-	        while (rs.next()) {
-	            Object[] fila = new Object[columnCount];
-	            for (int i = 0; i < columnCount; i++) {
-	                fila[i] = rs.getObject(i + 1);
-	            }
-	            modelo.addRow(fila);
-	        }
-
-	        // Establecer el modelo en la tabla y cambiar de panel
-	       
-	        jtDatos.setModel(modelo);
-	       
-	    } catch (SQLException e) {
-	        JOptionPane.showMessageDialog(this, "Error al ejecutar la consulta: " + e.getMessage());
-	    }
-	      
-	    }
-	private void pantallaCompleta(HomeAdmin frame) {
-		// Obtener el tamaño de la pantalla
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        GraphicsDevice gs = ge.getDefaultScreenDevice();
-
-        // Hacer la ventana de pantalla completa
-        frame.setUndecorated(true); // Elimina los bordes y la barra de título
-        gs.setFullScreenWindow(frame);
-
-        // Asegurarse de que la ventana se cierre correctamente
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
 	private void mostrarSelect(String consulta, JTable jtDatos, String cabezera[]) throws SQLException, ClassNotFoundException {
 	    try {
 	        con.conectar();	
@@ -834,7 +821,6 @@ public class HomeAdmin extends JFrame {
 	            modelo.addRow(fila);
 	        }
 	      
-
 	        // Establecer el modelo en la tabla
 	        jtDatos.setModel(modelo);
 	    } catch (SQLException e) {
