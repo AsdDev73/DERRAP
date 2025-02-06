@@ -219,7 +219,7 @@ public class InsertCliente extends JFrame {
 	private void mostrarDatosCliente (String frase) {
 		try {
 			con.conectar();
-            selectTableSQL = "SELECT * FROM cliente WHERE dni = "+frase+";";
+            selectTableSQL = "SELECT * FROM cliente WHERE dni = '"+frase+"';";
 			ResultSet rs = con.ejecutarSelect(selectTableSQL);
 			while(rs.next()) {
             String nombre = rs.getString("Nombre");

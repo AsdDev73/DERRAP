@@ -363,20 +363,22 @@ public class HomeAdmin extends JFrame {
 		lblUpdate.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
-				int fila = tblStock.getSelectedRow();
-				String DNICliente = String.valueOf(tblStock.getValueAt(fila, 0));
-				if(fila != -1) {
-					
-					InsertCliente ic = new InsertCliente(DNICliente,2, frame);
-					ic.setVisible(true);
+				try {
+					int fila = tblCliente.getSelectedRow();
+					String DNICliente = String.valueOf(tblCliente.getValueAt(fila, 0));
+					if(fila != -1) {
+						InsertCliente ic = new InsertCliente(DNICliente,2, frame);
+						ic.setVisible(true);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Selecciona un cliente de la tabla", "Advertencia", JOptionPane.WARNING_MESSAGE);
+					}
 				}
-				else {
+				catch(ArrayIndexOutOfBoundsException ex) {
 					JOptionPane.showMessageDialog(null, "Selecciona un cliente de la tabla", "Advertencia", JOptionPane.WARNING_MESSAGE);
 				}
-	            String frase = JOptionPane.showInputDialog(null, "Por favor, introduce el DNI:", "Entrada de texto", JOptionPane.QUESTION_MESSAGE);
-	            
-				
+					
+			
 			}
 		});
 		lblUpdate.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
