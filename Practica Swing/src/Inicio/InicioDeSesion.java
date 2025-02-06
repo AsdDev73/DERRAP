@@ -10,6 +10,7 @@ import Admin.HomeAdmin;
 import Mecanico.HomeMecanico;
 
 import java.awt.Color;
+import java.awt.Cursor;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -61,7 +62,7 @@ public class InicioDeSesion extends JFrame {
 		});
 	}
 
-	/**
+	  /**
 	 * Create the frame.
 	 */
 	public InicioDeSesion() {
@@ -69,7 +70,6 @@ public class InicioDeSesion extends JFrame {
 		setBounds(100, 100, 297, 447);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
@@ -80,6 +80,17 @@ public class InicioDeSesion extends JFrame {
 		panel.setLayout(null);
 		
 		JButton btnLogIn = new JButton("Iniciar Sesion");
+		btnLogIn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnLogIn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnLogIn.setBackground(new Color(133, 133, 133));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnLogIn.setBackground(new Color(0, 0, 0));
+			}
+		});
 		btnLogIn.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -101,6 +112,17 @@ public class InicioDeSesion extends JFrame {
 		panel.add(btnLogIn);
 		
 		JButton btnSalir = new JButton("Cancelar");
+		btnSalir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnSalir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnSalir.setBackground(new Color(133, 133, 133));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnSalir.setBackground(new Color(0, 0, 0));
+			}
+		});
 		btnSalir.setForeground(new Color(255, 255, 255));
 		btnSalir.setBackground(new Color(0, 0, 0));
 		btnSalir.addActionListener(new ActionListener() {

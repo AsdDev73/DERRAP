@@ -48,6 +48,7 @@ public class HomeAdmin extends JFrame {
 	private JTable tblStock;
 	
 	private static HomeAdmin frame;
+	private JTable tblFactura;
 
 	/**
 	 * Launch the application.
@@ -77,7 +78,7 @@ public class HomeAdmin extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1250, 800);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(255, 255, 255));
+		contentPane.setBackground(new Color(192, 192, 192));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -268,6 +269,7 @@ public class HomeAdmin extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				cardLayout.show(PanelCardPrinci, "GestionInformes");
+				UpdateTablaFactura();
 			}
 		});
 		lblOrdenes.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -315,6 +317,7 @@ public class HomeAdmin extends JFrame {
 		panelTextoPricipal.add(lblLogoUser);
 		
 		PanelCardPrinci = new JPanel(cardLayout);
+		PanelCardPrinci.setBackground(new Color(192, 192, 192));
 		PanelCardPrinci.setBounds(237, 193, 997, 568);
 		contentPane.add(PanelCardPrinci);
 		PanelCardPrinci.setLayout(new CardLayout(0, 0));
@@ -703,6 +706,33 @@ public class HomeAdmin extends JFrame {
 		JPanel PanelGestionFacturas = new JPanel();
 		PanelGestionFacturas.setBackground(new Color(192, 192, 192));
 		PanelCardPrinci.add(PanelGestionFacturas, "GetionFacturas");
+		PanelGestionFacturas.setLayout(null);
+		
+		JScrollPane scrollPane_3 = new JScrollPane();
+		scrollPane_3.setBounds(24, 11, 730, 524);
+		PanelGestionFacturas.add(scrollPane_3);
+		
+		tblFactura = new JTable();
+		scrollPane_3.setViewportView(tblFactura);
+		
+		JPanel PanelObtenerFactura = new JPanel();
+		PanelObtenerFactura.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		PanelObtenerFactura.setBackground(new Color(133, 133, 133));
+		PanelObtenerFactura.setBounds(789, 52, 178, 73);
+		PanelGestionFacturas.add(PanelObtenerFactura);
+		PanelObtenerFactura.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblObtenerFactura = new JLabel("Obterner Factura");
+		lblObtenerFactura.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblObtenerFactura.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		lblObtenerFactura.setHorizontalAlignment(SwingConstants.CENTER);
+		lblObtenerFactura.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblObtenerFactura.setForeground(new Color(255, 255, 255));
+		PanelObtenerFactura.add(lblObtenerFactura, BorderLayout.CENTER);
 		
 		JPanel PanelGestionOrdenes = new JPanel();
 		PanelGestionOrdenes.setBackground(new Color(192, 192, 192));
@@ -869,14 +899,23 @@ public class HomeAdmin extends JFrame {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
 	}
 	
-	
-	
-	
-	
-	
-	
-	
+	public void UpdateTablaFactura(){
+		String consulta = "SELECT f.ID_Factura, f.IVA, f.Precio_sin_IVA, f.Precio_Total, " +
+                "v.Matricula, c.DNI, c.Nombre " +
+                "FROM factura f " +
+                "JOIN Ordenes o ON f.ID_Factura = o.Factura_ID_Factura " +
+                "JOIN vehiculo v ON o.vehiculo_Matricula = v.Matricula " +
+                "JOIN cliente c ON v.Cliente_DNI = c.DNI";
+			
+			String[] cabecera = {"ID Factura", "IVA", "Precio sin IVA", "Precio Total", "Matrícula", "DNI Cliente", "Nombre Cliente"};
+			
+			try {
+			  mostrarSelect(consulta, tblFactura, cabecera);
+			} catch (SQLException | ClassNotFoundException e) {
+			  e.printStackTrace();
+		}
+
+	}
 }
