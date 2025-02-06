@@ -48,11 +48,8 @@ public class HomeAdmin extends JFrame {
 	private JTable tblStock;
 	
 	private static HomeAdmin frame;
-<<<<<<< HEAD
 	private JTable tblFactura;
-=======
 	private JTable tblOrdenes;
->>>>>>> fd4a0f87028c2f09ab1ef41b94ad5ee030f9cd44
 
 	/**
 	 * Launch the application.
@@ -272,13 +269,12 @@ public class HomeAdmin extends JFrame {
 		lblOrdenes.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-<<<<<<< HEAD
+
 				cardLayout.show(PanelCardPrinci, "GestionInformes");
 				UpdateTablaFactura();
-=======
 				cardLayout.show(PanelCardPrinci, "GestionOrdenes");
 				UpdateTablaOrdenes();
->>>>>>> fd4a0f87028c2f09ab1ef41b94ad5ee030f9cd44
+
 			}
 
 			
@@ -959,7 +955,7 @@ public class HomeAdmin extends JFrame {
 			e1.printStackTrace();
 		}
 	}
-<<<<<<< HEAD
+
 	
 	public void UpdateTablaFactura(){
 		String consulta = "SELECT f.ID_Factura, f.IVA, f.Precio_sin_IVA, f.Precio_Total, " +
@@ -978,7 +974,7 @@ public class HomeAdmin extends JFrame {
 		}
 
 	}
-=======
+
 	private void UpdateTablaOrdenes() {
 		try {
             String [] cabezera= {"Codigo reparacion","Mano de Obra","Tiempo","Estado","Nº Mecanico","Id de la factura","Codigo repuesto","Matricula Vehiculo","Fecha"};
@@ -989,6 +985,6 @@ public class HomeAdmin extends JFrame {
 		
 		}
 
->>>>>>> fd4a0f87028c2f09ab1ef41b94ad5ee030f9cd44
+
 }
 	}
