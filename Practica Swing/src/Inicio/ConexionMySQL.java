@@ -93,7 +93,6 @@ public class ConexionMySQL {
 			 nombre=rs.getString("Usuario");
 		 }
 		 }
-		
 		return nombre;
 }
     

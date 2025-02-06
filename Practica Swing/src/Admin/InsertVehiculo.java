@@ -252,7 +252,7 @@ if(i == 2) { // hace el update
 	private void mostrarDatosVehiculo (String frase) {
 		try {
 			con.conectar();
-            select = "SELECT * FROM Vehiculo WHERE matricula = "+frase+";";
+            select = "SELECT * FROM Vehiculo WHERE matricula = '"+frase+"';";
 			ResultSet rs = con.ejecutarSelect(select);
 			while(rs.next()) {
             String Matricula = rs.getString("Matricula");
