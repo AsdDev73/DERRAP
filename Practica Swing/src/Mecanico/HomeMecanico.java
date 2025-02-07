@@ -58,6 +58,7 @@ public class HomeMecanico extends JFrame {
 	
 	HomeMecanico frame;
 	String dniMecanico;
+	private JTable tblMisOrdenes;
 	
 	/**
 	 * Launch the application.
@@ -177,18 +178,7 @@ public class HomeMecanico extends JFrame {
 		lblImgOrdenesDispo.setBounds(25, 37, 46, 38);
 		PanelOpciones.add(lblImgOrdenesDispo);
 		
-		JLabel lblMisOrdenes = new JLabel("Mis Ordenes");
-		lblMisOrdenes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblMisOrdenes.setForeground(new Color(255, 255, 255));
-		lblMisOrdenes.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblMisOrdenes.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				cardLayout.show(PanelCardPrinci, "panelMisOrdenes");
-			}
-		});
-		lblMisOrdenes.setBounds(78, 125, 118, 122);
-		PanelOpciones.add(lblMisOrdenes);
+
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
@@ -250,13 +240,25 @@ public class HomeMecanico extends JFrame {
 		panelConsultarStock.add(scrollPaneStock);
 		
 		tblStock = new JTable();
+		tblStock.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+			}
+		));
 		scrollPaneStock.setViewportView(tblStock);
 		
 		JPanel panelMisOrdenes = new JPanel();
+		panelMisOrdenes.setBackground(new Color(192, 192, 192));
 		PanelCardPrinci.add(panelMisOrdenes, "panelMisOrdenes");
+		panelMisOrdenes.setLayout(null);
 		
-		JLabel lblNewLabel_2 = new JLabel("mis ordenes");
-		panelMisOrdenes.add(lblNewLabel_2);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 11, 810, 431);
+		panelMisOrdenes.add(scrollPane);
+		
+		tblMisOrdenes = new JTable();
+		scrollPane.setViewportView(tblMisOrdenes);
 		
 		JPanel panelOrdenes = new JPanel();
 		panelOrdenes.setBackground(new Color(192, 192, 192));
@@ -268,6 +270,12 @@ public class HomeMecanico extends JFrame {
 		panelOrdenes.add(scrollPaneOrdenes);
 		
 		tblOrdenes = new JTable();
+		tblOrdenes.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+			}
+		));
 		scrollPaneOrdenes.setViewportView(tblOrdenes);
 		
 		JPanel panelAsignar = new JPanel();
@@ -369,6 +377,20 @@ public class HomeMecanico extends JFrame {
 		setIcono(lblImgFacturas, "Factura");
 		setIcono(lblImgFlecha_Volver, "flecha_volver");
 
+		JLabel lblMisOrdenes = new JLabel("Mis Ordenes");
+		lblMisOrdenes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblMisOrdenes.setForeground(new Color(255, 255, 255));
+		lblMisOrdenes.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblMisOrdenes.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				UpdateTablaMisOrdenes(dni);
+				cardLayout.show(PanelCardPrinci, "panelMisOrdenes");
+			}
+		});
+		lblMisOrdenes.setBounds(78, 125, 118, 122);
+		PanelOpciones.add(lblMisOrdenes);
+		
 	}
 
 
@@ -406,7 +428,7 @@ public class HomeMecanico extends JFrame {
 	
 	private void mostrarSelect(String consulta, JTable jtDatos, String cabezera[]) throws SQLException, ClassNotFoundException {
 	    try {
-	        con.conectar();	
+	        con.conectar();
 	        ResultSet rs = con.ejecutarSelect(consulta);
 	        DefaultTableModel modelo = new DefaultTableModel(cabezera, 0);
 
@@ -430,15 +452,14 @@ public class HomeMecanico extends JFrame {
 	            }
 	            modelo.addRow(fila);
 	        }
-	      
-
+	        
 	        // Establecer el modelo en la tabla
 	        jtDatos.setModel(modelo);
 	    } catch (SQLException e) {
 	        JOptionPane.showMessageDialog(null, "Error al ejecutar la consulta: " + e.getMessage());
 	    }
 	}
-	
+
 	public void UpdateTablaStock() {
 		try {
 			String [] cabezera= {"Codigo_Repuesto","Precio","Cantidad","Proveedor_Codigo"};
@@ -450,8 +471,17 @@ public class HomeMecanico extends JFrame {
 	}
 	public void UpdateTablaOrdenes() {
 		try {
-			String [] cabezera= {"Codido_Reparacion","Mano_de_obra","Tiempo","Estado","Nº_Empleado", "Id_Factura","Cº_Repuesto", "Matrícula"};
-			mostrarSelect("Select * FROM reparacion WHERE Mecanico_No_Empleado IS null", tblOrdenes,cabezera);
+			String [] cabezera= {"Codido_Reparacion","Mano_de_obra","Tiempo","Matricula","Fecha"};
+			mostrarSelect("Select Codigo_Reparacion, Mano_de_Obra, tiempo, vehiculo_Matricula, fecha FROM ordenes WHERE Mecanico_No_Empleado IS null AND Estado = 'Pendiente'", tblOrdenes,cabezera);
+		} catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+	public void UpdateTablaMisOrdenes(String dni) {
+		try {
+			String [] cabezera= {"Codido_Reparacion","Mano_de_obra","Tiempo","Estado","Nº_Empleado", "Id_Factura","Cº_Repuesto", "Matrícula","Fecha"};
+			mostrarSelect("Select * FROM ordenes WHERE Mecanico_No_Empleado = "+dni+" AND Estado = 'Pendiente'", tblMisOrdenes,cabezera);
 		} catch (ClassNotFoundException | SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -462,7 +492,7 @@ public class HomeMecanico extends JFrame {
         int filaSeleccionada = tblOrdenes.getSelectedRow();
         String codigoReparacion = tblOrdenes.getValueAt(filaSeleccionada, 0).toString();
 		if(filaSeleccionada!=-1) {
-	        String sentenciaUpdate = "UPDATE reparacion SET Mecanico_No_Empleado = "+dni+" WHERE codigo_reparacion = "+codigoReparacion+";";
+	        String sentenciaUpdate = "UPDATE ordenes SET Mecanico_No_Empleado = "+dni+" WHERE codigo_reparacion = "+codigoReparacion+";";
 	        con.update(sentenciaUpdate);
 	        JOptionPane.showMessageDialog(null, "Orden asignada correctamente");
 	        UpdateTablaOrdenes();
