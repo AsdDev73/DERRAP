@@ -235,9 +235,27 @@ public int insertStock(String Codigo, String Precio, String Cantidad, String Pro
 }
 
 
+public int insertOrdenes(String Codigo_Reparacion, String Mano_de_obra, String tiempo, String Estado, String Mecanico_No_Empleado, String Factura_ID_Factura, String Repuesto_Codigo_Repuesto, String vehiculo_Matricula ) throws SQLException {
+    
+    String consulta = "	INSERT INTO Ordenes (Codigo_Reparacion, Mano_de_obra, tiempo, Estado, Mecanico_No_Empleado, Factura_ID_Factura, Repuesto_Codigo_Repuesto, vehiculo_Matricula) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+    PreparedStatement pstmt = con.prepareStatement(consulta);
+    pstmt.setString(1, Codigo_Reparacion);
+    pstmt.setString(2, Mano_de_obra);
+    pstmt.setString(3, tiempo);
+    pstmt.setString(4, "Pendiente");
+    pstmt.setString(5, Mecanico_No_Empleado);
+    pstmt.setString(6, Factura_ID_Factura);
+    pstmt.setString(7, Repuesto_Codigo_Repuesto);
+    pstmt.setString(8, vehiculo_Matricula);
+     int update = pstmt.executeUpdate();
+    return update;
+    
+    
+}
+    
+}
 
-
-    }
+    
 
     
 
