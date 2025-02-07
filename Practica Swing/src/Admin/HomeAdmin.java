@@ -335,7 +335,7 @@ public class HomeAdmin extends JFrame {
 		
 		JPanel panelDiseño1Cliente = new JPanel();
 		panelDiseño1Cliente.setBackground(new Color(133, 133, 133));
-		panelDiseño1Cliente.setBounds(813, 36, 162, 86);
+		panelDiseño1Cliente.setBounds(813, 91, 162, 86);
 		PanelClientes.add(panelDiseño1Cliente);
 		panelDiseño1Cliente.setLayout(new BorderLayout(0, 0));
 		
@@ -361,7 +361,7 @@ public class HomeAdmin extends JFrame {
 		JPanel panelDiseño2Cliente = new JPanel();
 		panelDiseño2Cliente.setBackground(new Color(133, 133, 133));
 		panelDiseño2Cliente.setForeground(new Color(255, 255, 255));
-		panelDiseño2Cliente.setBounds(813, 174, 162, 86);
+		panelDiseño2Cliente.setBounds(813, 228, 162, 86);
 		PanelClientes.add(panelDiseño2Cliente);
 		panelDiseño2Cliente.setLayout(new BorderLayout(0, 0));
 		
@@ -458,7 +458,7 @@ public class HomeAdmin extends JFrame {
 		JPanel panelInsertarMecanico = new JPanel();
 		panelInsertarMecanico.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		panelInsertarMecanico.setBackground(new Color(133, 133, 133));
-		panelInsertarMecanico.setBounds(803, 25, 165, 73);
+		panelInsertarMecanico.setBounds(813, 91, 162, 86);
 		PanelMecanico.add(panelInsertarMecanico);
 		panelInsertarMecanico.setLayout(new BorderLayout(0, 0));
 		
@@ -479,7 +479,7 @@ public class HomeAdmin extends JFrame {
 		JPanel panelDeleteMecanico = new JPanel();
 		panelDeleteMecanico.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		panelDeleteMecanico.setBackground(new Color(133, 133, 133));
-		panelDeleteMecanico.setBounds(803, 174, 165, 73);
+		panelDeleteMecanico.setBounds(813, 365, 162, 86);
 		PanelMecanico.add(panelDeleteMecanico);
 		panelDeleteMecanico.setLayout(new BorderLayout(0, 0));
 		
@@ -508,7 +508,7 @@ public class HomeAdmin extends JFrame {
 		JPanel panelUpdateMecanico = new JPanel();
 		panelUpdateMecanico.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		panelUpdateMecanico.setBackground(new Color(133, 133, 133));
-		panelUpdateMecanico.setBounds(803, 316, 165, 73);
+		panelUpdateMecanico.setBounds(813, 228, 162, 86);
 		PanelMecanico.add(panelUpdateMecanico);
 		panelUpdateMecanico.setLayout(new BorderLayout(0, 0));
 		
@@ -542,7 +542,7 @@ public class HomeAdmin extends JFrame {
 		lblUpdate_1.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(10, 11, 783, 546);
+		scrollPane_1.setBounds(10, 11, 775, 546);
 		PanelMecanico.add(scrollPane_1);
 		
 		tblMecanico = new JTable();
@@ -556,7 +556,7 @@ public class HomeAdmin extends JFrame {
 		JPanel panelInsertarVehiculo = new JPanel();
 		panelInsertarVehiculo.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		panelInsertarVehiculo.setBackground(new Color(133, 133, 133));
-		panelInsertarVehiculo.setBounds(786, 34, 175, 85);
+		panelInsertarVehiculo.setBounds(813, 91, 162, 86);
 		PanelVehiculo.add(panelInsertarVehiculo);
 		panelInsertarVehiculo.setLayout(new BorderLayout(0, 0));
 		
@@ -580,7 +580,7 @@ public class HomeAdmin extends JFrame {
 		JPanel panelUpdateVehiculo = new JPanel();
 		panelUpdateVehiculo.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		panelUpdateVehiculo.setBackground(new Color(133, 133, 133));
-		panelUpdateVehiculo.setBounds(786, 221, 175, 85);
+		panelUpdateVehiculo.setBounds(813, 228, 162, 86);
 		PanelVehiculo.add(panelUpdateVehiculo);
 		panelUpdateVehiculo.setLayout(new BorderLayout(0, 0));
 		
@@ -612,7 +612,7 @@ public class HomeAdmin extends JFrame {
 		lblUpdateVehiculo.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		
 		JScrollPane scrollPane_2 = new JScrollPane();
-		scrollPane_2.setBounds(10, 11, 766, 546);
+		scrollPane_2.setBounds(10, 11, 775, 546);
 		PanelVehiculo.add(scrollPane_2);
 		
 		tblVehiculo = new JTable();
@@ -624,7 +624,7 @@ public class HomeAdmin extends JFrame {
 		PanelStock.setLayout(null);
 		
 		JScrollPane scrollPaneStock = new JScrollPane();
-		scrollPaneStock.setBounds(10, 11, 700, 534);
+		scrollPaneStock.setBounds(10, 11, 775, 546);
 		PanelStock.add(scrollPaneStock);
 		
 		tblStock = new JTable();
@@ -634,7 +634,7 @@ public class HomeAdmin extends JFrame {
 		PnlInserStock.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		PnlInserStock.setForeground(new Color(255, 255, 255));
 		PnlInserStock.setBackground(new Color(133, 133, 133));
-		PnlInserStock.setBounds(761, 39, 189, 64);
+		PnlInserStock.setBounds(813, 91, 162, 86);
 		PanelStock.add(PnlInserStock);
 		PnlInserStock.setLayout(new BorderLayout(0, 0));
 		
@@ -649,16 +649,16 @@ public class HomeAdmin extends JFrame {
 		});
 		lblInsertarStock.setForeground(new Color(255, 255, 255));
 		lblInsertarStock.setBackground(new Color(133, 133, 133));
-		lblInsertarStock.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblInsertarStock.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblInsertarStock.setHorizontalAlignment(SwingConstants.CENTER);
 		PnlInserStock.add(lblInsertarStock, BorderLayout.CENTER);
 		
-		JPanel PnlInserStock_1 = new JPanel();
-		PnlInserStock_1.setForeground(Color.WHITE);
-		PnlInserStock_1.setBackground(new Color(133, 133, 133));
-		PnlInserStock_1.setBounds(761, 157, 189, 64);
-		PanelStock.add(PnlInserStock_1);
-		PnlInserStock_1.setLayout(new BorderLayout(0, 0));
+		JPanel PnlUpdateStock = new JPanel();
+		PnlUpdateStock.setForeground(Color.WHITE);
+		PnlUpdateStock.setBackground(new Color(133, 133, 133));
+		PnlUpdateStock.setBounds(813, 228, 162, 86);
+		PanelStock.add(PnlUpdateStock);
+		PnlUpdateStock.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblUPdateStock = new JLabel("Update");
 		lblUPdateStock.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -704,10 +704,10 @@ public class HomeAdmin extends JFrame {
 			}
 			}
 		});
-		lblUPdateStock.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblUPdateStock.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblUPdateStock.setHorizontalAlignment(SwingConstants.CENTER);
 		lblUPdateStock.setForeground(new Color(255, 255, 255));
-		PnlInserStock_1.add(lblUPdateStock, BorderLayout.CENTER);
+		PnlUpdateStock.add(lblUPdateStock, BorderLayout.CENTER);
 		
 		JPanel PanelGestionFacturas = new JPanel();
 		PanelGestionFacturas.setBackground(new Color(192, 192, 192));
@@ -715,7 +715,7 @@ public class HomeAdmin extends JFrame {
 		PanelGestionFacturas.setLayout(null);
 		
 		JScrollPane scrollPane_3 = new JScrollPane();
-		scrollPane_3.setBounds(10, 11, 744, 546);
+		scrollPane_3.setBounds(10, 11, 775, 546);
 		PanelGestionFacturas.add(scrollPane_3);
 		
 		tblFactura = new JTable();
@@ -724,7 +724,7 @@ public class HomeAdmin extends JFrame {
 		JPanel PanelObtenerFactura = new JPanel();
 		PanelObtenerFactura.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		PanelObtenerFactura.setBackground(new Color(133, 133, 133));
-		PanelObtenerFactura.setBounds(789, 52, 178, 73);
+		PanelObtenerFactura.setBounds(813, 91, 162, 86);
 		PanelGestionFacturas.add(PanelObtenerFactura);
 		PanelObtenerFactura.setLayout(new BorderLayout(0, 0));
 		
@@ -749,7 +749,7 @@ public class HomeAdmin extends JFrame {
 		PanelGestionOrdenes.setLayout(null);
 		
 		JScrollPane scrollPaneOrdenes = new JScrollPane();
-		scrollPaneOrdenes.setBounds(10, 11, 819, 546);
+		scrollPaneOrdenes.setBounds(10, 11, 775, 546);
 		PanelGestionOrdenes.add(scrollPaneOrdenes);
 		
 		tblOrdenes = new JTable();
@@ -758,40 +758,43 @@ public class HomeAdmin extends JFrame {
 		
 		
 		JPanel panelInsertar = new JPanel();
+		panelInsertar.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		panelInsertar.setBackground(new Color(133, 133, 133));
-		panelInsertar.setBounds(839, 110, 148, 68);
+		panelInsertar.setBounds(813, 91, 162, 86);
 		PanelGestionOrdenes.add(panelInsertar);
 		panelInsertar.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblInsertarOrdenes = new JLabel("Insertar");
 		lblInsertarOrdenes.setForeground(new Color(255, 255, 255));
 		lblInsertarOrdenes.setBackground(new Color(133, 133, 133));
-		lblInsertarOrdenes.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblInsertarOrdenes.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblInsertarOrdenes.setHorizontalAlignment(SwingConstants.CENTER);
 		panelInsertar.add(lblInsertarOrdenes, BorderLayout.CENTER);
 		
 		JPanel panelUpdate = new JPanel();
+		panelUpdate.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		panelUpdate.setBackground(new Color(133, 133, 133));
-		panelUpdate.setBounds(839, 234, 148, 68);
+		panelUpdate.setBounds(813, 228, 162, 86);
 		PanelGestionOrdenes.add(panelUpdate);
 		panelUpdate.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblUpdateOrdenes = new JLabel("Update");
 		lblUpdateOrdenes.setForeground(new Color(255, 255, 255));
 		lblUpdateOrdenes.setBackground(new Color(133, 133, 133));
-		lblUpdateOrdenes.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblUpdateOrdenes.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblUpdateOrdenes.setHorizontalAlignment(SwingConstants.CENTER);
 		panelUpdate.add(lblUpdateOrdenes, BorderLayout.CENTER);
 		
 		JPanel panelEliminar = new JPanel();
+		panelEliminar.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		panelEliminar.setBackground(new Color(133, 133, 133));
-		panelEliminar.setBounds(839, 357, 148, 68);
+		panelEliminar.setBounds(813, 365, 162, 86);
 		PanelGestionOrdenes.add(panelEliminar);
 		panelEliminar.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblEliminarOrdenes = new JLabel("Eliminar");
 		lblEliminarOrdenes.setForeground(new Color(255, 255, 255));
-		lblEliminarOrdenes.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblEliminarOrdenes.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblEliminarOrdenes.setHorizontalAlignment(SwingConstants.CENTER);
 		panelEliminar.add(lblEliminarOrdenes, BorderLayout.CENTER);
 		
