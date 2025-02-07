@@ -715,7 +715,7 @@ public class HomeAdmin extends JFrame {
 		PanelGestionFacturas.setLayout(null);
 		
 		JScrollPane scrollPane_3 = new JScrollPane();
-		scrollPane_3.setBounds(24, 11, 730, 524);
+		scrollPane_3.setBounds(10, 11, 744, 546);
 		PanelGestionFacturas.add(scrollPane_3);
 		
 		tblFactura = new JTable();
