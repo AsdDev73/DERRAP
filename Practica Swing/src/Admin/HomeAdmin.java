@@ -255,6 +255,7 @@ public class HomeAdmin extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				cardLayout.show(PanelCardPrinci, "GetionFacturas");
+				UpdateTablaFactura();
 			}
 		});
 		lblFacturas.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -270,8 +271,6 @@ public class HomeAdmin extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 
-				cardLayout.show(PanelCardPrinci, "GestionInformes");
-				UpdateTablaFactura();
 				cardLayout.show(PanelCardPrinci, "GestionOrdenes");
 				UpdateTablaOrdenes();
 
@@ -734,6 +733,9 @@ public class HomeAdmin extends JFrame {
 		lblObtenerFactura.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				
+				
+				
 			}
 		});
 		lblObtenerFactura.setHorizontalAlignment(SwingConstants.CENTER);
@@ -984,7 +986,10 @@ public class HomeAdmin extends JFrame {
             e1.printStackTrace();
 		
 		}
-
-
-}
+	}
+	
+	
+	
+	
+	
 	}
