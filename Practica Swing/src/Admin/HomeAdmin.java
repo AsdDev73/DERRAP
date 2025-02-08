@@ -765,6 +765,16 @@ public class HomeAdmin extends JFrame {
 		panelInsertar.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblInsertarOrdenes = new JLabel("Insertar");
+		lblInsertarOrdenes.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				InsertOrdenes io = new InsertOrdenes(" ",1,frame);
+				io.setVisible(true);
+				io.setLocationRelativeTo(null);
+				
+			}
+		});
 		lblInsertarOrdenes.setForeground(new Color(255, 255, 255));
 		lblInsertarOrdenes.setBackground(new Color(133, 133, 133));
 		lblInsertarOrdenes.setFont(new Font("Tahoma", Font.PLAIN, 24));
@@ -980,7 +990,7 @@ public class HomeAdmin extends JFrame {
 
 	}
 
-	private void UpdateTablaOrdenes() {
+	public void UpdateTablaOrdenes() {
 		try {
             String [] cabezera= {"Codigo reparacion","Mano de Obra","Tiempo","Estado","Nº Mecanico","Id de la factura","Codigo repuesto","Matricula Vehiculo","Fecha"};
             mostrarSelect("Select * FROM Ordenes", tblOrdenes,cabezera);
