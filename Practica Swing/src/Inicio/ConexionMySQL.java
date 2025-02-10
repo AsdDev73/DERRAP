@@ -23,7 +23,7 @@ public class ConexionMySQL {
 	PreparedStatement pstmt = null;
 	ResultSet rs=null;
 		
-	
+	String precio;
 	
     //metodo para conectar a la base de datos 
     public void conectar() throws SQLException, ClassNotFoundException {
@@ -281,7 +281,70 @@ public int updateStockOrdenes(String Codigo_Reparacion, String Repuesto_Codigo_R
     int update = pstmt.executeUpdate();
     return update;
 }
+  
+public int insertFacturas(String Matricula, String Precio_sin_IVA) throws SQLException {
+    // Primero: Obtener el precio del repuesto asociado a la orden
+    String codigoStock = "SELECT r.Codigo_Repuesto, r.Precio " +
+                         "FROM ordenes o " +
+                         "JOIN repuesto r ON o.Repuesto_Codigo_Repuesto = r.Codigo_Repuesto " +
+                         "WHERE o.vehiculo_Matricula = ?";
+    PreparedStatement stmt = con.prepareStatement(codigoStock);
+    stmt.setString(1, Matricula);
+    ResultSet rs = stmt.executeQuery();
+
+    double precio = 0;
+    if (rs.next()) {
+        // Puedes obtener el código del repuesto si lo necesitas
+        String codigoRepuesto = rs.getString("Codigo_Repuesto");
+        precio = rs.getDouble("Precio");
+    }
+    rs.close();
+    stmt.close();
+
+    // Convertir el parámetro Precio_sin_IVA a double
+    double precioSinIVA = Double.parseDouble(Precio_sin_IVA);
     
+    // Sumar el precio obtenido y el Precio_sin_IVA
+    double sumaPrecios = precio + precioSinIVA;
+    double precioIVA = sumaPrecios * 1.21;
+
+    // Segundo: Insertar en la tabla factura y recuperar el ID generado
+    String consulta = "INSERT INTO factura (IVA, Precio_sin_IVA, Precio_Total) VALUES (?,?,?)";
+    // Indicamos que queremos recuperar la clave generada
+    PreparedStatement pstmt = con.prepareStatement(consulta, Statement.RETURN_GENERATED_KEYS);
+    pstmt.setString(1, "21");
+    pstmt.setDouble(2, sumaPrecios);
+    pstmt.setDouble(3, precioIVA);
+    
+    int update = pstmt.executeUpdate();
+
+    // Recuperar el ID autogenerado
+    int facturaId = 0;
+    ResultSet generatedKeys = pstmt.getGeneratedKeys();
+    if (generatedKeys.next()) {
+        facturaId = generatedKeys.getInt(1);
+    }
+    generatedKeys.close();
+    pstmt.close();
+
+    // Tercero: Actualizar la orden con el ID de factura recién creado
+    updateFacturaOrden(facturaId, Matricula);
+
+    return update;
+}
+
+public int updateFacturaOrden(int facturaId, String Matricula) throws SQLException {
+    // Actualizamos la tabla ordenes para la orden que corresponde a la Matricula
+    String updateQuery = "UPDATE ordenes SET Factura_ID_Factura = ? WHERE vehiculo_Matricula = ?";
+    PreparedStatement updateStmt = con.prepareStatement(updateQuery);
+    updateStmt.setInt(1, facturaId);
+    updateStmt.setString(2, Matricula);
+    int rowsUpdated = updateStmt.executeUpdate();
+    updateStmt.close();
+    return rowsUpdated;
+}
+
+
 }
 
 

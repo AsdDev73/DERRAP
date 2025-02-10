@@ -804,7 +804,7 @@ public class HomeAdmin extends JFrame {
 			public void mousePressed(MouseEvent e) {
 				try {
 					int fila = tblOrdenes.getSelectedRow();
-					String MatriculaCoche = String.valueOf(tblOrdenes.getValueAt(fila, 0));
+					String MatriculaCoche = String.valueOf(tblOrdenes.getValueAt(fila, 7));
 					if(fila != -1) {
 						InsertOrdenes io = new InsertOrdenes(MatriculaCoche,2,frame);
 						io.setVisible(true);

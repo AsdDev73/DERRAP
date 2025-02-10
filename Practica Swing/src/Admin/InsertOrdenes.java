@@ -101,6 +101,12 @@ public class InsertOrdenes extends JFrame {
 		contentPane.add(panelTXT);
 		
 		JLabel lblImgVolver = new JLabel("");
+		lblImgVolver.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				dispose();
+			}
+		});
 		lblImgVolver.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblImgVolver.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		lblImgVolver.setBounds(0, 0, 41, 35);

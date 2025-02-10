@@ -61,6 +61,7 @@ public class HomeMecanico extends JFrame {
 	HomeMecanico frame;
 	String dniMecanico;
 	private JTable tblMisOrdenes;
+	private JTable tblFacturasMecanico;
 	
 	/**
 	 * Launch the application.
@@ -341,8 +342,19 @@ public class HomeMecanico extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				try {
-					finalizarMisOrdenes();
-					UpdateTablaMisOrdenes(frame.dniMecanico);
+					
+					int fila = tblMisOrdenes.getSelectedRow();
+					String matricula = String.valueOf(tblMisOrdenes.getValueAt(fila, 7));
+					String precio = String.valueOf(tblMisOrdenes.getValueAt(fila, 1));
+					
+					if(fila != -1) {
+						finalizarMisOrdenes(matricula,precio);
+						UpdateTablaMisOrdenes(frame.dniMecanico);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Selecciona una orden de la tabla", "Advertencia", JOptionPane.WARNING_MESSAGE);
+					}
+					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -402,10 +414,16 @@ public class HomeMecanico extends JFrame {
 		lblAsignar.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		
 		JPanel panelFacturas = new JPanel();
+		panelFacturas.setBackground(new Color(192, 192, 192));
 		PanelCardPrinci.add(panelFacturas, "panelFacturas");
+		panelFacturas.setLayout(null);
 		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(10, 11, 757, 550);
+		panelFacturas.add(scrollPane_1);
 		
-		
+		tblFacturasMecanico = new JTable();
+		scrollPane_1.setViewportView(tblFacturasMecanico);
 		
 		JLabel lblOrdenesDisponibles = new JLabel("Ordenes");
 		lblOrdenesDisponibles.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -434,6 +452,7 @@ public class HomeMecanico extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				cardLayout.show(PanelCardPrinci, "panelFacturas");
+				UpdateTablaFacturas();
 			}
 		});
 		lblFacturas.setBounds(78, 431, 118, 130);
@@ -489,6 +508,8 @@ public class HomeMecanico extends JFrame {
 	}
 
 
+
+	
 
 	private void pantallaCompleta(HomeMecanico homeMecanico) {
 		// Obtener el tamaño de la pantalla
@@ -573,6 +594,26 @@ public class HomeMecanico extends JFrame {
 			e1.printStackTrace();
 		}
 	}
+	
+	public void UpdateTablaFacturas() {
+		String consulta = "SELECT f.ID_Factura, f.IVA, f.Precio_sin_IVA, f.Precio_Total, " +
+                "v.Matricula, c.DNI, c.Nombre " +
+                "FROM factura f " +
+                "JOIN Ordenes o ON f.ID_Factura = o.Factura_ID_Factura " +
+                "JOIN vehiculo v ON o.vehiculo_Matricula = v.Matricula " +
+                "JOIN cliente c ON v.Cliente_DNI = c.DNI WHERE o.Mecanico_No_Empleado = '"+dniMecanico+"';";
+			
+			String[] cabecera = {"ID Factura", "IVA", "Precio sin IVA", "Precio Total", "Matrícula", "DNI Cliente", "Nombre Cliente"};
+			
+			try {
+			  mostrarSelect(consulta, tblFacturasMecanico, cabecera);
+			} catch (SQLException | ClassNotFoundException e) {
+			  e.printStackTrace();
+		}
+		
+	}
+	
+	
 	public void UpdateTablaMisOrdenes(String dni) {
 		try {
 			String [] cabezera= {"Codido_Reparacion","Mano_de_obra","Tiempo","Estado","Nº_Empleado", "Id_Factura","Cº_Repuesto", "Matrícula","Fecha"};
@@ -609,7 +650,7 @@ public class HomeMecanico extends JFrame {
 		}
 
 	}
-	private void finalizarMisOrdenes() throws SQLException {
+	private void finalizarMisOrdenes(String matricula, String precio) throws SQLException {
         int filaSeleccionada = tblMisOrdenes.getSelectedRow();
         String codigoReparacion = tblMisOrdenes.getValueAt(filaSeleccionada, 0).toString();
 		if(filaSeleccionada!=-1) {
@@ -617,6 +658,7 @@ public class HomeMecanico extends JFrame {
 	        con.update(sentenciaUpdate);
 	        JOptionPane.showMessageDialog(null, "Orden terminada correctamente");
 	        UpdateTablaOrdenes();
+	        con.insertFacturas(matricula, precio);
 		}else {
 			JOptionPane.showMessageDialog(null, "Selecciona una orden de la tabla", "Advertencia", JOptionPane.WARNING_MESSAGE);
 		}
