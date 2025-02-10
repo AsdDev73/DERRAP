@@ -502,7 +502,7 @@ public class HomeAdmin extends JFrame {
 						dc.setLocationRelativeTo(null);
 		            }
 		            else {
-		            	JOptionPane.showMessageDialog(null, "No has ,etido ningun ID");
+		            	JOptionPane.showMessageDialog(null, "No has metido ningun ID");
 		            }
 			}
 		});
@@ -835,6 +835,30 @@ public class HomeAdmin extends JFrame {
 		panelEliminar.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblEliminarOrdenes = new JLabel("Eliminar");
+		lblEliminarOrdenes.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				try {
+					int fila = tblOrdenes.getSelectedRow();
+					String Matricula = String.valueOf(tblOrdenes.getValueAt(fila, 7));
+					if(fila != -1) {
+						DeleteOrdenes dof = new DeleteOrdenes(Matricula,frame);
+						dof.setVisible(true);
+						dof.setLocationRelativeTo(null);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Selecciona una Matricula de la tabla", "Advertencia", JOptionPane.WARNING_MESSAGE);
+					}
+				}
+				catch(ArrayIndexOutOfBoundsException ex) {
+					JOptionPane.showMessageDialog(null, "Selecciona una Matricula de la tabla", "Advertencia", JOptionPane.WARNING_MESSAGE);
+				}
+			
+			}
+				
+			
+		});
 		lblEliminarOrdenes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblEliminarOrdenes.setForeground(new Color(255, 255, 255));
 		lblEliminarOrdenes.setFont(new Font("Tahoma", Font.PLAIN, 24));

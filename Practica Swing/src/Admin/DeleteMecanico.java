@@ -133,6 +133,7 @@ public class DeleteMecanico extends JFrame {
 						if (funciona > 0) {
 			                 JOptionPane.showMessageDialog(null, "Mecánico eliminado correctamente");
 			                     dispose();
+			                     
 					}
 			        } else if (respuesta == JOptionPane.NO_OPTION) {
 			            

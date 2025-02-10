@@ -19,7 +19,7 @@ public class ConexionMySQL {
 	private static final String Usuario="root";
 	private static final String psw="Medac123";
 	
-	Connection con=null;
+	public Connection con=null;
 	PreparedStatement pstmt = null;
 	ResultSet rs=null;
 		
@@ -261,8 +261,22 @@ public int updateOrdenes(String Matricula, String Mano_de_obra, String tiempo) t
     return update;
 }
 
-    
+public int deleteOrdenes(String Matricula)throws SQLException {
+	
+	String consulta ="DELETE FROM ORDENES WHERE VEHICULO_MATRICULA = ?";
+	PreparedStatement pstmt = con.prepareStatement(consulta);
+	pstmt.setString(1, Matricula);
+	
+	int update = pstmt.executeUpdate();
+    return update;
+	
 }
+}
+
+
+
+
+
 
     
 

@@ -70,6 +70,14 @@ public class InsertStock extends JFrame {
 		panelArriba.setLayout(null);
 		
 		JLabel lblImgVolver = new JLabel("\r\n");
+		lblImgVolver.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				
+				dispose();
+				
+			}
+		});
 		lblImgVolver.setBounds(0, 0, 64, 41);
 		panelArriba.add(lblImgVolver);
 		
