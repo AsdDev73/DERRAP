@@ -319,6 +319,8 @@ public class HomeMecanico extends JFrame {
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				} catch (ArrayIndexOutOfBoundsException e2) {
+					JOptionPane.showMessageDialog(null, "Selecciona una fila de la tabla");
 				}
 			}
 		});
@@ -344,6 +346,8 @@ public class HomeMecanico extends JFrame {
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				}catch (ArrayIndexOutOfBoundsException e2) {
+					JOptionPane.showMessageDialog(null, "Selecciona una fila de la tabla");
 				}
 			}
 		});

@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Inicio.ConexionMySQL;
+import Inicio.InicioDeSesion;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -74,7 +75,25 @@ public class UpdateMisOrdenes extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblimgFlecha_Volver = new JLabel("");
-		lblimgFlecha_Volver.setBounds(10, 11, 46, 14);
+		lblimgFlecha_Volver.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// Mostrar el JOptionPane con las opciones "Sí" y "No"
+                int option = JOptionPane.showConfirmDialog(null, 
+                        "¿Quieres salir?", "Confirmar Salida", 
+                        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+                // Verificar la opción seleccionada
+                if (option == JOptionPane.YES_OPTION) {
+                    // Si el usuario elige "Sí", cerrar la ventana principal
+                    dispose();
+                    
+                  
+				
+                }
+			}
+		});
+		lblimgFlecha_Volver.setBounds(10, 11, 46, 42);
 		panel.add(lblimgFlecha_Volver);
 		
 		JLabel lblNewLabel = new JLabel("Nº Pieza");
