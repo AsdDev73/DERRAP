@@ -19,6 +19,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import Admin.HomeAdmin;
+import Admin.InsertCliente;
 import Inicio.ConexionMySQL;
 import Inicio.InicioDeSesion;
 
@@ -41,6 +42,7 @@ import javax.swing.JSeparator;
 import java.awt.Component;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.GridLayout;
 
 public class HomeMecanico extends JFrame {
 
@@ -254,11 +256,105 @@ public class HomeMecanico extends JFrame {
 		panelMisOrdenes.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 11, 810, 431);
+		scrollPane.setBounds(10, 11, 808, 550);
 		panelMisOrdenes.add(scrollPane);
 		
 		tblMisOrdenes = new JTable();
 		scrollPane.setViewportView(tblMisOrdenes);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		panel_1.setBackground(new Color(128, 128, 128));
+		panel_1.setBounds(854, 88, 137, 75);
+		panelMisOrdenes.add(panel_1);
+		panel_1.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblAsignarPiezas = new JLabel("Piezas");
+		lblAsignarPiezas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				try {
+					int fila = tblMisOrdenes.getSelectedRow();
+					String Id_MisOrdenes = String.valueOf(tblMisOrdenes.getValueAt(fila, 0));
+					if(fila != -1) {
+						UpdateMisOrdenes um = new UpdateMisOrdenes(Id_MisOrdenes, frame);
+						um.setVisible(true);
+						um.setLocationRelativeTo(null);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Selecciona una orden de la tabla", "Advertencia", JOptionPane.WARNING_MESSAGE);
+					}
+				}
+				catch(ArrayIndexOutOfBoundsException ex) {
+					JOptionPane.showMessageDialog(null, "Selecciona una orden de la tabla", "Advertencia", JOptionPane.WARNING_MESSAGE);
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		lblAsignarPiezas.setForeground(new Color(255, 255, 255));
+		lblAsignarPiezas.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		lblAsignarPiezas.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_1.add(lblAsignarPiezas);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		panel_2.setBackground(new Color(128, 128, 128));
+		panel_2.setBounds(854, 205, 137, 75);
+		panelMisOrdenes.add(panel_2);
+		panel_2.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		JLabel lblCancelar = new JLabel("Cancelar");
+		lblCancelar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				try {
+					cancelarMisOrdenes();
+					UpdateTablaMisOrdenes(frame.dniMecanico);
+					
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (ArrayIndexOutOfBoundsException e2) {
+					JOptionPane.showMessageDialog(null, "Selecciona una fila de la tabla");
+				}
+			}
+		});
+		lblCancelar.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCancelar.setForeground(new Color(255, 255, 255));
+		lblCancelar.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		panel_2.add(lblCancelar);
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		panel_3.setBackground(new Color(128, 128, 128));
+		panel_3.setBounds(854, 315, 137, 75);
+		panelMisOrdenes.add(panel_3);
+		panel_3.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		JLabel lblTerminar = new JLabel("Terminar");
+		lblTerminar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				try {
+					finalizarMisOrdenes();
+					UpdateTablaMisOrdenes(frame.dniMecanico);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}catch (ArrayIndexOutOfBoundsException e2) {
+					JOptionPane.showMessageDialog(null, "Selecciona una fila de la tabla");
+				}
+			}
+		});
+		lblTerminar.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTerminar.setForeground(new Color(255, 255, 255));
+		lblTerminar.setFont(new Font("Tahoma", Font.PLAIN, 24));
+		panel_3.add(lblTerminar);
 		
 		JPanel panelOrdenes = new JPanel();
 		panelOrdenes.setBackground(new Color(192, 192, 192));
@@ -308,7 +404,11 @@ public class HomeMecanico extends JFrame {
 		JPanel panelFacturas = new JPanel();
 		PanelCardPrinci.add(panelFacturas, "panelFacturas");
 		
+<<<<<<< HEAD
 		JLabel lblNewLabel_1 = new JLabel("ohuibnyugb");
+=======
+		JLabel lblNewLabel_1 = new JLabel("wdewadadw");
+>>>>>>> cd725d7d78d33d895306b2de6e4fa893be57edf5
 		panelFacturas.add(lblNewLabel_1);
 		
 		
@@ -426,7 +526,7 @@ public class HomeMecanico extends JFrame {
 	    }
 	}
 	
-	private void mostrarSelect(String consulta, JTable jtDatos, String cabezera[]) throws SQLException, ClassNotFoundException {
+	public void mostrarSelect(String consulta, JTable jtDatos, String cabezera[]) throws SQLException, ClassNotFoundException {
 	    try {
 	        con.conectar();
 	        ResultSet rs = con.ejecutarSelect(consulta);
@@ -495,6 +595,32 @@ public class HomeMecanico extends JFrame {
 	        String sentenciaUpdate = "UPDATE ordenes SET Mecanico_No_Empleado = "+dni+" WHERE codigo_reparacion = "+codigoReparacion+";";
 	        con.update(sentenciaUpdate);
 	        JOptionPane.showMessageDialog(null, "Orden asignada correctamente");
+	        UpdateTablaOrdenes();
+		}else {
+			JOptionPane.showMessageDialog(null, "Selecciona una orden de la tabla", "Advertencia", JOptionPane.WARNING_MESSAGE);
+		}
+
+	}
+	private void cancelarMisOrdenes() throws SQLException {
+        int filaSeleccionada = tblMisOrdenes.getSelectedRow();
+        String codigoReparacion = tblMisOrdenes.getValueAt(filaSeleccionada, 0).toString();
+		if(filaSeleccionada!=-1) {
+	        String sentenciaUpdate = "UPDATE ordenes SET Mecanico_No_Empleado = null WHERE codigo_reparacion = "+codigoReparacion+";";
+	        con.update(sentenciaUpdate);
+	        JOptionPane.showMessageDialog(null, "Orden cancelada correctamente");
+	        UpdateTablaOrdenes();
+		}else {
+			JOptionPane.showMessageDialog(null, "Selecciona una orden de la tabla", "Advertencia", JOptionPane.WARNING_MESSAGE);
+		}
+
+	}
+	private void finalizarMisOrdenes() throws SQLException {
+        int filaSeleccionada = tblMisOrdenes.getSelectedRow();
+        String codigoReparacion = tblMisOrdenes.getValueAt(filaSeleccionada, 0).toString();
+		if(filaSeleccionada!=-1) {
+	        String sentenciaUpdate = "UPDATE ordenes SET Estado = 'Terminado' WHERE codigo_reparacion = "+codigoReparacion+";";
+	        con.update(sentenciaUpdate);
+	        JOptionPane.showMessageDialog(null, "Orden terminada correctamente");
 	        UpdateTablaOrdenes();
 		}else {
 			JOptionPane.showMessageDialog(null, "Selecciona una orden de la tabla", "Advertencia", JOptionPane.WARNING_MESSAGE);

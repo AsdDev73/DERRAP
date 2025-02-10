@@ -261,6 +261,7 @@ public int updateOrdenes(String Matricula, String Mano_de_obra, String tiempo) t
     return update;
 }
 
+<<<<<<< HEAD
 public int deleteOrdenes(String Matricula)throws SQLException {
 	
 	String consulta ="DELETE FROM ORDENES WHERE VEHICULO_MATRICULA = ?";
@@ -271,6 +272,30 @@ public int deleteOrdenes(String Matricula)throws SQLException {
     return update;
 	
 }
+=======
+
+
+
+
+
+
+
+
+
+
+
+
+
+public int updateStockOrdenes(String Codigo_Reparacion, String Repuesto_Codigo_Repuesto) throws SQLException {
+    String consulta = "UPDATE Ordenes SET Repuesto_Codigo_Repuesto = ?WHERE Codigo_Reparacion = ?;";
+    PreparedStatement pstmt = con.prepareStatement(consulta);
+    pstmt.setString(1, Repuesto_Codigo_Repuesto);
+    pstmt.setString(2, Codigo_Reparacion);
+    int update = pstmt.executeUpdate();
+    return update;
+}
+    
+>>>>>>> cd725d7d78d33d895306b2de6e4fa893be57edf5
 }
 
 
