@@ -404,12 +404,7 @@ public class HomeMecanico extends JFrame {
 		JPanel panelFacturas = new JPanel();
 		PanelCardPrinci.add(panelFacturas, "panelFacturas");
 		
-<<<<<<< HEAD
-		JLabel lblNewLabel_1 = new JLabel("ohuibnyugb");
-=======
-		JLabel lblNewLabel_1 = new JLabel("wdewadadw");
->>>>>>> cd725d7d78d33d895306b2de6e4fa893be57edf5
-		panelFacturas.add(lblNewLabel_1);
+		
 		
 		
 		JLabel lblOrdenesDisponibles = new JLabel("Ordenes");

@@ -261,7 +261,6 @@ public int updateOrdenes(String Matricula, String Mano_de_obra, String tiempo) t
     return update;
 }
 
-<<<<<<< HEAD
 public int deleteOrdenes(String Matricula)throws SQLException {
 	
 	String consulta ="DELETE FROM ORDENES WHERE VEHICULO_MATRICULA = ?";
@@ -272,18 +271,6 @@ public int deleteOrdenes(String Matricula)throws SQLException {
     return update;
 	
 }
-=======
-
-
-
-
-
-
-
-
-
-
-
 
 
 public int updateStockOrdenes(String Codigo_Reparacion, String Repuesto_Codigo_Repuesto) throws SQLException {
@@ -295,7 +282,6 @@ public int updateStockOrdenes(String Codigo_Reparacion, String Repuesto_Codigo_R
     return update;
 }
     
->>>>>>> cd725d7d78d33d895306b2de6e4fa893be57edf5
 }
 
 
