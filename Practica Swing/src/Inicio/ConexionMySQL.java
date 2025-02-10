@@ -261,6 +261,27 @@ public int updateOrdenes(String Matricula, String Mano_de_obra, String tiempo) t
     return update;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+public int updateStockOrdenes(String Codigo_Reparacion, String Repuesto_Codigo_Repuesto) throws SQLException {
+    String consulta = "UPDATE Ordenes SET Repuesto_Codigo_Repuesto = ?WHERE Codigo_Reparacion = ?;";
+    PreparedStatement pstmt = con.prepareStatement(consulta);
+    pstmt.setString(1, Repuesto_Codigo_Repuesto);
+    pstmt.setString(2, Codigo_Reparacion);
+    int update = pstmt.executeUpdate();
+    return update;
+}
     
 }
 
