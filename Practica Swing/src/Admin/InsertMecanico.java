@@ -202,14 +202,7 @@ public class InsertMecanico extends JFrame {
 				
 			}
 		});
-
-		btnAñadir.setForeground(new Color(255, 255, 255));
-		btnAñadir.setBackground(new Color(130, 130, 130));
-		btnAñadir.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btnAñadir.setBounds(164, 402, 128, 42);
-		contentPane.add(btnAñadir);
 		
-
 		if(i==2) {
 			lblPrincipal.setText("Update");
 			txtDNI.setText(frase);
@@ -219,6 +212,14 @@ public class InsertMecanico extends JFrame {
 		else {
 			lblPrincipal.setText("Insert");
 		}
+		btnAñadir.setForeground(new Color(255, 255, 255));
+		btnAñadir.setBackground(new Color(130, 130, 130));
+		btnAñadir.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnAñadir.setBounds(164, 402, 128, 42);
+		contentPane.add(btnAñadir);
+		
+
+		
 	}
 
 	private void mostrarDatosMecanico (String frase) {

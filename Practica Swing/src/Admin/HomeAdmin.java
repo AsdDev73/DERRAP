@@ -493,17 +493,24 @@ public class HomeAdmin extends JFrame {
 		lblDarDeBaja.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				  String frase = JOptionPane.showInputDialog(null, "Por favor, introduce la id:", "Entrada de texto", JOptionPane.QUESTION_MESSAGE);
-		            if (frase != null && !frase.trim().isEmpty()) {
-		                // Abrir un nuevo JFrame con la frase ingresada
-		            	
-						DeleteMecanico dc = new DeleteMecanico(frase);
-						dc.setVisible(true);
-						dc.setLocationRelativeTo(null);
-		            }
-		            else {
-		            	JOptionPane.showMessageDialog(null, "No has metido ningun ID");
-		            }
+				try {
+					int fila = tblMecanico.getSelectedRow();
+					String DNIMecanico = String.valueOf(tblMecanico.getValueAt(fila, 0));
+					if(fila != -1) {
+						  	DeleteMecanico dc = new DeleteMecanico(DNIMecanico);
+							dc.setVisible(true);
+							dc.setLocationRelativeTo(null);
+					}
+						
+					else {
+						JOptionPane.showMessageDialog(null, "Selecciona un mecanico de la tabla", "Advertencia", JOptionPane.WARNING_MESSAGE);
+					}
+						
+				}catch(ArrayIndexOutOfBoundsException ex) {
+					JOptionPane.showMessageDialog(null, "Selecciona un mecanico de la tabla", "Advertencia", JOptionPane.WARNING_MESSAGE);
+				}
+		            
+		          
 			}
 		});
 		lblDarDeBaja.setHorizontalAlignment(SwingConstants.CENTER);
@@ -526,7 +533,7 @@ public class HomeAdmin extends JFrame {
 					int fila = tblMecanico.getSelectedRow();
 					String DNIMecanico = String.valueOf(tblMecanico.getValueAt(fila, 0));
 					if(fila != -1) {
-						InsertMecanico im = new InsertMecanico(DNIMecanico, 1,frame);
+						InsertMecanico im = new InsertMecanico(DNIMecanico, 2,frame);
 						im.setVisible(true);
 						im.setLocationRelativeTo(null);
 					}
@@ -599,10 +606,10 @@ public class HomeAdmin extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				try {
-					int fila = tblMecanico.getSelectedRow();
-					String Matricula = String.valueOf(tblMecanico.getValueAt(fila, 0));
+					int fila = tblVehiculo.getSelectedRow();
+					String Matricula = String.valueOf(tblVehiculo.getValueAt(fila, 0));
 					if(fila != -1) {
-						InsertVehiculo iv = new InsertVehiculo(Matricula ,1,frame);
+						InsertVehiculo iv = new InsertVehiculo(Matricula ,2,frame);
 						iv.setVisible(true);
 						iv.setLocationRelativeTo(null);
 					}
