@@ -1,17 +1,12 @@
 package Admin;
 
-import java.awt.EventQueue;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.kernel.colors.Color;
@@ -23,7 +18,6 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
-import com.itextpdf.layout.borders.SolidBorder;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
@@ -32,41 +26,18 @@ import com.itextpdf.layout.properties.VerticalAlignment;
 
 import Inicio.ConexionMySQL;
 
-public class FacturaInfo extends JFrame {
-
-    private static final long serialVersionUID = 1L;
-    private JPanel contentPane;
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/derrap";
-    private static final String USER = "root";
-    private static final String PASSWORD = "";
-    private static final String OUTPUT_FILE = "Ordenes_Report.pdf";
-    String matricula;
-    private ConexionMySQL con = new ConexionMySQL();
-	private Statement stm = null;
-
-    public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            try {
-            	FacturaInfo frame = new FacturaInfo(null);
-                frame.setVisible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
-    }
-
-    public FacturaInfo(String  MatriculaOrden) {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 300);
-        contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        setContentPane(contentPane);
-        
-        JButton btnGeneratePdf = new JButton("Crear informe");
-        btnGeneratePdf.addActionListener(e -> generarFactura());
-        contentPane.add(btnGeneratePdf);
-    }
-    
+public class FacturaPDF {
+	
+	 private static final long serialVersionUID = 1L;
+	    String matricula;
+	    private ConexionMySQL con = new ConexionMySQL();
+		private Statement stm = null;
+		private static final String OUTPUT_FILE = "Ordenes_Report.pdf";
+	    
+	    public FacturaPDF( String matricula) {
+	    	this.matricula=matricula;
+	    }
+	    	
 	public void generarFactura() {
         try{
         	con.conectar();
@@ -131,3 +102,4 @@ public class FacturaInfo extends JFrame {
                 .setBorder(Border.NO_BORDER);
     }
 }
+

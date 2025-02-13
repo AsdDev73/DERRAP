@@ -750,10 +750,28 @@ public class HomeAdmin extends JFrame {
 		lblObtenerFactura.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				try {
+					int fila = tblFactura.getSelectedRow();
+					String Matricula = String.valueOf(tblFactura.getValueAt(fila, 4));
+					if(fila != -1) {
+						FacturaInfo fi = new FacturaInfo(Matricula);
+						fi.setVisible(true);
+						fi.setLocationRelativeTo(null);
+						//FacturaPDF fact = new FacturaPDF(Matricula);
+						//fact.generarFactura();
+					}
+						
+					else {
+						JOptionPane.showMessageDialog(null, "Selecciona un mecanico de la tabla", "Advertencia", JOptionPane.WARNING_MESSAGE);
+					}
 				
-				
-				
+				}
+					
+			catch(ArrayIndexOutOfBoundsException ex) {
+				JOptionPane.showMessageDialog(null, "Selecciona un mecanico de la tabla", "Advertencia", JOptionPane.WARNING_MESSAGE);
 			}
+			}
+				
 		});
 		lblObtenerFactura.setHorizontalAlignment(SwingConstants.CENTER);
 		lblObtenerFactura.setFont(new Font("Tahoma", Font.PLAIN, 17));
